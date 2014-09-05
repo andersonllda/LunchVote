@@ -1,0 +1,1157 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:HMV.Core.Framework.WPF"             
+                    xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Resources/ImagesDictionary.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--BRUSHES-->
+    <SolidColorBrush x:Key="RowDetailTextForeground" Color="#FFF20606"/>
+
+    <LinearGradientBrush x:Key="RowDetailBackground" EndPoint="0.5,0.992" StartPoint="0.5,0.003" SpreadMethod="Pad">
+        <GradientStop Color="White" Offset="0" />
+        <GradientStop Color="White" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Gradient" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FFD8DEE0" Offset="0"/>
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GradientSite" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#668CB2" Offset="0" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ButtonGradientVermelho" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FF0D0D0E" />
+            <GradientStop Color="#FF8D1E17" Offset="1" />
+            <GradientStop Color="#FF0D0D0E" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ButtonAzulGradient" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FF0D0D0E" />
+            <GradientStop Color="#FF6FA8DC" Offset="1" />
+            <GradientStop Color="Black" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GradientSelectedRow" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#7b9bc8" Offset="0" />
+            <GradientStop Color="#5c7eaf" Offset="1" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GradientBlue" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="DeepSkyBlue" Offset="0" />
+        <GradientStop Color="Blue" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GradientLightBlue" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="WhiteSmoke" Offset="0" />
+        <GradientStop Color="DeepSkyBlue" Offset="1" />
+    </LinearGradientBrush>
+
+
+    <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0"/>
+                <GradientStop Color="#CCC" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="NormalBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#CCC" Offset="0.0"/>
+                <GradientStop Color="#444" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+
+    <LinearGradientBrush x:Key="DarkBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0"/>
+                <GradientStop Color="#AAA" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="PressedBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#BBB" Offset="0.0"/>
+                <GradientStop Color="#EEE" Offset="0.1"/>
+                <GradientStop Color="#EEE" Offset="0.9"/>
+                <GradientStop Color="#FFF" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="PressedBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#444" Offset="0.0"/>
+                <GradientStop Color="#888" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+    <!--/BRUSHES-->
+
+    <!--COMPONENT STYLES-->
+
+    <!--GROUPBOX-->
+    <conv:CenterHeaderGroupBoxConverter x:Key="CenterHeaderGroupBoxConverter"/>
+    <Style x:Key="CenteredHeaderGroupBoxStyle" TargetType="{x:Type GroupBox}">
+        <Setter Property="BorderBrush" Value="#FF6FA8DC"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GroupBox}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="6"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="6"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="4" Grid.Column="0" CornerRadius="4" Grid.Row="1" Grid.RowSpan="3"/>
+                        <Border Grid.ZIndex="2" x:Name="Header" Grid.Column="2" HorizontalAlignment="Center" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2">
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ContentPresenter Grid.ColumnSpan="2" Grid.Column="1" Margin="{TemplateBinding Padding}" Grid.Row="2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <Border RenderTransformOrigin="0.5,0.5" BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="4" CornerRadius="4" Grid.Row="1" Grid.RowSpan="3">
+                            <Border.OpacityMask>
+                                <MultiBinding ConverterParameter="7" Converter="{StaticResource CenterHeaderGroupBoxConverter}">
+                                    <Binding ElementName="Header" Path="ActualWidth"/>
+                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}"/>
+                                </MultiBinding>
+                            </Border.OpacityMask>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                                <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--TEXTBLOCK-->
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleMensagem">
+        <Setter Property="Background" Value="{DynamicResource ButtonGradientVermelho}" />
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleTextBlock" >
+        <Setter Property="Foreground" Value="#FF1E489A"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleTextBlockSite" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleTextBlockTitulo" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+    </Style>    
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleTextBlockTituloPanel" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="22"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+        <Setter Property="Margin" Value="10,0"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleTextBlockTituloUC" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="22"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+        <Setter Property="Margin" Value="10,0"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleTextBlockTituloCad" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+        <Setter Property="Margin" Value="10,0"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+    </Style>    
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleTextBlockPacientePEP" >
+        <Setter Property="Foreground" Value="#FF8D1E17"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="styleTextBlockIEPTitulo" >
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+    </Style>
+    <!--/TEXTBLOCK-->
+
+    <!--RADIOBUTTON-->
+    <Style x:Key="RadioButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Margin="15,0,0,0" StrokeThickness="1" Stroke="#60000000" StrokeDashArray="1 2"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type RadioButton}" x:Key="styleRadioDefault">        
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="FocusVisualStyle"  Value="{StaticResource RadioButtonFocusVisual}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Grid Width="13" Height="13" >
+                                <Ellipse x:Name="Border" Fill="{StaticResource NormalBrush}" StrokeThickness="1" Stroke="{StaticResource NormalBorderBrush}" />
+                                <Ellipse x:Name="CheckMark" Margin="4" Fill="{StaticResource GlyphBrush}" />
+                            </Grid>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource DarkBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource PressedBrush}" />
+                            <Setter TargetName="Border" Property="Stroke" Value="{StaticResource GlyphBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="Stroke" Value="#40000000" />
+                            <Setter Property="Foreground" Value="#80000000"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type RadioButton}" x:Key="styleRadioBlue">
+        <Setter Property="Foreground" Value="#FF1E489A"></Setter>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="FocusVisualStyle"  Value="{StaticResource RadioButtonFocusVisual}"/>        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Grid Width="13" Height="13" >
+                                <Ellipse x:Name="Border" Fill="{StaticResource NormalBrush}" StrokeThickness="1" Stroke="{StaticResource NormalBorderBrush}" />
+                                <Ellipse x:Name="CheckMark" Margin="4" Fill="{StaticResource GlyphBrush}" />
+                            </Grid>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource DarkBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource PressedBrush}" />
+                            <Setter TargetName="Border" Property="Stroke" Value="{StaticResource GlyphBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="Stroke" Value="#40000000" />
+                            <Setter Property="Foreground" Value="#80000000"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type RadioButton}" x:Key="styleRadioWhite">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="FocusVisualStyle"  Value="{StaticResource RadioButtonFocusVisual}"/>        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Grid Width="13" Height="13" >
+                                <Ellipse x:Name="Border" Fill="{StaticResource NormalBrush}" StrokeThickness="1" Stroke="{StaticResource NormalBorderBrush}" />
+                                <Ellipse x:Name="CheckMark" Margin="4" Fill="{StaticResource GlyphBrush}" />
+                            </Grid>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource DarkBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource PressedBrush}" />
+                            <Setter TargetName="Border" Property="Stroke" Value="{StaticResource GlyphBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" Property="Fill" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="Stroke" Value="#40000000" />
+                            <Setter Property="Foreground" Value="#80000000"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>    
+    <!--/RADIOBUTTON-->
+    
+    <!--LABEL-->
+    <Style TargetType="{x:Type Label}" x:Key="styleTitulo" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="#FF1E489A"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="styleTituloCaledario" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="#FF1E489A"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="styleLabelSimNao">
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Foreground" Value="#FFA74949"></Setter>
+        <Setter Property="BorderBrush" Value="#FFE2BFBF"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    <!--LABEL-->
+    
+    <!--/GRID-->
+    <Style TargetType="{x:Type Grid}" x:Key="styleGrid" >
+        <Setter Property="Background" Value="{DynamicResource Gradient}" />
+    </Style>
+    <Style TargetType="{x:Type Grid}" x:Key="styleGridSite" >
+        <Setter Property="Background" Value="{DynamicResource GradientSite}" />
+    </Style>
+    <!--/GRID-->
+    
+    <!--TEXTBOXBASE-->
+    <Style x:Key="{x:Type TextBoxBase}" TargetType="{x:Type TextBoxBase}">
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <ScrollViewer x:Name="PART_ContentHost" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--/TEXTBOXBASE-->
+    
+    <!--RICHTEXTBOX-->
+    <Style x:Key="DemoRichTextBoxStyle" TargetType="{x:Type RichTextBox}">
+        <Style.Resources>
+            <Style x:Key="{x:Type FlowDocument}" TargetType="{x:Type FlowDocument}">
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="MinWidth" Value="10" />
+        <Style.BasedOn>
+            <StaticResource ResourceKey="{x:Type TextBoxBase}"/>
+        </Style.BasedOn>
+    </Style>
+    <!--/RICHTEXTBOX-->
+    
+    <!--CHECKBOX-->
+    <Style x:Key="CheckBoxFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Margin="15,0,0,0" StrokeThickness="1" Stroke="#60000000" StrokeDashArray="1 2"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}" x:Key="styleCheckBoxDefault">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="FocusVisualStyle"  Value="{StaticResource CheckBoxFocusVisual}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="Border" Width="13" Height="13" CornerRadius="0" Background="{StaticResource NormalBrush}"
+                                    BorderThickness="1" BorderBrush="{StaticResource NormalBorderBrush}">
+                                <Path Width="7" Height="7" x:Name="CheckMark" SnapsToDevicePixels="False" Stroke="{StaticResource GlyphBrush}"
+                                      StrokeThickness="2" Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DarkBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource PressedBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PressedBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}" x:Key="styleCheckAtivo" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="Content" Value="Ativo"></Setter>
+        <Setter Property="Width" Value="70"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="Border" Width="13" Height="13" CornerRadius="0" Background="{StaticResource NormalBrush}"
+                                    BorderThickness="1" BorderBrush="{StaticResource NormalBorderBrush}">
+                                <Path Width="7" Height="7" x:Name="CheckMark" SnapsToDevicePixels="False" Stroke="{StaticResource GlyphBrush}"
+                                      StrokeThickness="2" Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DarkBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource PressedBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PressedBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}" x:Key="styleCheckBoxWhite">
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="ForceCursor" Value="False"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="FontFamily" Value="Arial"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="FocusVisualStyle"  Value="{StaticResource CheckBoxFocusVisual}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="Border" Width="13" Height="13" CornerRadius="0" Background="{StaticResource NormalBrush}"
+                                    BorderThickness="1" BorderBrush="{StaticResource NormalBorderBrush}">
+                                <Path Width="7" Height="7" x:Name="CheckMark" SnapsToDevicePixels="False" Stroke="{StaticResource GlyphBrush}"
+                                      StrokeThickness="2" Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DarkBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource PressedBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PressedBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <conv:BoolToImagemCheckUncheckConverter x:Key="BoolToImagemCheckUncheckConverter"/>
+    <conv:BoolToImagemCheckUncheckFavoritoConverter x:Key="BoolToImagemCheckUncheckFavoritoConverter"/>
+    <conv:BoolToImagemConfirmarConverter x:Key="BoolToImagemConfirmarConverter"/>
+    <conv:BoolToImagemConfirmarCopiaConverter x:Key="BoolToImagemConfirmarCopiaConverter"/>
+
+    <Style x:Key="styleCheckBoxImage" TargetType="{x:Type CheckBox}">
+        <Setter Property="MinWidth" Value="15" />
+        <Setter Property="MinHeight" Value="15" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Border x:Name="ContentBorder" CornerRadius="4" BorderBrush="Transparent" BorderThickness="1" Background="{DynamicResource ButtonOff}">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                  Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True">
+                                <ContentPresenter.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0"/>
+                                        <Image Source="{TemplateBinding IsChecked, Converter={StaticResource BoolToImagemCheckUncheckConverter}}" 
+                                               HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="UniformToFill" Grid.Column="1" Margin="3,0,0,0" 
+                                               Width="{TemplateBinding MinWidth}" Height="{TemplateBinding MinHeight}"/>
+                                    </Grid>
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+                    <!--<ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource ButtonOn}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource ButtonOn}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource ButtonDisabled}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource BorderDisabled}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="styleCheckBoxImageLabelToRight" TargetType="{x:Type CheckBox}">
+        <Setter Property="MinWidth" Value="15" />
+        <Setter Property="MinHeight" Value="15" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Border x:Name="ContentBorder" CornerRadius="4" BorderBrush="Transparent" BorderThickness="1" Background="{DynamicResource ButtonOff}">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                  Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True">
+                                <ContentPresenter.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{TemplateBinding IsChecked, Converter={StaticResource BoolToImagemCheckUncheckConverter}}" 
+                                               HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="UniformToFill" Grid.Column="0" Margin="0,0,0,0" 
+                                               Width="{TemplateBinding MinWidth}" Height="{TemplateBinding MinHeight}"/>
+                                        <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0"/>
+                                    </Grid>
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="styleCheckBoxCopiaImage" TargetType="{x:Type CheckBox}">
+        <Setter Property="MinWidth" Value="15" />
+        <Setter Property="MinHeight" Value="15" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Border x:Name="ContentBorder" CornerRadius="4" BorderBrush="Transparent" BorderThickness="1" Background="{DynamicResource ButtonOff}">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                  Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True">
+                                <ContentPresenter.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0"/>
+                                        <Image Source="{TemplateBinding IsChecked, Converter={StaticResource BoolToImagemConfirmarCopiaConverter}}" 
+                                               HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="UniformToFill" Grid.Column="1" Margin="3,0,0,0" 
+                                               Width="{TemplateBinding MinWidth}" Height="{TemplateBinding MinHeight}"/>
+                                    </Grid>
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="styleCheckBoxImageFavorito" TargetType="{x:Type CheckBox}">
+        <Setter Property="MinWidth" Value="15" />
+        <Setter Property="MinHeight" Value="15" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Border x:Name="ContentBorder" CornerRadius="4" BorderBrush="Transparent" BorderThickness="1" Background="{DynamicResource ButtonOff}">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                  Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True">
+                                <ContentPresenter.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0"/>
+                                        <Image Source="{TemplateBinding IsChecked, Converter={StaticResource BoolToImagemCheckUncheckFavoritoConverter}}" 
+                                               HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="UniformToFill" Grid.Column="1" Margin="3,0,0,0" 
+                                               Width="{TemplateBinding MinWidth}" Height="{TemplateBinding MinHeight}"/>
+                                    </Grid>
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="styleCheckBoxImageConfirmar" TargetType="{x:Type CheckBox}">
+        <Setter Property="MinWidth" Value="15" />
+        <Setter Property="MinHeight" Value="15" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Border x:Name="ContentBorder" CornerRadius="4" BorderBrush="Transparent" BorderThickness="1" Background="{DynamicResource ButtonOff}">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                  Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True">
+                                <ContentPresenter.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0"/>
+                                        <Image Source="{TemplateBinding IsChecked, Converter={StaticResource BoolToImagemConfirmarConverter}}" 
+                                               HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="UniformToFill" Grid.Column="1" Margin="3,0,0,0" 
+                                               Width="{TemplateBinding MinWidth}" Height="{TemplateBinding MinHeight}" />
+                                    </Grid>
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--CHECKBOX-->
+    <!--/COMPONENT STYLES-->
+
+    <!--BOTOES-->
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnFechar">
+        <Setter Property="ButtonText" Value="Fechar"></Setter>
+        <Setter Property="Width" Value="70"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Fechar"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgClose}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnImportaAtividade">
+        <Setter Property="ButtonText" Value="Importa Atividade"></Setter>
+        <Setter Property="Width" Value="130"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Importa Atividade"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgSumarioAvaliacaoMedica}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnIncluirAtividade">
+        <Setter Property="ButtonText" Value="Incluir Atividade"></Setter>
+        <Setter Property="Width" Value="130"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Incluir Atividade"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgTask}"></Setter>
+    </Style>
+    
+    
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnSelecionar">
+        <Setter Property="ButtonText" Value="Selecionar"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Width" Value="90"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgSelect}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnConfigurarValor">
+        <Setter Property="ButtonText" Value="Configurar Valor"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgFinanceiro}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnStatusDisciplina">
+        <Setter Property="ButtonText" Value="Status da Mat. na Disciplina"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Width" Value="170"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgStatusMatricula}"></Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnSave" >
+        <Setter Property="ButtonText" Value="Salvar"></Setter>
+        <Setter Property="Width" Value="75"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Salvar Dados"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgSave}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnAddMinhaLista">
+        <Setter Property="ButtonText" Value="Adicionar Paciente na Minha Lista"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Width" Value="252"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgSelect}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnPesquisa">
+        <Setter Property="ButtonText" Value="Pesquisar"></Setter>
+        <Setter Property="Width" Value="90"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgSearch}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnDetalhes">
+        <Setter Property="ButtonText" Value="Detalhes"></Setter>
+        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgDocument}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnAlterar">
+        <Setter Property="ButtonText" Value="Alterar"></Setter>
+        <Setter Property="Width" Value="70"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgEdit}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnImprimir">
+        <Setter Property="ButtonText" Value="Imprimir"></Setter>
+        <Setter Property="Width" Value="88"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgPrint}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnReceituarioNormal">
+        <Setter Property="ButtonText" Value="Receituário Normal"></Setter>
+        <Setter Property="Width" Value="130"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgReceituarioNormal}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnReceituarioEspecial">
+        <Setter Property="ButtonText" Value="Receituário Especial"></Setter>
+        <Setter Property="Width" Value="140"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgReceituarioEspecial}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnRegEvolucao">
+        <Setter Property="ButtonText" Value="Nova Evolução"></Setter>
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgRegEVolucao24}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnDicionario">
+        <Setter Property="ButtonText" Value="Dicionário"></Setter>
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgDictionary}"></Setter>
+    </Style>
+    
+    
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnExcluir" >
+        <Setter Property="ButtonText" Value="Excluir"></Setter>
+        <Setter Property="Width" Value="70"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgDelete}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnAddUser">
+        <Setter Property="ButtonText" Value="Inserir"></Setter>
+        <Setter Property="Width" Value="75"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgAddUser}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnDelUser">
+        <Setter Property="ButtonText" Value="Excluir"></Setter>
+        <Setter Property="Width" Value="75"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgDeleteUser}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnNovo">
+        <Setter Property="ButtonText" Value="Novo"></Setter>
+        <Setter Property="Width" Value="70"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgNew}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnIncluir">
+        <Setter Property="ButtonText" Value="Incluir"></Setter>
+        <Setter Property="Width" Value="75"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgInclude}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnConfirmar">
+        <Setter Property="ButtonText" Value="Confirmar"></Setter>
+        <Setter Property="Width" Value="90"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgConfirm}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnCancelar">
+        <Setter Property="ButtonText" Value="Cancelar"></Setter>
+        <Setter Property="Width" Value="77"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Cancelar"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgClose}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnComentarios">
+        <Setter Property="ButtonText" Value="Comentários"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgComents}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnSim">
+        <Setter Property="ButtonText" Value="Sim"></Setter>
+        <Setter Property="Width" Value="60"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgSim}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnNao">
+        <Setter Property="ButtonText" Value="Não"></Setter>
+        <Setter Property="Width" Value="60"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgNao}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnSumarioDeAvaliacaoMedica">
+        <Setter Property="ButtonText" Value="Sumário de Avaliação Médica"></Setter>
+        <Setter Property="Width" Value="180"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgSumarioAvaliacaoMedica}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnPrescricao">
+        <Setter Property="ButtonText" Value="Prescrição"></Setter>
+        <Setter Property="Width" Value="90"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgPrescricao}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnForward">
+        <Setter Property="ButtonText" Value=""></Setter>
+        <Setter Property="Width" Value="35"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Add"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgForward}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnReverse">       
+        <Setter Property="Width" Value="35"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Remover"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgReverse}"></Setter>
+        <Setter Property="ButtonText" Value=""></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnCalcular">
+        <Setter Property="ButtonText" Value="Calcular"></Setter>
+        <Setter Property="Width" Value="75"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Calcular"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgCalculadora}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnVisualizar">
+        <Setter Property="ButtonText" Value="Visualizar"></Setter>
+        <Setter Property="Width" Value="85"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Visualizar Impressão"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgVisualizar}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnCopiar">
+        <Setter Property="ButtonText" Value="Copiar"></Setter>
+        <Setter Property="Width" Value="85"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Copiar"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgCopiar}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnDescricaoCirurgica">
+        <Setter Property="ButtonText" Value="DescricaoCirurgica"></Setter>
+        <Setter Property="Width" Value="85"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Descrição Cirúrgica"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgDescricaoCirurgica}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnExames">
+        <Setter Property="ButtonText" Value="Exames"></Setter>
+        <Setter Property="Width" Value="75"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Exames"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgExames}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnAjuda">
+        <Setter Property="ButtonText" Value="Ajuda"></Setter>
+        <Setter Property="Width" Value="75"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Ajuda"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgHelp}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnEvolucao">
+        <Setter Property="ButtonText" Value="Evolução"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgRegistrosDeEvolucao}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnNotaAdicional">
+        <Setter Property="ButtonText" Value="NotaAdicional"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgNotaAdicional}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnAlterUser">
+        <Setter Property="ButtonText" Value="Altere Usuário"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgAlterUser}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnExportar">
+        <Setter Property="ButtonText" Value="Exportar"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgExportar}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnExportarExcel">
+        <Setter Property="ButtonText" Value="Exportar"></Setter>
+        <Setter Property="Width" Value="90"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgExportarExcel}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnCheckList">
+        <Setter Property="ButtonText" Value="CheckList"></Setter>
+        <Setter Property="Width" Value="90"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgCheckList}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnDateTime">
+        <Setter Property="ButtonText" Value="Carga Horária"></Setter>
+        <Setter Property="Width" Value="110"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Carga Horária"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgTimeDate}"></Setter>
+    </Style>
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnHistorico">
+        <Setter Property="ButtonText" Value="Histórico"></Setter>
+        <Setter Property="Width" Value="85"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Histórico"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgHistorico}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnExcel">
+        <Setter Property="ButtonText" Value="Exportar"></Setter>
+        <Setter Property="Width" Value="85"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Exporta Excel"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgExcel}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:HMVButton}" x:Key="styleBtnRefresh">
+        <Setter Property="ButtonText" Value="Atualizar"></Setter>
+        <Setter Property="Width" Value="85"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="ToolTip" Value="Atualizar"></Setter>
+        <Setter Property="ButtonImage" Value="{StaticResource imgRefresh}"></Setter>
+    </Style>
+    
+    <!--/BOTOES-->    
+    
+</ResourceDictionary>
