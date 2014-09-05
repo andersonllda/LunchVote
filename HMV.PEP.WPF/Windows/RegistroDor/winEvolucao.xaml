@@ -1,0 +1,72 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.Windows.RegistroDor.winEvolucao"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"   
+             Title="Evolução" Height="360" Width="609" ResizeMode="NoResize" Icon="{StaticResource imgHMVIcon}"
+             WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts">
+
+    <Window.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+    </Window.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <!-- elementos principais-->
+        <Grid Grid.Row="0" >
+            <TextBlock Style="{ StaticResource styleTextBlockSite}" Text="Período: " Margin="10,10,480,48"></TextBlock>
+            <dxe:DateEdit HorizontalAlignment="Left" Margin="125,5,0,0" Name="dtInicio" ShowClearButton="False" VerticalAlignment="Top" Width="96" EditValue="{Binding Path=DataInicial}" TabIndex="2" />
+            <TextBlock Style="{ StaticResource styleTextBlockSite}" Text="até:" Margin="232,10,-19,-5"></TextBlock>
+            <dxe:DateEdit HorizontalAlignment="Left" Margin="260,5,0,0" Name="dtResolucao" VerticalAlignment="Top" Width="96" ShowClearButton="False"  EditValue="{Binding Path=DataFinal,  UpdateSourceTrigger=PropertyChanged}" TabIndex="3" AllowNullInput="True" />
+            <TextBlock Style="{ StaticResource styleTextBlockSite}" Text="Região/Articulação:" Margin="10,43,36,2"></TextBlock>
+            <dxe:ComboBoxEdit   DisplayMember="Descricao" Name="cboArticulacao" TabIndex="6" AutoComplete="True" VerticalAlignment="Top" Margin="125,38,0,0" 
+             HorizontalAlignment="Left" Width="231" ItemsSource="{Binding Path=ListaArticulacao, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=ArticulacaoSeleciona, UpdateSourceTrigger=PropertyChanged}"></dxe:ComboBoxEdit>
+
+        </Grid>
+        <!-- elementos grid-->
+        <Grid Grid.Row="1" >
+            <dxg:GridControl x:Name="gdRegistroDor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                             DataSource="{Binding Path=ListaRegistroDorEvolucao, UpdateSourceTrigger=PropertyChanged}" 
+                             Grid.ColumnSpan="2">
+                <dxg:GridControl.View>
+                    <dxg:TableView Name="viewEvolucao" 
+                                   ShowGroupPanel="False"
+                                   NavigationStyle="Cell"
+                                   AutoWidth="False"
+                                   Style="{StaticResource styleTableView}"/>
+                </dxg:GridControl.View>
+
+                <dxg:GridControl.Resources>
+                    <DataTemplate x:Key="checkBoxColumnTemplate">
+                        <dxe:CheckEdit Content="Todos" Name="ckbSelectAll" IsChecked="{Binding Path=Chechec, UpdateSourceTrigger=PropertyChanged}" Checked="ckbSelectAll_Checked" Unchecked="ckbSelectAll_Unchecked"/>
+                    </DataTemplate>
+                </dxg:GridControl.Resources>
+
+
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="Selecionado" Header="Todos" Width="80" FixedWidth="True" HeaderTemplate="{StaticResource ResourceKey=checkBoxColumnTemplate}" UnboundType="Boolean">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:CheckEditSettings Name="chkSelectTodos" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn Name="PontoReferência" FieldName="PontoReferencia.Descricao" Header="Ponto de Referência" Width="530" ReadOnly="True" FixedWidth="True"  AllowColumnFiltering="False"/>
+                </dxg:GridControl.Columns>
+            </dxg:GridControl>
+        </Grid>
+        <!-- botoes.....-->
+        <Grid Grid.Row="3">
+            <core:HMVButton  TabIndex="5" Name="btnVisualizar" Style="{ StaticResource styleBtnVisualizar}" HorizontalAlignment="Right" Margin="0,0,90,0" VerticalAlignment="Center" Click="btnVisualizar_Click"></core:HMVButton>
+            <core:HMVButton Name="btnFechar" Style="{ StaticResource styleBtnFechar}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" TabIndex="4" Click="btnFechar_Click"></core:HMVButton>
+        </Grid>
+    </Grid>
+</core:WindowBase>

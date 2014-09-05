@@ -1,0 +1,111 @@
+﻿<HMV:UserControlBase x:Class="HMV.PEP.WPF.ucPacienteAgendados"
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"              
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:HMV="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF" 
+             xmlns:my="clr-namespace:HMV.PEP.WPF.UserControls"
+             xmlns:HMVConverter="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             d:DesignHeight="430" mc:Ignorable="d" d:DesignWidth="1144">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Popup Name="hitInfoPopup" Grid.Row="1" Placement="Mouse" PlacementTarget="{Binding ElementName=gdAgendados}" AllowsTransparency="True" Opened="hitInfoPopup_Opened">
+            <Popup.IsOpen>
+                <MultiBinding Mode="OneWay">
+                    <MultiBinding.Converter>
+                        <HMVConverter:MultiBindingAndToBoolConverter />
+                    </MultiBinding.Converter>
+                    <Binding Path="IsMouseOver" ElementName="gdAgendados" Mode="OneWay" />
+                    <Binding Path="IsMouseCaptureWithin" ElementName="gdAgendados" Mode="OneWay" Converter="{dx:NegationConverter}" />
+                </MultiBinding>
+            </Popup.IsOpen>
+            <Border Padding="12,8,24,10">
+                <Grid x:Name="panel">
+                    <Border x:Name="shadow" CornerRadius="8" Margin="3,3,0,0" Background="Black" Opacity="0.15" />
+                    <Border Name="border1" Background="Gray" CornerRadius="7" Margin="0,0,3,3">
+                        <Border Name="border2" CornerRadius="6">
+                            <Grid Name="grid1" Style="{StaticResource styleGrid}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Height="30" Width="30" Source="{StaticResource imgAlertCaution}" />
+                                <TextBlock Grid.Column="1">
+                                                                <Run>Para redigir o Sumário de Avaliação Médica de pacientes agendados, utilize o Portal do Corpo Clínico.</Run>
+                                                                <LineBreak></LineBreak>
+                                                                <Run>Para pesquisar atendimentos clique em 'Pesquisar Pacientes'</Run>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Border>
+        </Popup>
+        <dxg:GridControl Grid.Row="1" x:Name="gdAgendados" MaxHeight="1000" VerticalAlignment="Stretch" 
+                                                     HorizontalAlignment="Stretch" AutoExpandAllGroups="True" KeyDown="gdAgendados_KeyDown"
+                                                     MouseMove="gdAgendados_MouseMove" Loaded="gdAgendados_Loaded">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="PacienteOuNomeAgenda" Header="Paciente" SortOrder="Descending" />
+                <dxg:GridColumn FieldName="Prontuario" Header="Prontuário" Width="50" />
+                <dxg:GridColumn FieldName="DataAgendamento" Header="Data" Width="50" />
+                <dxg:GridColumn FieldName="Hora" Header="Hora" Width="50" />
+                <dxg:GridColumn FieldName="ItemAgendado" Header="Procedimento" />
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowGroupPanel="False" NavigationStyle="None" 
+                                                           AllowEditing="False" AutoWidth="True" BestFitArea="All"
+                                                           Style="{StaticResource styleTableView}"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <Grid Grid.Row="0">
+            <Label Foreground="#FF1E489A" HorizontalAlignment="Left" Margin="10,0,0,0">Período:</Label>
+            <dxe:DateEdit Name="deInicial" HorizontalAlignment="Left" Width="120" Height="22" Margin="60,0,0,0" MaskCulture="pt-BR" MaskAllowNullInput="False" DateTime="{x:Static Member=sys:DateTime.Now}"></dxe:DateEdit>
+            <Label Foreground="#FF1E489A" HorizontalAlignment="Left" Margin="185,0,0,0" Width="20">até</Label>
+            <dxe:DateEdit Name="deFinal" HorizontalAlignment="Left" Width="120" Height="22" Margin="205,0,0,0" DateTime="{x:Static Member=sys:DateTime.Now}" MaskCulture="pt-BR" MaskAllowNullInput="False"></dxe:DateEdit>
+            <HMV:HMVButton ButtonText="Pesquisa Pacientes Agendados" Margin="340,0,0,0" Style="{StaticResource styleBtnPesquisa}" HorizontalAlignment="Left" Height="28" Width="200" Click="btnAgenda_Click" Name="btnAgenda"></HMV:HMVButton>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80*"></ColumnDefinition>
+                <ColumnDefinition Width="80*"></ColumnDefinition>
+                <ColumnDefinition Width="125*"></ColumnDefinition>
+                <ColumnDefinition Width="100*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <TextBlock Style="{StaticResource styleTextBlockTitulo}">
+                                                <Hyperlink NavigateUri="http://intranet.moinhos.net/rotinas/" RequestNavigate="Hyperlink_RequestNavigate">Rotinas</Hyperlink>
+                </TextBlock>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBlock Style="{StaticResource styleTextBlockTitulo}">
+                                                <Hyperlink NavigateUri="http://intranet.moinhos.net/" RequestNavigate="Hyperlink_RequestNavigate">Intranet</Hyperlink>
+                </TextBlock>
+
+            </Grid>
+            <Grid Grid.Column="2">
+                <TextBlock Style="{StaticResource styleTextBlockTitulo}">
+                                                <Hyperlink NavigateUri="http://intranet.moinhos.net/medicos/padronizacao.asp" RequestNavigate="Hyperlink_RequestNavigate">Consulta de medicamentos padronizados</Hyperlink>
+                </TextBlock>
+            </Grid>
+            <Grid Grid.Column="3">
+                <TextBlock Style="{StaticResource styleTextBlockTitulo}">
+                                                <Hyperlink NavigateUri="http://novaintra.moinhos.net/IntranetHMV/Profissional/pesquisa.aspx" RequestNavigate="Hyperlink_RequestNavigate">Cadastro de profissionais</Hyperlink>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </Grid>
+</HMV:UserControlBase>

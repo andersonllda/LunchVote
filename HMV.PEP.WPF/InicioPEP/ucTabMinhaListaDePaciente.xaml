@@ -1,0 +1,96 @@
+﻿<core:UserControlBase xmlns:InicioPEP="clr-namespace:HMV.PEP.WPF.InicioPEP"  x:Class="HMV.PEP.WPF.ucTabMinhaListaDePaciente"
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"              
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:HMVConverter="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             d:DesignHeight="430" mc:Ignorable="d" d:DesignWidth="1144">
+
+    <dxd:DockLayoutManager x:Name="dockManagerMinhaLista">
+        <dxd:LayoutGroup AllowClose="True" AllowDock="True" Orientation="Vertical">
+            <dxd:LayoutPanel Name="layoutPanelMinhaLista" Caption="Pacientes em atendimento no HMV:" MinHeight="65" ShowCaption="True" AllowClose="False" AllowContextMenu="False" AllowHide="False" AllowDock="False" AllowMove="False" AllowRename="False" AllowRestore="False" AllowSelection="False" CustomizationCaption="">
+                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="35"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <dxg:GridControl x:Name="gdMinhaLista" MaxHeight="1000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                                                     AutoExpandAllGroups="True" KeyDown="gdMinhaLista_KeyDown"
+                                                     Loaded="gdMinhaLista_Loaded">
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn FieldName="TipoAtendimento" Name="TipoAtendimento" SortOrder="Descending" Header="Tipo Atendimento" GroupIndex="0" AllowSorting="True" />
+                            <dxg:GridColumn FieldName="Paciente" Name="Paciente" Header="Paciente" SortOrder="Ascending" />
+                            <dxg:GridColumn FieldName="Prontuario" Name="Prontuario" Header="Prontuário" Width="50" />
+                            <dxg:GridColumn FieldName="QuartoLeito" Name="QuartoLeito" Header="Qrt/Leito" Width="50" />
+                            <dxg:GridColumn FieldName="Data" Name="Data" Header="Data" Width="50" />
+                            <dxg:GridColumn FieldName="MedicoAssistente" Name="MedicoAssistente" Header="Médico Assistente" />
+                            <dxg:GridColumn FieldName="Convenio" Name="Convenio" Header="Convênio" />
+                            <dxg:GridColumn FieldName="Atendimento" Name="Atendimento" Visible="False" />
+
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView Name="viewMinhaLista" ShowGroupPanel="False" NavigationStyle="Row" AllowEditing="False" 
+                                                            BestFitArea="All" AutoWidth="True"  MouseDoubleClick="viewMinhaLista_MouseDoubleClick"                                                             
+                                                            IsEnabled="True" AutoMoveRowFocus="True" IsHitTestVisible="True" 
+                                                            IsRowCellMenuEnabled="True" ShowColumnHeaders="True"
+                                                            ShowHorizontalLines="True" ShowIndicator="False"
+                                                            ShowVerticalLines="True" SnapsToDevicePixels="True" FocusedRowChanged="viewMinhaLista_FocusedRowChanged"
+                                                           Style="{StaticResource styleTableView}"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                    <Grid Grid.Row="1">
+
+
+                        <core:HMVButton IsEnabled="False" ButtonText="Remover Paciente da Minha Lista" VerticalAlignment="Top" HorizontalAlignment="Right" Height="28" Margin="0,3,5,0" Width="205" Style="{StaticResource styleBtnDelUser}" Name="btnRemoverPaciente" Click="btnRemoverPaciente_Click"></core:HMVButton>
+                        <core:HMVButton IsEnabled="{Binding Path=BotaoImprimeMinhaLista}" ButtonText="Imprimir Minha Lista de Pacientes" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,220,0" Height="28" Width="205" Style="{StaticResource styleBtnImprimir}" Name="btnImprimirListaPacientes" Click="btnImprimirListaPacientes_Click"></core:HMVButton>
+                    </Grid>
+                </Grid>
+            </dxd:LayoutPanel>
+            <dxd:LayoutPanel AllowClose="False" AllowContextMenu="False" AllowHide="False" AllowDock="False" AllowMove="False" AllowRename="False" AllowRestore="False" AllowSelection="False" ItemHeight="60" ShowCaption="True" Caption="Taxa de Ocupação Hospitalar">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                   
+
+                    <Grid Grid.Column="0">
+                        <InicioPEP:ucTaxaOcupacao x:Name="pb0" />
+                    </Grid>
+                    <Grid Grid.Column="1" >
+                        <InicioPEP:ucTaxaOcupacao  x:Name="pb1" />
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <InicioPEP:ucTaxaOcupacao  x:Name="pb2" />
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <InicioPEP:ucTaxaOcupacao x:Name="pb3" />
+                    </Grid>
+
+                    <core:HMVButton ButtonText="" Margin="5"  ButtonImage="{StaticResource imgchart24}" Grid.Row="1" Grid.Column="4" Click="HMVButton_Click" ></core:HMVButton>
+                </Grid>
+            </dxd:LayoutPanel>
+            <!--<dxd:DocumentGroup ItemHeight="60">
+                <dxd:DocumentPanel AllowClose="False" al>
+
+                </dxd:DocumentPanel>
+            </dxd:DocumentGroup>-->
+            <dxd:LayoutPanel  Name="layoutPanelAgendados" Caption="Pacientes agendados:" MinHeight="35" ShowCaption="True" CustomizationCaption="" AllowClose="False" AllowContextMenu="False" AllowMove="True" AllowRename="False" AllowRestore="False" AllowHide="False">
+                <Grid Name="gridPanelAgendados"></Grid>
+
+            </dxd:LayoutPanel>
+        </dxd:LayoutGroup>
+    </dxd:DockLayoutManager>
+
+</core:UserControlBase>

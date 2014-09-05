@@ -1,0 +1,170 @@
+﻿<core:UserControlBase 
+    x:Class="HMV.PEP.WPF.UserControls.CheckListCirurgiaSegura.ucCheckOut"
+    xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+    xmlns:ucbase="clr-namespace:HMV.Core.Framework.DevExpress.v12._1.Componentes;assembly=HMV.Core.Framework.DevExpress.v12.1"
+    mc:Ignorable="d" d:DesignHeight="700" d:DesignWidth="898" Height="635" Width="973">
+
+    <core:UserControlBase.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+    </core:UserControlBase.Resources>
+
+    <lc:LayoutControl Orientation="Vertical" StretchContentVertically="True" Padding="0" MaxHeight="1000" Style="{StaticResource ResourceKey=styleLayoutControl}" lc:LayoutControl.AllowHorizontalSizing="True" Height="636">
+        <lc:LayoutControl.Resources>
+            <Style TargetType="{x:Type lc:GroupBox}" BasedOn="{StaticResource styleGroupBoxSilver}"/>
+        </lc:LayoutControl.Resources>
+
+        <lc:LayoutGroup View="GroupBox" Header="Confirmar com a Equipe Médica: ">
+            <lc:LayoutItem>
+                <lc:LayoutGroup>
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.Prescricao, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock VerticalAlignment="Center" Text="Prescrição realizada" HorizontalAlignment="Left"/>
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.DescricaoCirurgica, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock VerticalAlignment="Center" Text="Descrição Cirúrgica(OPME, Materiais Utilizados)" HorizontalAlignment="Left"/>
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.Justificativa, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock VerticalAlignment="Center" Text="Justificativa" HorizontalAlignment="Left"/>
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.SumarioAltaAmbulatorial, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock VerticalAlignment="Center" Text="Sumário de alta (paciente ambulatorial)" HorizontalAlignment="Left"/>
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Header="Confirmar com Instrumentador:" View="GroupBox" Orientation="Vertical">
+            <lc:LayoutItem >
+                <lc:LayoutGroup>
+                    <CheckBox Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.InstrumentosContagem, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock VerticalAlignment="Center" Text="Contagem de instrumentais, gazes, compressas e agulhas" HorizontalAlignment="Left"/>
+                    <TextBlock VerticalAlignment="Center" Text="" HorizontalAlignment="Left"/>
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+            <lc:LayoutItem Label="Observação:">
+                <dxe:TextEdit Text="{Binding Path=CheckOut.InstrumentosObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Header="Confirmar com Circulante:" View="GroupBox" Orientation="Vertical">
+            <lc:LayoutItem >
+                <CheckBox Content="Débitos lançados" FlowDirection="RightToLeft" Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.Debitos, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem>
+                <lc:LayoutGroup>
+                    <CheckBox Name="ckeqi" Content="Equipamentos funcionaram corretamente" FlowDirection="RightToLeft" Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.Equipamento, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Border BorderThickness="2" BorderBrush="Gainsboro">
+                        <lc:LayoutItem VerticalAlignment="Center" Label="Equipamento:" Margin="50,0,0,0">
+                            <dxe:TextEdit IsEnabled="{Binding ElementName=ckeqi, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}" Text="{Binding Path=CheckOut.EquipamentoDescricao, UpdateSourceTrigger=PropertyChanged}" MaxLength="23" />
+                        </lc:LayoutItem>
+                    </Border>
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+            <lc:LayoutItem >
+                <lc:LayoutGroup>
+                    <CheckBox IsEnabled="{Binding ElementName=ckeqi, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}" Content="Solucionado" FlowDirection="RightToLeft" Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.Solucionado, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox IsEnabled="{Binding ElementName=ckeqi, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}" Content="Trocado" FlowDirection="RightToLeft" Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.Trocado, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+
+            <lc:LayoutItem >
+                <lc:LayoutGroup VerticalAlignment="Center">
+                    <CheckBox Content="Identificação de anátomo-patológico" FlowDirection="RightToLeft" Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=Patalogico, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Name="ckPatNA" Content="NA" FlowDirection="RightToLeft" Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=PatalogicoNA, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Border BorderThickness="2" BorderBrush="Gainsboro" >
+                        <lc:LayoutItem Label="Número de peças anatômicas:">
+                            <dxe:TextEdit Text="{Binding Path=CheckOut.Pecas, UpdateSourceTrigger=PropertyChanged}" MaxLength="19" IsEnabled="{Binding ElementName=ckPatNA,Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}"/>
+                        </lc:LayoutItem>
+                    </Border>
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+            <lc:LayoutItem >
+                <lc:LayoutGroup>
+                    <CheckBox Content="Oximetria de transporte" FlowDirection="RightToLeft" Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.Oximetria, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                    <!--<CheckBox Content="Anestesia Local" FlowDirection="RightToLeft" Style="{DynamicResource styleCheckBoxImage}" HorizontalAlignment="Left" IsChecked="{Binding Path=CheckOut.AnestesiaLocal, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>-->
+                    <Border BorderThickness="2" BorderBrush="Gainsboro">
+                        <lc:LayoutItem Label="Observação:">
+                            <dxe:TextEdit Text="{Binding Path=CheckOut.EquipamentoObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
+                        </lc:LayoutItem>
+                    </Border>
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+
+           
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Header="Exames que acompanham o paciente:" View="GroupBox" Orientation="Vertical">
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left">
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" IsChecked="{Binding Path=CheckOut.LAB, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="LAB">
+                    <dxe:TextEdit Text="{Binding Path=CheckOut.LABObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="24"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left">
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" IsChecked="{Binding Path=CheckOut.ECG, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="ECG">
+                    <dxe:TextEdit Text="{Binding Path=CheckOut.ECGObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="24"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left">
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" IsChecked="{Binding Path=CheckOut.ECO, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="ECO">
+                    <dxe:TextEdit Text="{Binding Path=CheckOut.ECOObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="24"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left">
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" IsChecked="{Binding Path=CheckOut.RX, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="RX">
+                    <dxe:TextEdit Text="{Binding Path=CheckOut.RXObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="24"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left">
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" IsChecked="{Binding Path=CheckOut.RNM, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="RNM">
+                    <dxe:TextEdit Text="{Binding Path=CheckOut.RNMObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="24"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left">
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" IsChecked="{Binding Path=CheckOut.CDCirurgia, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="CD / Cirurgia">
+                    <dxe:TextEdit Text="{Binding Path=CheckOut.CDCirurgiaObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="20"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left">
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" IsChecked="{Binding Path=CheckOut.TC, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="TC">
+                    <dxe:TextEdit Text="{Binding Path=CheckOut.TCObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="24"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left">
+                    <CheckBox  Style="{DynamicResource styleCheckBoxImage}" IsChecked="{Binding Path=CheckOut.Outros, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="Outros">
+                    <dxe:TextEdit Text="{Binding Path=CheckOut.OutrosObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="24"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutItem Label="Observações:" >
+                <dxe:TextEdit Text="{Binding Path=CheckOut.Observacoes, UpdateSourceTrigger=PropertyChanged}" MaxLength="24"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+
+    </lc:LayoutControl>
+</core:UserControlBase>

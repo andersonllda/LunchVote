@@ -1,0 +1,145 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoMedicaRN.ucP1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" d:DesignHeight="500" d:DesignWidth="920">
+
+    <core:UserControlBase.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+        <conv:DoubleToNullConverter x:Key="DoubleToNullConverter"/>
+    </core:UserControlBase.Resources>
+
+    <lc:LayoutGroup Orientation="Vertical">
+        <lc:LayoutGroup Header="Sinais Vitais" View="GroupBox" Padding="-8">
+            <lc:LayoutItem Label="FC:" HorizontalAlignment="Left">
+                <dxe:TextEdit Width="50" EditValue="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.FC, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Mask="([0-9]{1,3})" MaskType="RegEx"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem Label="bpm   " HorizontalAlignment="Left" VerticalAlignment="Center"></lc:LayoutItem>
+            <lc:LayoutItem Label="FR:" HorizontalAlignment="Left">
+                <dxe:TextEdit Width="50" EditValue="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.FR, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Mask="([0-9]{1,3})" MaskType="RegEx"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem Label="mrpm   " HorizontalAlignment="Left" VerticalAlignment="Center"></lc:LayoutItem>
+            <lc:LayoutItem Label="Tax:" HorizontalAlignment="Left">
+                <dxe:TextEdit Width="50" EditValue="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.TAX, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Mask="\d{0,2}(\,\d{0,2})?" MaskType="RegEx"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem Label="°C   " HorizontalAlignment="Left" VerticalAlignment="Center"></lc:LayoutItem>
+            <lc:LayoutItem Label="SAT:" HorizontalAlignment="Left">
+                <dxe:TextEdit Width="50" EditValue="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.SAT, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                              Mask="([0-9]{1,3})" MaskType="RegEx"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem Label="%" HorizontalAlignment="Left" VerticalAlignment="Center"></lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Padding="-8" View="GroupBox" Header="Aspecto Geral" Orientation="Vertical">
+            <lc:LayoutGroup>
+                <lc:LayoutItem HorizontalAlignment="Left" Label="Facies:" VerticalAlignment="Center">
+                    <dxe:CheckEdit Name="chkAtipica" Content="Atípica" IsChecked="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.IsFacies, Converter={StaticResource SimNaoToBoolConverter}}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem>
+                    <dxe:TextEdit EditValue="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.FaciesObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="512"
+                                  IsEnabled="{Binding ElementName=chkAtipica, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}"/>
+                </lc:LayoutItem>
+            
+                <lc:LayoutItem HorizontalAlignment="Left" Label="Cor:" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Rosada" IsChecked="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.IsCorRosada, Converter={StaticResource SimNaoToBoolConverter}}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Pálida" IsChecked="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.IsCorPalida, Converter={StaticResource SimNaoToBoolConverter}}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Cianose de extremidades" IsChecked="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.IsCorCianose, Converter={StaticResource SimNaoToBoolConverter}}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Cianose generalizada" IsChecked="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.IsCorCianoseGeneralizada, Converter={StaticResource SimNaoToBoolConverter}}"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutGroup VerticalAlignment="Center">
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Tônus:" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Normal" IsChecked="{Binding Path=TonusNormal}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Hipotônico" IsChecked="{Binding Path=TonusHipotonico}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Hipertônico" IsChecked="{Binding Path=TonusHipertonico}"/>
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+                <lc:LayoutGroup Margin="20,0,0,0" VerticalAlignment="Center">
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Atividade:" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Ativo" IsChecked="{Binding Path=Ativo}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left">
+                        <dxe:CheckEdit Content="Reativo ao manuseio" IsChecked="{Binding Path=Reativo}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left">
+                        <dxe:CheckEdit Content="Hipoativo" IsChecked="{Binding Path=Hipoativo}"/>
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+                <lc:LayoutGroup VerticalAlignment="Center" Margin="20,0,0,0">
+                    <lc:LayoutItem Label="Pele:" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Normal" IsChecked="{Binding Path=PIntegra}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Alterações" IsChecked="{Binding Path=PLesoes}" Name="chkLesoes"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem Label="">
+                        <dxe:TextEdit Text="{Binding Path=SumarioAvaliacaoMedicaRNExameFisico.PeleOutros, UpdateSourceTrigger=PropertyChanged}" MaxLength="512" MinWidth="100" 
+                                      IsEnabled="{Binding ElementName=chkLesoes, Path=IsChecked}"/>
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+            </lc:LayoutGroup>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Orientation="Vertical" Padding="-8" View="GroupBox" Header="Cabeça e Pescoço">
+            <dxg:GridControl ItemsSource="{Binding Path=CollectionCabecaPescoco, Mode=OneWay}" MaxHeight="1000">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="" FieldName="ItemCO.Selecionado" Width="40" FixedWidth="True" Visible="False">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.Selecionado, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn MinWidth="200" Header="Descrição" FieldName="ItemCO.Descricao"/>
+                    <dxg:GridColumn Header="Normais" Width="80" FixedWidth="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.Normal, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="Observação" FieldName="Observacao" AllowEditing="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:MemoEditSettings PopupWidth="250" MemoTextWrapping="Wrap" ShowIcon="False" TextWrapping="WrapWithOverflow" 
+                                                  MemoVerticalScrollBarVisibility="Auto" MaxLength="512" IsTextEditable="True" PopupFooterButtons="Close">
+                                <dxe:MemoEditSettings.PopupContentTemplate>
+                                    <ControlTemplate TargetType="ContentControl">
+                                        <Grid Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoBackgroundStyle}}">
+                                            <dxe:TextEdit x:Name="PART_PopupContent" Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoStyle}}" MaxLength="512"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </dxe:MemoEditSettings.PopupContentTemplate>
+                            </dxe:MemoEditSettings>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView
+                        ShowGroupPanel="False"
+                        NavigationStyle="Cell"
+                        AutoWidth="True"
+                        CellValueChanging="TableView_CellValueChanging"
+                        BestFitArea="All"
+                        AllowEditing="False"
+                        Style="{StaticResource styleTableView}"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </lc:LayoutGroup>
+    </lc:LayoutGroup>
+</core:UserControlBase>

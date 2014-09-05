@@ -1,0 +1,71 @@
+﻿<HMV:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioDeAlta.ucListaProblemaSumario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"        
+             xmlns:HMV="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF" 
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"  
+             d:DesignHeight="300" d:DesignWidth="500">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="29"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" Text="Atualização da Lista de Problemas" Style="{StaticResource styleTextBlockSite}"/>
+
+        <dxg:GridControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                          ItemsSource="{Binding Path=ProblemasPaciente}" AutoPopulateColumns="False">
+            <dxg:GridControl.View>
+                <dxg:TableView Name="viewListaProblemas"
+                            ShowGroupPanel="False" 
+                            BestFitArea="All"
+                            ShowFilterPanelMode="Never"
+                            AllowEditing="False"                                      
+                            NavigationStyle="Cell"
+                            FocusedRow="{Binding Path=ProblemaSelecionado, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                            ShowAutoFilterRow="False" AllowDrop="False" Style="{StaticResource styleTableView}" AutoWidth="True" 
+                            CellValueChanging="viewListaProblemas_CellValueChanging"/>
+            </dxg:GridControl.View>
+
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Name="IdCid" FieldName="CID" Header="CID" Width="60" FixedWidth="True" Visible="True" VisibleIndex="0" SortOrder="Descending" SortMode="Value" SortIndex="0"/>
+                <dxg:GridColumn Name="CID" Header="Problema" Width="200" FieldName="Descricao">
+                </dxg:GridColumn>
+                <dxg:GridColumn Name="DataInicio" FieldName="DataInicio"  FixedWidth="True" Width="80" Header="Data Início" SortOrder="Descending" SortMode="Value" SortIndex="1"/>
+                <dxg:GridColumn FieldName="Manter" AllowSorting="False" Header="Manter" AllowEditing="True" FixedWidth="True" Width="50">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Resolvido" AllowSorting="False" Header="Resolvido" AllowEditing="True" FixedWidth="True" Width="60">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <!--<dxg:GridColumn AllowSorting="False" Header="Manter" AllowEditing="True" FixedWidth="True" Width="50">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.Manter, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>               
+                <dxg:GridColumn AllowSorting="False" Header="Resolvido" AllowEditing="True" FixedWidth="True" Width="60">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.Resolvido, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>                          
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>-->
+               
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+
+        <core:HMVButton Grid.Row="2" Height="24" Name="btnIncluir" Style="{StaticResource styleBtnIncluir}" HorizontalAlignment="Right" Margin="0,4,10,1" VerticalAlignment="Center" Click="btnIncluir_Click"  IsEnabled="{Binding Source={StaticResource odpSettings}, Path=IsCorpoClinico, Mode=OneWay}"/>
+    </Grid>
+</HMV:UserControlBase>

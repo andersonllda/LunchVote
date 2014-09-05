@@ -1,0 +1,71 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioDeAlta.ucFarmacos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"             
+             mc:Ignorable="d" d:DesignHeight="319" d:DesignWidth="766">
+
+    <UserControl.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+    </UserControl.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Foreground="Orange" FontFamily="Arial" FontWeight="Bold" Height="15" TextAlignment="Center" VerticalAlignment="Bottom" Text="Selecione os principais fármacos utilizados durante esta internação"/>
+        <CheckBox Grid.Row="1" Margin="10,2,0,0" Name="cheFarmaco" Content="Paciente não recebeu medicamentos durante internação" Style="{StaticResource styleCheckAtivo}" IsChecked="{Binding Path=SemFarmaco, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" Width="321" />
+        <Grid Grid.Row="2" IsEnabled="{Binding ElementName=cheFarmaco, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="120"/>
+            </Grid.RowDefinitions>
+
+            <dxg:GridControl Grid.Row="0" Margin="10,0,10,0" x:Name="gdFarmaco" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoPopulateColumns="False"  ItemsSource="{Binding Path=Farmacos,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                <dxg:GridControl.Resources>
+                    <DataTemplate x:Key="checkBoxColumnTemplate">
+                        <dxe:CheckEdit Content="Excluir" Name="ckbSelectAll" Checked="ckbSelectAll_Checked" Unchecked="ckbSelectAll_Unchecked"/>
+                    </DataTemplate>
+                </dxg:GridControl.Resources>
+                <dxg:GridControl.View>
+                    <dxg:TableView Name="viewListaFarmacos"
+                                   AllowColumnFiltering="False"
+                                   AllowSorting="False"
+                                   AllowMoving="False"
+                                   ShowGroupPanel="False"                                
+                                   AutoWidth="True"
+                                   NavigationStyle="Cell" 
+                                   CellValueChanging="viewListaFarmacos_CellValueChanging"/>
+                </dxg:GridControl.View>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Name="Descricao" FieldName="Produto.Descricao" SortOrder="Ascending" Header="Fármacos Relevantes da Internação" MinWidth="400"/>
+                    <dxg:GridColumn FieldName="Selecionado" Header="Todos" Width="80" FixedWidth="True" HeaderTemplate="{StaticResource ResourceKey=checkBoxColumnTemplate}" UnboundType="Boolean">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:CheckEditSettings Name="chkSelectTodos"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                                  
+                </dxg:GridControl.Columns>
+               
+            </dxg:GridControl>
+
+
+            <core:HMVButton Grid.Row="1" Margin="0,4,85,0"  Name="btnIncluir" Style="{StaticResource styleBtnIncluir}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnIncluir_Click" IsEnabled="{Binding Path=HabilitaIncluir, Mode=OneWay}"/>
+            <core:HMVButton Grid.Row="1" Margin="0,4,10,0"  Name="btnExcluir" Style="{StaticResource styleBtnExcluir}" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding RemoveFarmacoCommand}"/>
+
+            <GroupBox VerticalAlignment="Stretch" Foreground="Navy" HorizontalAlignment="Stretch" Grid.Row="2" Header="Observação" Name="groupBox1" FontWeight="Bold" Margin="5,2,5,23" Grid.ColumnSpan="2">
+                <dxe:TextEdit Margin="0,0,0,15"  Grid.Row="4" Text="{Binding Path=Observacao,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Name="txtObservacao" TabIndex="8" Foreground="Black" FontWeight="Normal" MaxLength="500" EditValueChanged="txtObservacao_EditValueChanged" />
+            </GroupBox>
+            <Label Content="Máximo de 500 caracteres" FontSize="10" Foreground="#FFE2650E" Height="28" HorizontalAlignment="Left" Margin="10,73,0,0" Name="label1" VerticalAlignment="Top" Grid.Row="2" />
+        </Grid>
+    </Grid>
+</core:UserControlBase>

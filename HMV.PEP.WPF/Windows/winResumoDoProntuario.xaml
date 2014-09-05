@@ -1,0 +1,129 @@
+﻿<core:WindowBase 
+        x:Class="HMV.PEP.WPF.Windows.winResumoDoProntuario"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF" 
+        xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF" 
+        xmlns:helper="clr-namespace:HMV.Core.Framework.WPF.Helpers;assembly=HMV.Core.Framework.WPF"
+        xmlns:enum="clr-namespace:HMV.Core.Domain.Enum;assembly=HMV.Core.Domain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+        xmlns:my1="clr-namespace:HMV.PEP.WPF.UserControls.SumarioAvaliacaoM" 
+        xmlns:my="clr-namespace:HMV.PEP.WPF.Report.SumarioAvaliacaoM" 
+        WindowStartupLocation="CenterScreen" 
+        Icon="{StaticResource imgHMVIcon}" 
+        WindowState="Maximized" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        Title="Resumo do Prontuário" Height="600" Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <conv:EnumToDescriptionsConverter x:Key="EnumToDescriptionsConverter"/>
+            <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+            <helper:EnumValuesExtension x:Key="EnumResumoDoProntuarioFiltros" EnumType="enum:ResumoDoProntuarioFiltros"/>
+        
+
+            <DataTemplate x:Key="toolbarcustomizada">
+                <dxb:BarManagerActionContainer>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="exportToWindow"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="email"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemIndex="1"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemIndex="5"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemIndex="6"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemIndex="7"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="open"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="save"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="search"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="print"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="export"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="pageSetup"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="zoomIn"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="zoomOut"/>
+                    <dxb:RemoveBarItemAndLinkAction ItemName="documentMap"/>
+                </dxb:BarManagerActionContainer>
+        </DataTemplate>
+
+            <DataTemplate x:Key="barSize">
+            <dxb:BarManager ToolbarGlyphSize="Small"/>
+        </DataTemplate>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="39" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <dxg:GridControl Name="grdSumarios" Margin="5,5,5,5" DataSource="{Binding Path=ListaSumarioDeAvaliacaoMedica}" GotFocus="grdSumarios_GotFocus">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="DataProntuario"     Header="Data Prontuário"   ReadOnly="True" SortIndex="0" SortOrder="Descending" />
+                    <dxg:GridColumn FieldName="DataEncerramento"   Header="Data Encerramento" ReadOnly="True"/>
+                    <dxg:GridColumn FieldName="Usuario.nm_usuario" Header="Usuário"           ReadOnly="True"/>
+                    <dxg:GridColumn FieldName="Tipo.Descricao"     Header="Tipo"              ReadOnly="True"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView Name="tblSumarios" ShowGroupPanel="False" AutoWidth="True" MultiSelectMode="None" NavigationStyle="Row" 
+                                   FocusedRow="{Binding Path= SumarioDeAvalicaoSelecionado, Mode=TwoWay}" 
+                                   FocusedRowChanged="tblSumarios_FocusedRowChanged" 
+                                   Style="{StaticResource styleTableView}"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <GroupBox Name="gp1" Width="400" Height="55" VerticalAlignment="Top" HorizontalAlignment="Left"  Header="                                 " Margin="1,0,0,0">
+                <Grid IsEnabled="{Binding ElementName=chkInfPeriodo, Path=IsChecked}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid Grid.Column="0">
+                        <Label Name="lblDtInicio" Content="Data Inicial:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <DatePicker Name="dtpDtInicial" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Label Name="lblDtFim" Content="Data Final:" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <DatePicker Name="dtpDtFinal" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </Grid>
+
+                </Grid>
+            </GroupBox>
+            
+            <CheckBox Content="Informar Período " Height="16" HorizontalAlignment="Left" Margin="15,2,0,0" Name="chkInfPeriodo" VerticalAlignment="Top" IsChecked="False" />
+            <core:HMVButton Name="btnImprimir" HorizontalAlignment="Right" Margin="0,6,6,64" Style="{StaticResource styleBtnImprimir}" VerticalAlignment="Center" TabIndex="7" ButtonText="Visualizar" Click="btnImprimir_Click" />
+            <TextBlock Height="89" HorizontalAlignment="Left" Margin="406,5,0,0" Name="textBlock1" Text="Esta consulta exibe os registros no padrão &quot;Primeira Consulta&quot; e &quot;Reconsulta&quot;. Verifique se existem outros registros deste paciente clicando no Menu (Evolução)." VerticalAlignment="Top" Width="272" TextWrapping="Wrap" TextAlignment="Justify" Foreground="#FFF21010" />
+            <core:HMVButton Name="btnPesquisarPeriodo" HorizontalAlignment="Left" Margin="277,61,0,9" Style="{StaticResource styleBtnPesquisa}" VerticalAlignment="Center" TabIndex="7" ButtonText="Pesquisar" Click="btnPesquisarPeriodo_Click" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="6,64,0,0" Name="textBlock2" Text="Visualizar" VerticalAlignment="Top" />
+
+            <dxe:ComboBoxEdit Name="cmbFiltros" Height="23" Width="166" HorizontalAlignment="Left" Margin="67,61,0,0" VerticalAlignment="Top" IsTextEditable="False" 
+                              SelectedItem="{Binding Path=ItemFiltroSelecionado, UpdateSourceTrigger=Default, Converter={StaticResource EnumToDescriptionsConverter}}" 
+                              ItemsSource="{Binding Source={StaticResource EnumResumoDoProntuarioFiltros}, Converter={StaticResource EnumToDescriptionsConverter}}" />
+
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <!--<my1:ucResumoAvaliacaoMedica    x:Name="ucResumoAvaliacaoMedica1"     Margin="5,5,0,6" HorizontalAlignment="Left" Width="659" />-->
+            <my:ucRelSumarioAvaliacaoMedica x:Name="ucRelSumarioAvaliacaoMedica1" Margin="5,5,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            
+            <RichTextBox Name="relRichText" Margin="5,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" VerticalScrollBarVisibility="Visible" />
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <core:HMVButton Name="btnFechar"   HorizontalAlignment="Right" Margin="0,4,5,6"  Style="{StaticResource styleBtnFechar}"   VerticalAlignment="Center" TabIndex="8" ButtonText="Fechar" Click="btnFechar_Click" />
+        </Grid>
+    </Grid>
+</core:WindowBase>

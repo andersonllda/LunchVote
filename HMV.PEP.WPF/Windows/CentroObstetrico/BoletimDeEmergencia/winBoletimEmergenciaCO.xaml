@@ -1,0 +1,14 @@
+﻿<core:WindowBase 
+        
+        x:Class="HMV.PEP.WPF.Windows.BoletimDeEmergencia.winBoletimEmergenciaCO"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+        Title="Boletim de Emergência" Icon="{StaticResource imgHMVIcon}" 
+        Height="426" Width="823" WindowState="Maximized">    
+    
+    <Grid Name="Principal">
+        
+    </Grid>
+    
+</core:WindowBase>

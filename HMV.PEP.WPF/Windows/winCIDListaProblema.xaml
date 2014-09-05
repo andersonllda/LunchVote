@@ -1,0 +1,59 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.Windows.winCIDListaProblema"                
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"   
+                    xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+                    xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+                    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"                    
+                    mc:Ignorable="d" d:DesignHeight="482" d:DesignWidth="652" MinHeight="555"
+                    xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+                    xmlns:ucbase="clr-namespace:HMV.Core.Framework.DevExpress.v12._1.Componentes;assembly=HMV.Core.Framework.DevExpress.v12.1"
+                    xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    Closing="WindowBase_Closing" WindowStartupLocation="CenterScreen"
+                 Title="Lista de Problemas">
+
+    <lc:LayoutControl Orientation="Vertical"  StretchContentVertically="True"  Style="{StaticResource styleLayoutControl}" ScrollBars="None" Padding="3">
+        <lc:LayoutControl.Resources>
+            <Style TargetType="{x:Type lc:GroupBox}" BasedOn="{StaticResource styleGroupBoxSilver}"/>
+        </lc:LayoutControl.Resources>
+        <lc:LayoutGroup View="GroupBox" Header="Confirme ou Informe o CID  Principal do Atendimento:">
+            <lc:LayoutItem Label="CID:" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:ButtonEdit  AllowDefaultButton="False" CharacterCasing="Upper" MaxLength="10" Width="90" Text="{Binding Path=CID.Id, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" EditValueChanging="txtCIDPrincipal_EditValueChanging" Name="txtCIDPrincipal">
+                    <dxe:ButtonInfo Content="Pesquisa" GlyphKind="Search" Click="ButtonInfo_Click" />
+                </dxe:ButtonEdit>
+            </lc:LayoutItem>
+            <lc:LayoutItem VerticalAlignment="Center">
+                <dxe:TextEdit Text="{Binding Path=CID.Descricao, UpdateSourceTrigger=PropertyChanged}" Name="txtDescricaoCIDPrincipal" IsReadOnly="True"></dxe:TextEdit>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Right" >
+                <core:HMVButton Command="{Binding Commands.CommandSalvar}" Style="{StaticResource styleBtnConfirmar}"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup View="GroupBox" Header="Lista de Problemas do Paciente" Padding="-8">
+            <dxg:GridControl x:Name="gdAlergias" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" DataSource="{Binding Path=ProblemasPaciente}" 
+                             IsEnabled="{Binding Path=IsCorpoClinico}">
+                <dxg:GridControl.View>
+                    <dxg:TableView 
+                                   ShowGroupPanel="False"
+                                   NavigationStyle="Cell"
+                                   AutoWidth="True"
+                                   BestFitArea="All"
+                                   AllowEditing="False"                                   
+                                  >
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="CID" FixedWidth="True" FieldName="CID" Width="100"/>
+                    <dxg:GridColumn Header="Problema" FieldName="Descricao"/>
+                    <dxg:GridColumn Header="Data" FixedWidth="True" Width="100" FieldName="DataInicio" />
+                </dxg:GridControl.Columns>
+            </dxg:GridControl>
+        </lc:LayoutGroup>
+       
+    </lc:LayoutControl>
+
+</core:WindowBase>

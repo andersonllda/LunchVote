@@ -1,0 +1,78 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioDeAlta.ucExames"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+             mc:Ignorable="d" d:DesignHeight="286" d:DesignWidth="658">
+    
+    <UserControl.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+    </UserControl.Resources>
+    
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Foreground="Orange" FontFamily="Arial" FontWeight="Bold" Height="15" TextAlignment="Center" VerticalAlignment="Bottom"  Text="Informe os resultados principais de exames diagnósticos" Grid.ColumnSpan="2"/>
+
+        <CheckBox Grid.Row="1" Margin="10,7,0,9" Name="cheExamesRealizados" Content="{Binding Path=TituloExamesRealizados}" Style="{StaticResource styleCheckAtivo}" IsChecked="{Binding Path=ExamesRealizados, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" Width="457" Grid.ColumnSpan="2"/>
+
+        <dxg:GridControl x:Name="gdExamesRealizados" Margin="10,0,10,0" Grid.Row="2" DataSource="{Binding Path=Exames, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=cheExamesRealizados, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}" Grid.ColumnSpan="2">            
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Name="Codigo" FieldName="Procedimento.ID" SortOrder="Ascending" Header="Código" Width="80" FixedWidth="True" AllowEditing="False"/>
+                <dxg:GridColumn Name="Exame" FieldName="Procedimento.Descricao" SortOrder="Ascending" Header="Exame" MinWidth="200" AllowEditing="False" />                
+                <dxg:GridColumn Name="Resultado" FieldName="Observacao" SortOrder="Ascending" Header="Resultado" MinWidth="200">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:MemoEditSettings PopupWidth="250" MemoTextWrapping="Wrap" ShowIcon="False" TextWrapping="WrapWithOverflow" MemoVerticalScrollBarVisibility="Auto" IsTextEditable="True" MaxLength="2000">                                 
+                                    <dxe:MemoEditSettings.PopupContentTemplate>
+                                        <ControlTemplate TargetType="ContentControl">
+                                            <Grid Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoBackgroundStyle}}">
+                                                <dxe:TextEdit x:Name="PART_PopupContent" Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoStyle}}" MaxLength="2000" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </dxe:MemoEditSettings.PopupContentTemplate>
+                                </dxe:MemoEditSettings>                                                    
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView Name="viewExamesRealizados" 
+                                   ShowGroupPanel="False" 
+                                   NavigationStyle="Cell"                                 
+                                   AutoWidth="True"
+                                   AllowBestFit="True"
+                                   BestFitArea="All"
+                                   FocusedRow="{Binding Path=ExameSelecionado, Mode=OneWayToSource}"
+                               Style="{StaticResource styleTableView}"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+
+        <core:HMVButton Grid.Row="3" Margin="10,0,90,0"  Name="btnIncluir" Style="{StaticResource styleBtnIncluir}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnIncluir_Click" IsEnabled="{Binding ElementName=cheExamesRealizados, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}" Grid.ColumnSpan="2"/>
+        <core:HMVButton Grid.Row="3" Margin="10,0,10,0"  Name="btnExcluir" Style="{StaticResource styleBtnExcluir}" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding RemoveExameCommand}" IsEnabled="{Binding ElementName=cheExamesRealizados, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}" Grid.ColumnSpan="2"/>
+
+        <GroupBox Grid.Column="0" VerticalAlignment="Stretch" Foreground="Navy" HorizontalAlignment="Stretch" Grid.Row="4" Header="Análises Clínicas" Name="groupBox2" FontWeight="Bold" Margin="5,2,5,23" IsEnabled="{Binding ElementName=cheExamesRealizados, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <dxe:TextEdit Margin="0,0,0,15" Grid.Row="4" Text="{Binding Path=AnaliseClinica,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Name="txtAnaliseClinica" TabIndex="8" Foreground="Black" FontWeight="Normal" MaxLength="4000" EditValueChanged="txtAnaliseClinica_EditValueChanged" />
+        </GroupBox>
+        <Label Name="label2" Grid.Column="0" Content="Máximo de 4000 caracteres" FontSize="10" Foreground="#FFE2650E" Height="28" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Grid.Row="4" />
+        
+        <GroupBox Grid.Column="2" VerticalAlignment="Stretch" Foreground="Navy" HorizontalAlignment="Stretch" Grid.Row="4" Header="Observação" Name="groupBox1" FontWeight="Bold" Margin="5,2,5,23" IsEnabled="{Binding ElementName=cheExamesRealizados, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <dxe:TextEdit Margin="0,0,0,15" Grid.Row="4" Text="{Binding Path=Observacao,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Name="txtObservacao" TabIndex="8" Foreground="Black" FontWeight="Normal" MaxLength="4000" EditValueChanged="txtObservacao_EditValueChanged" />
+        </GroupBox>
+        <Label Grid.Column="2"  Content="Máximo de 4000 caracteres" FontSize="10" Foreground="#FFE2650E" Height="28" HorizontalAlignment="Left" Margin="10,71,0,0" Name="label1" VerticalAlignment="Top" Grid.Row="4" />
+    </Grid>
+</core:UserControlBase>

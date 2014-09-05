@@ -1,0 +1,38 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoMedicaCTINEO.ucMotivoHistoria"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="678">
+
+    <lc:LayoutGroup Orientation="Vertical">
+        <lc:LayoutGroup View="GroupBox" Padding="-8">
+            <lc:LayoutItem Label="Procedência:" >
+                <dxe:ComboBoxEdit  Name="cboProcedencia" IsTextEditable="False" VerticalAlignment="Top" 
+                                   ShouldUpdateTwoWayBindedPropertiesOnSynchronization="False"
+                                   ItemsSource="{Binding Path=ProcedenciaCollection}"                             
+                                   EditValue="{Binding Path=Procedencia, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                                   DisplayMember="Descricao" AutoComplete="True"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem Label="Outros:">
+                <dxe:TextEdit MaxLength="128" IsEnabled="{Binding Path=SumarioAvaliacaoMedicaCTINEO.PermiteProcedenciaOutros}" 
+                              Text="{Binding Path=SumarioAvaliacaoMedicaCTINEO.ProcedenciaOutros, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"></dxe:TextEdit>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Header="Motivo de Internação" View="GroupBox" Padding="-8">
+            <dxe:TextEdit Style="{StaticResource styleTextEditMultiLine}" 
+                          Text="{Binding Path=SumarioAvaliacaoMedicaCTINEO.MotivoInternacao, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></dxe:TextEdit>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Header="História Atual" View="GroupBox" Padding="-8">
+            <dxe:TextEdit Style="{StaticResource styleTextEditMultiLine}" Text="{Binding Path=SumarioAvaliacaoMedicaCTINEO.HistoriaAtual, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></dxe:TextEdit>
+        </lc:LayoutGroup>
+    </lc:LayoutGroup>
+
+</core:UserControlBase>

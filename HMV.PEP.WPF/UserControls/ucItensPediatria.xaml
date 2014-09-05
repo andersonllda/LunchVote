@@ -1,0 +1,147 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.ucItensPediatria"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:dxnb="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
+             xmlns:dxnt="http://schemas.devexpress.com/winfx/2008/xaml/navbar/themekeys"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:Layout="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             mc:Ignorable="d" d:DesignHeight="506" d:DesignWidth="875">
+
+    <UserControl.Resources >
+        <conv:BoolToImageMVMonitorMonitorConverter x:Key="BoolToImageMVMonitorMonitorConverter"/>
+        <DataTemplate x:Key="NavBarItemTemplate">
+            <Grid Width="Auto" Height="Auto">
+                <DockPanel Margin="0,0,0,0" x:Name="dockPanel" Width="Auto" Height="Auto">
+                    <Image Margin="6,4,0,4" x:Name="image" VerticalAlignment="Stretch" Width="17" Height="17" Visibility="Visible" DockPanel.Dock="Left" Source="{Binding Path=ImageSource}"/>
+                    <Label Margin="6,0,6,0" x:Name="item" Height="17" Content="{Binding Path=Content}" Padding="0,0,0,0" VerticalContentAlignment="Center"/>
+                </DockPanel>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=Source, ElementName=image}" Value="{x:Null}">
+                    <Setter Property="Visibility" TargetName="image" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxnb:NavBarItemControl}}}" Value="true">
+                    <Setter Property="Foreground" TargetName="item" Value="#FFFFFFFF"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=IsSelected}" Value="true">
+                    <Setter Property="Foreground" TargetName="item" Value="#FFFFFFFF"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=IsEnabled}" Value="false">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ImageTreeViewItemTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image SnapsToDevicePixels="True" Grid.Column="0" Source="{Binding ImageSource}" Width="16" Height="16" Margin="0,2,2,2"/>
+                <TextBlock x:Name="item" Grid.Column="1" Text="{Binding Header}" Margin="4,0,0,0"/>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="true">
+                    <Setter Property="Foreground" TargetName="item" Value="#FFFFFFFF"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BarraCustomizada">
+            <dxb:BarManagerActionContainer>
+                <dxb:RemoveBarItemAndLinkAction ItemName="exportToWindow" />
+                <dxb:RemoveBarItemAndLinkAction ItemName="printDirect"/>
+                <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.Target="DocumentPreviewToolBar" />
+                <dxb:BarButtonItem Name="createButton" 
+                                   Content="Imprimir Documento" 
+                                   Command="{Binding Path=CreateCommand}"
+                                   Glyph="{StaticResource imgPrintReport}"
+                                   ItemClick="createButton_ItemClick" />
+                <dxb:BarButtonItemLink BarItemName="createButton" dxb:BarItemLinkActionBase.ItemLinkIndex="8" dxb:BarItemLinkActionBase.Target="DocumentPreviewToolBar" />
+            </dxb:BarManagerActionContainer>
+        </DataTemplate>
+    </UserControl.Resources>
+
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="177"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0">                
+                <Layout:LayoutControl Name="layoutRoot" >
+                    
+                    <Grid Layout:LayoutControl.AllowHorizontalSizing="True" Margin="-10">
+                        
+                        <dxnb:NavBarControl dx:ThemeManager.ThemeName="DeepBlue" Name="menuNavBarControl">
+                            <dxnb:NavBarControl.Resources>
+                                <ControlTemplate x:Key="{dxnt:CommonElementsThemeKey ResourceKey=SmoothScrollTemplate, ThemeName=Office2007Blue}" TargetType="ContentControl">
+                                    <dxnb:GroupScrollableContentControl AllowScrolling="False" x:Name="scrollableContent" Orientation="{Binding Path=NavBar.View.ItemsPanelOrientation}" dx:FocusHelper2.Focusable="False">
+                                        <ContentPresenter/>
+                                    </dxnb:GroupScrollableContentControl>
+                                </ControlTemplate>
+                            </dxnb:NavBarControl.Resources>
+                            
+                            <dxnb:NavBarControl.View>
+                                <dxnb:NavigationPaneView IsOverflowPanelVisible="False" MaxVisibleGroupCount="0" IsSplitterVisible="False" />
+                            </dxnb:NavBarControl.View>
+                            
+                            <dxnb:NavBarControl.Groups>
+                                <dxnb:NavBarGroup Name="grpPrincipal" Header="Menu" DisplaySource="Content">
+                                    <dxnb:NavBarGroup.Content>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <dxnb:NavBarControl>
+                                                
+                                                <dxnb:NavBarControl.View>
+                                                    <dxnb:ExplorerBarView dxnb:NavBarAnimationOptions.AnimationProgress="{Binding Path=IsExpanded, Converter={dxnb:IsActiveToAnimationProgressConverter}}" 
+                                                                  ItemTemplate="{StaticResource NavBarItemTemplate}" Cursor="Hand" ForceCursor="True"/>
+                                                </dxnb:NavBarControl.View>
+                                                
+                                                <dxnb:NavBarControl.Groups>
+                                                    <dxnb:NavBarGroup Name="grpPediatria" Header="Pediatria" DisplaySource="Content" ImageSource="{StaticResource imgCrianca}">
+                                                        <dxnb:NavBarGroup.Content>
+                                                            <StackPanel>
+                                                            </StackPanel>
+                                                        </dxnb:NavBarGroup.Content>
+                                                    </dxnb:NavBarGroup>
+                                                </dxnb:NavBarControl.Groups>
+                                                
+                                            </dxnb:NavBarControl>
+                                        </ScrollViewer>
+                                    </dxnb:NavBarGroup.Content>
+                                </dxnb:NavBarGroup>
+                            </dxnb:NavBarControl.Groups>
+                        </dxnb:NavBarControl>
+                    </Grid>
+
+
+                </Layout:LayoutControl>
+            </Grid>
+            
+            <Grid Grid.Column="1">
+                <dxb:BarManager Name = "barManager" ToolbarGlyphSize ="Small" UseLayoutRounding="False" VerticalAlignment="Stretch" Margin="0,3,0,0">
+                    <dxb:BarManager.Controllers>
+                        <dxp:DocumentPreviewBarManagerController DocumentPreviewControl="{Binding ElementName=relPediatrico}"/>
+
+                        <dxb:TemplatedBarManagerController Template="{StaticResource BarraCustomizada}"/>
+                    </dxb:BarManager.Controllers>
+                    <dxp:DocumentPreviewControl Name = "relPediatrico"/>
+                </dxb:BarManager>
+            </Grid>                
+        </Grid>
+    </Grid>
+</core:UserControlBase>

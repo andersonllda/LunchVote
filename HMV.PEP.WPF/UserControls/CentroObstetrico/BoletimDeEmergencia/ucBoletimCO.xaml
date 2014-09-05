@@ -1,0 +1,39 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.CentroObstetrico.BoletimDeEmergencia.ucBoletimCO"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF" 
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+             xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+             xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
+             mc:Ignorable="d"  d:DesignHeight="242" d:DesignWidth="972">
+
+    <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <conv:BoolToOppositeVisibilityConverter x:Key="BoolToOppositeVisibilityConverter"/>
+        <Style TargetType="{x:Type lc:GroupBox}" BasedOn="{StaticResource styleGroupBoxSilver}"/>
+    </UserControl.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Line Stretch="Fill" Stroke="{Binding Path=CorRisco}" StrokeThickness="10" X1="1" VerticalAlignment="Top" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+        <dxd:DockLayoutManager x:Name="dockLayoutManagerN1" Background="Transparent" Margin="0,10,0,40" DockItemActivated="dockLayoutManagerN1_DockItemActivated">
+            <dxd:DockLayoutManager.Resources>
+                <ControlTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=Template}" TargetType="ve:Document">
+                    <Border x:Name="border" ve:DockPane.HitTestType="Bounds" Background="{Binding Background}">
+                        <ve:DocumentContentPresenter x:Name="PART_ContentPresenter" 
+                                         Content="{TemplateBinding Content}" 
+                                         Margin="{Binding LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                </ControlTemplate>
+            </dxd:DockLayoutManager.Resources>            
+        </dxd:DockLayoutManager>
+        <core:HMVButton HorizontalAlignment="Left" Style="{StaticResource styleBtnConfirmar}" Visibility="{Binding Path=boolImprimirEAlta, Converter={StaticResource BoolToOppositeVisibilityConverter}}" ButtonText="Confirma Alta" Width="110" Command="{Binding Commands.CommandAbrir}" VerticalAlignment="Bottom" Margin="5" Click="HMVButton_Click"/>
+        <core:HMVButton Style="{StaticResource styleBtnImprimir}" Visibility="{Binding Path=boolImprimir, Converter={StaticResource BoolToVisibilityConverter}}" Click="btnImprimir_Click" Name="btnImprimir" HorizontalAlignment="Left" Command="{Binding Commands.CommandImprimir}" VerticalAlignment="Bottom" Margin="5"/>
+        <core:HMVButton Style="{StaticResource styleBtnVisualizar}" Name="btnVisualizar" Visibility="{Binding Path=boolVisualizar, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Margin="5" Click="btnVisualizar_Click" />
+        <core:HMVButton HorizontalAlignment="Right" Style="{StaticResource styleBtnNovo}" Visibility="{Binding Path=boolImprimir, Converter={StaticResource BoolToVisibilityConverter}}" Name="btnNovo" Click="btnNovo_Click" VerticalAlignment="Bottom" Margin="5"/>
+        <core:HMVButton Style="{StaticResource styleBtnSave}" Visibility="{Binding Path=boolImprimir, Converter={StaticResource BoolToOppositeVisibilityConverter}}" Name="btnSalvar" HorizontalAlignment="Right" Command="{Binding Commands.CommandSalvar}" VerticalAlignment="Bottom" Margin="5"/>
+    </Grid>
+</core:UserControlBase> 

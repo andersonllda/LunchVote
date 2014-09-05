@@ -1,0 +1,49 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.ucPrevisaoAlta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+
+
+    <lc:LayoutControl  Orientation="Vertical" ScrollBars="None" Padding="3" Margin="0,0,0,0"  VerticalAlignment="Stretch">
+        <lc:LayoutControl.Resources>
+            <Style TargetType="{x:Type lc:GroupBox}" BasedOn="{StaticResource styleGroupBoxSilver}"/>
+        </lc:LayoutControl.Resources>
+        <lc:LayoutControl.Style>
+            <StaticResource ResourceKey="styleLayoutControl"/>
+        </lc:LayoutControl.Style>
+        <lc:LayoutGroup  VerticalAlignment="Top">
+            <lc:LayoutItem HorizontalAlignment="Left">
+                <Image Source="{StaticResource imgBag64}"></Image>
+            </lc:LayoutItem>
+            <lc:LayoutItem VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Foreground="#FF3E639D" Text="Previsão de Alta" Style="{StaticResource styleTextBlockTituloUC}"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup View="GroupBox" HorizontalAlignment="Left">
+            <lc:LayoutItem Label="A previsão de Alta foi definida para " FontSize="14" Foreground="#FF3E639D" VerticalAlignment="Center">                
+                <Label Content="{Binding Data, UpdateSourceTrigger=PropertyChanged}" Foreground="#A52A2A" HorizontalAlignment="Left"/>
+            </lc:LayoutItem>            
+            <lc:LayoutItem Label=", faltando " FontSize="14" Foreground="#FF3E639D" VerticalAlignment="Center">
+                <Label Content="{Binding DiasFaltando, UpdateSourceTrigger=PropertyChanged}" Foreground="#A52A2A" HorizontalAlignment="Left"/>
+                
+            </lc:LayoutItem>
+            <lc:LayoutItem Label=" dias para sua efetivação." FontSize="14" Foreground="#FF3E639D" VerticalAlignment="Center">
+                <!--<Label Content="{Binding QtdDias, UpdateSourceTrigger=PropertyChanged}" Foreground="#A52A2A" HorizontalAlignment="Left"/>-->
+            </lc:LayoutItem>            
+            <!--<lc:LayoutItem Label=" para sua efetivação na data " FontSize="14" Foreground="#FF3E639D" VerticalAlignment="Center" />-->            
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup>
+            <core:HMVButton Click="HMVButton_Click" Margin="0,0,10,0" Style="{StaticResource styleBtnAlterar}" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+        </lc:LayoutGroup>
+    </lc:LayoutControl>
+    
+</core:UserControlBase>
+    
+

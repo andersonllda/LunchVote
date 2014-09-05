@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AA6188E1-CD7B-41AB-B479-68A6CC4F4C21}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HMV.PEP.Test</RootNamespace>
+    <AssemblyName>HMV.PEP.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HMV.Core.Application.DTO, Version=1.0.4951.26802, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.Application.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.DataAccess, Version=1.0.4951.26810, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.Domain, Version=1.0.4951.26803, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.Framework, Version=1.0.4951.26801, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.Interfaces, Version=1.0.4951.26805, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.IoC, Version=1.0.4951.26815, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.IoC.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.NH.Repository, Version=1.0.4951.26815, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.NH.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.Services, Version=1.0.4951.26806, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.WCF.Interfaces, Version=1.0.4951.26804, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.WCF.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.WCF.Services, Version=1.0.4951.26806, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.WCF.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.Core.Wrappers, Version=1.0.4951.26816, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.Core.Wrappers.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.ProcessosEnfermagem.Consult, Version=1.1.4951.27092, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.ProcessosEnfermagem.Consult.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.ProcessosEnfermagem.DTO, Version=1.1.4951.27089, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.ProcessosEnfermagem.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.ProcessosEnfermagem.Interface, Version=1.1.4951.27094, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.ProcessosEnfermagem.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.ProcessosEnfermagem.IoC, Version=1.1.4951.27105, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.ProcessosEnfermagem.IoC.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.ProcessosEnfermagem.NH.Consult, Version=1.1.4951.27097, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.ProcessosEnfermagem.NH.Consult.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.ProcessosEnfermagem.Services, Version=1.1.4951.27100, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.ProcessosEnfermagem.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="HMV.ProcessosEnfermagem.ViewModel, Version=1.1.4951.27102, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Debug\HMV.ProcessosEnfermagem.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Validator, Version=1.2.0.3001, Culture=neutral, PublicKeyToken=70154e18752585bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\NHibernate.Validator.dll</HintPath>
+    </Reference>
+    <Reference Include="OmarALZabir.AspectF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\OmarALZabir.AspectF.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="StructureMap, Version=2.5.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseTestClass.cs" />
+    <Compile Include="AmbulatorioTest.cs" />
+    <Compile Include="AtendimentoTest.cs" />
+    <Compile Include="BoletimEmergenciaTest.cs" />
+    <Compile Include="CIDTest.cs" />
+    <Compile Include="CheckListTest.cs" />
+    <Compile Include="SCITest.cs" />
+    <Compile Include="StringTest.cs" />
+    <Compile Include="ServicosDAInicializacaoDoPepTest.cs" />
+    <Compile Include="MotivoInternacaoTest.cs" />
+    <Compile Include="SumarioAvaliacaoMedicaRNTest.cs" />
+    <Compile Include="SumarioAvaliacaoPreAnestesicaTest.cs" />
+    <Compile Include="PlanoEducacionalTest.cs" />
+    <Compile Include="RepositorioRegistroDorTest.cs" />
+    <Compile Include="SCPTest.cs" />
+    <Compile Include="EmailTest.cs" />
+    <Compile Include="PIN2Test.cs" />
+    <Compile Include="ProcessoEnfermagemTest.cs" />
+    <Compile Include="DescricaoCirurgicaTest.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SendEmail\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UrgenciaPediatricaTest.cs" />
+    <Compile Include="SumariaAtendimentoTest.cs" />
+    <Compile Include="ParametroPEPTest.cs" />
+    <Compile Include="ProcedimentosSumarioAltaTest.cs" />
+    <Compile Include="PacienteTest.cs" />
+    <Compile Include="SumariaAltaTest.cs" />
+    <Compile Include="ProblemasPacienteTest.cs" />
+    <Compile Include="SumarioAvaliacaoMedicaTest.cs" />
+    <Compile Include="UsuarioTest.cs" />
+    <Compile Include="SecurityTest.cs" />
+    <Compile Include="PrestadorTest.cs" />
+    <Compile Include="InicialEmergenciaTest.cs" />
+    <Compile Include="InternacaoTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HMV.PEP.Consult\HMV.PEP.Consult.csproj">
+      <Project>{8E4A55EB-D96A-4431-857E-9E90D2E8958B}</Project>
+      <Name>HMV.PEP.Consult</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HMV.PEP.DTO\HMV.PEP.DTO.csproj">
+      <Project>{6F5A1615-AEDD-467A-96B1-6607FE56C154}</Project>
+      <Name>HMV.PEP.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HMV.PEP.Interfaces\HMV.PEP.Interfaces.csproj">
+      <Project>{CEB4C8E1-2F72-4465-9BE7-31FEBF89B6CF}</Project>
+      <Name>HMV.PEP.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HMV.PEP.IoC\HMV.PEP.IoC.csproj">
+      <Project>{48863D9C-E713-4A02-89DB-C6D83679D989}</Project>
+      <Name>HMV.PEP.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HMV.PEP.NH.Consult\HMV.PEP.NH.Consult.csproj">
+      <Project>{6ED877E4-438D-4933-A7FF-31CE6ACEE296}</Project>
+      <Name>HMV.PEP.NH.Consult</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HMV.PEP.Services\HMV.PEP.Services.csproj">
+      <Project>{45DA5E7D-2EBC-4F4A-8397-FFE06478C50B}</Project>
+      <Name>HMV.PEP.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HMV.PEP.ViewModel\HMV.PEP.ViewModel.csproj">
+      <Project>{DE6938D8-C15E-4E1D-A8FA-27402E61D749}</Project>
+      <Name>HMV.PEP.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HMV.PEP.WCF.Inicializacao\HMV.PEP.WCF.Inicializacao.csproj">
+      <Project>{1E2AFF51-30DA-4966-BD72-057750689EC0}</Project>
+      <Name>HMV.PEP.WCF.Inicializacao</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SendEmail\EmailService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SendEmail\EmailService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SendEmail\SendEmailService.wsdl" />
+    <None Include="Template_Email_Erro.xslt">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SendEmail\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SendEmail\EmailService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SendEmail\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SendEmail\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SendEmail\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>\\hoh2803\Desenvolvimento\ProjetoBuild\copyReferences.exe $(ConfigurationName);$(ProjectName);$(TargetPath);$(TargetExt);$(TargetFileName);$(TargetDir);$(SolutionDir);$(SolutionName)</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

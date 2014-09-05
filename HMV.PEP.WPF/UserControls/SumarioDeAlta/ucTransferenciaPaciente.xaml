@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="HMV.PEP.WPF.UserControls.SumarioDeAlta.ucTransferenciaPaciente"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:HMV="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"             
+             mc:Ignorable="d" d:DesignHeight="336" d:DesignWidth="763">
+
+    <UserControl.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+    </UserControl.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="42"/>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Margin="10,2,0,0" Text="Transporte" Foreground="White" FontWeight="Bold" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="66" />
+        <dxe:ComboBoxEdit Grid.Row="0" Height="20" Margin="10,0,0,15" HorizontalAlignment="Left" Width="258"
+                          ShouldUpdateTwoWayBindedPropertiesOnSynchronization="False"
+                          EditValue="{Binding Path=MeioDeTransporteSelecionado, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                          ItemsSource="{Binding Path=MeiosDeTransportes}"
+                          DisplayMember="Descricao"
+                          IsTextEditable="False"/>
+
+        <dxe:CheckEdit Grid.Row="0" Margin="10,30,0,0" Content="Oxigênio" Style="{StaticResource styleCheckEdit}" IsChecked="{Binding Path=Transferencia.Oxigenio, Converter={StaticResource SimNaoToBoolConverter}}"/>
+        <dxe:CheckEdit Grid.Row="0" Margin="90,30,0,0" Content="Ventilação" Style="{StaticResource styleCheckEdit}" IsChecked="{Binding Path=Transferencia.Ventilacao, Converter={StaticResource SimNaoToBoolConverter}}"/>
+        <dxe:CheckEdit Grid.Row="0" Margin="180,30,0,0" Content="Monitorização" Style="{StaticResource styleCheckEdit}" IsChecked="{Binding Path=Transferencia.Motorizacao, Converter={StaticResource SimNaoToBoolConverter}}"/>
+        <dxe:CheckEdit Grid.Row="0" Margin="300,30,0,0" Content="Acompanhamento Médico" Style="{StaticResource styleCheckEdit}" IsChecked="{Binding Path=Transferencia.AcompanhaMedico, Converter={StaticResource SimNaoToBoolConverter}}"/>
+
+        <GroupBox VerticalAlignment="Stretch" Margin="10,0,10,0" HorizontalAlignment="Stretch" Grid.Row="1" Header="Exame físico sumário no momento da transferência" Name="groupBox1" Foreground="White" FontSize="13" Grid.ColumnSpan="2">
+            <dxe:TextEdit Grid.Row="1" Text="{Binding Path=Transferencia.ExameFisicoSumario,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Name="txtCasoEmergencia" TabIndex="8" Foreground="Black" MaxLength="300" VerticalContentAlignment="Top"/>
+        </GroupBox>
+
+        <TextBlock Grid.Row="2" Text="FC - bpm" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,0,0,0" Width="48" Height="17" Foreground="Navy" />
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Path=Transferencia.FrequenciaCardiaca,UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="10,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84" />
+
+        <TextBlock Grid.Row="2" Text="PA - mmHg" Margin="108,0,0,0" Height="17" VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" Foreground="Navy" />
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Path=PressaoAlta, UpdateSourceTrigger=PropertyChanged}" Margin="103,14,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="47"/>
+        <TextBlock Margin="155,19,0,11" Style="{StaticResource styleTextBlockSite}" Text="/" VerticalAlignment="Center" Foreground="Navy" Grid.Row="2" Height="12" HorizontalAlignment="Left" Width="8" />
+        <dxe:TextEdit Height="20" Text="{Binding Path=PressaoBaixa, UpdateSourceTrigger=PropertyChanged}" Margin="164,15,0,0" VerticalAlignment="Top" Grid.Row="2" HorizontalAlignment="Left" Width="45"/>
+        <TextBlock Grid.Row="2" Text="FR - mpm" Width="64"  Margin="223,0,0,0" HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Foreground="Navy" />
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Path=Transferencia.FrequenciaRespiratoria,UpdateSourceTrigger=PropertyChanged}" Margin="222,15,0,0"  Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="98"/>
+
+        <TextBlock Grid.Row="2" Text="Nome Hospital Destino" Height="15" Margin="328,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135" Foreground="Navy" />
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Path=Transferencia.NomeHospitalDestino,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Margin="326,15,12,0" Height="20" VerticalAlignment="Top" MaxLength="60"/>
+
+        <TextBlock Grid.Row="3" Text="Profissional que reservou leito" Height="15" Margin="326,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="173" Foreground="Navy" />
+        <dxe:TextEdit Grid.Row="3" Text="{Binding Path=Transferencia.UsuarioLeitoReserva,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Margin="325,15,13,0" Height="20" VerticalAlignment="Top" MaxLength="40"/>
+
+        <TextBlock Grid.Row="3" Text="Contato instituição destino" Height="15" Margin="9,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Foreground="Navy"/>
+        <dxe:TextEdit Grid.Row="3" Text="{Binding Path=Transferencia.ContatoInstituicao,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Margin="8,15,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="312"  MaxLength="60" />
+
+        <GroupBox HorizontalAlignment="Stretch" BorderBrush="#FF466380"  Grid.Row="4" FontWeight="Bold" Header="Município de Destino" Foreground="Navy" BorderThickness="2">
+            <Grid>
+                <TextBlock Grid.Row="4" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="País" Foreground="Navy" FontWeight="Normal" Visibility="Hidden" />
+                <dxe:ComboBoxEdit Grid.Row="4" Height="20" Margin="5,15,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="135" Visibility="Hidden"
+                          ShouldUpdateTwoWayBindedPropertiesOnSynchronization="False"
+                          EditValue="{Binding Path=PaisSelecionado, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                          ItemsSource="{Binding Path=Paises}"  
+                          DisplayMember="Descricao" AutoComplete="True" IsTextEditable="False"/>                
+                
+                <TextBlock  Grid.Row="4" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="Estado" Foreground="Navy" FontWeight="Normal" />
+                <dxe:ComboBoxEdit Grid.Row="4" Height="20" Margin="5,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="180"
+                          ShouldUpdateTwoWayBindedPropertiesOnSynchronization="False"
+                          EditValue="{Binding Path=EstadoSelecionado, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          ItemsSource="{Binding Path=Estados}" 
+                          AutoComplete="True" FontWeight="Normal" IsTextEditable="False"
+                          DisplayMember="Descricao"/>
+                
+                <TextBlock Grid.Row="4" Margin="190,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="Cidade" Foreground="Navy" FontWeight="Normal" />
+                <dxe:ComboBoxEdit Height="20" Margin="190,0,8,10" VerticalAlignment="Bottom"
+                          ShouldUpdateTwoWayBindedPropertiesOnSynchronization="False"
+                          EditValue="{Binding Path=CidadeSelecionada, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          ItemsSource="{Binding Path=Cidades}" 
+                          AutoComplete="True" FontWeight="Normal" IsTextEditable="False" 
+                          DisplayMember="Descricao" />                
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,61 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioDeAlta.ucPosAlta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"   
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"                                         
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:my="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v12.1"
+             mc:Ignorable="d" d:DesignHeight="339" d:DesignWidth="767" FocusManager.FocusedElement="{Binding ElementName=cheNaoseAplica}">
+
+    <UserControl.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter" />
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter" />
+    </UserControl.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+            <CheckBox Margin="10,5,0,0" Name="cheNaoseAplica" Content="Não há prescrição de medicamentos no pós-alta" Style="{StaticResource styleCheckAtivo}" 
+                  IsChecked="{Binding Path=NaoSeAplica, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" Width="274" TabIndex="0" />
+
+       <dxg:GridControl Grid.Row="1" Margin="10,0,10,0" x:Name="gdPosAlta" DataSource="{Binding Path=PlanosPosAlta, UpdateSourceTrigger=PropertyChanged}" 
+                         IsEnabled="{Binding ElementName=cheNaoseAplica, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}" MouseDown="gdPosAlta_MouseDown">
+           <dxg:GridControl.Columns>
+                <dxg:GridColumn Name="Medic" FieldName="Medicamento" SortOrder="Ascending" Header="Medicamento" MinWidth="150" />
+                <!--<dxg:GridColumn Name="Medicamento"  FieldName="DescricaoProduto" SortOrder="Ascending" Header="Medicamento" MinWidth="150"/>
+                <dxg:GridColumn Name="NomeComercial" FieldName="NomeComercial" SortOrder="Ascending" Header="Nome Comercial" MinWidth="150"/>-->
+                <dxg:GridColumn Name="Dose" FieldName="Dose" SortOrder="Ascending" Header="Dose" Width="110" FixedWidth="True" />
+                <dxg:GridColumn Name="Via" FieldName="Via" SortOrder="Ascending" Header="Via" Width="110" FixedWidth="True" />
+                <dxg:GridColumn Name="Frequencia" FieldName="Frequencia" SortOrder="Ascending" Header="Frequência" FixedWidth="True" Width="110" />
+                <dxg:GridColumn Name="Tempo" FieldName="Tempo" SortOrder="Ascending" Header="Tempo" FixedWidth="True" Width="200">
+                </dxg:GridColumn>
+               </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView Name="viewPosAlta"
+                                   ShowGroupPanel="False"                        
+                                   NavigationStyle="Row"                   
+                                   AutoWidth="True"
+                                   AllowEditing="False" 
+                                   FocusedRow="{Binding Path=PlanoPosAltaSelecionado, Mode=OneWayToSource}"
+                                   MouseDoubleClick="gdPosAlta_MouseDoubleClick"
+                               Style="{StaticResource styleTableView}" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+
+        <Grid Grid.Row="2" IsEnabled="{Binding ElementName=cheNaoseAplica, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <core:HMVButton Margin="0,4,149,6" Width="118" ButtonText="Lista do Hospital" Name="btnIncluirPossivel" Style="{StaticResource styleBtnConfirmar}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnIncluirPossivel_Click" />
+            <core:HMVButton Margin="0,4,272,6" Width="145" ButtonText="Medicamento Prescrito" Name="btnIncluirPrescrito" Style="{StaticResource styleBtnPrescricao}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnIncluirPrescrito_Click" />
+            <core:HMVButton Margin="0,4,11,6" Width="133" ButtonText="Outro Medicamento" Name="btnIncluirOutros" Style="{StaticResource styleBtnIncluir}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnIncluirOutros_Click" Height="30" />
+            <core:HMVButton Margin="10,4,10,6" Name="btnExcluir" Style="{StaticResource styleBtnExcluir}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemovePlanoPosAltaCommand}" />
+            <core:HMVButton Margin="86,4,0,6" Name="btnAlterar" Style="{StaticResource styleBtnAlterar}" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnAlterar_Click" IsEnabled="{Binding Path=HabilitaAlterar, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+    </Grid>
+</core:UserControlBase>

@@ -1,0 +1,38 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.Cadastros.winCadEvolucao"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"         
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+        xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+        mc:Ignorable="d" WindowState="Normal" Height="254"
+        Width="586"  Icon="{StaticResource imgHMVIcon}"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" 
+        FocusManager.FocusedElement="{Binding ElementName=txtObservacao}">
+
+    <Window.Resources>
+        <conv:StringLengthToBoolConverter x:Key="StringLengthToBoolConverter"/>
+    </Window.Resources>
+    
+    
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="0" />
+            <RowDefinition Height="160" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Foreground="White" FontFamily="Arial" FontWeight="Bold" Height="15" TextAlignment="Center" VerticalAlignment="Top" Text="Cadastro de Registros de Evolução" Margin="0,4,0,0" Grid.RowSpan="3" />
+        <GroupBox  Grid.Row="2" VerticalAlignment="Stretch" Foreground="Navy" HorizontalAlignment="Stretch" Header="Evolução" Name="groupBox1" FontWeight="Bold" Margin="10,2,10,0" Grid.ColumnSpan="2">
+            <dxe:TextEdit Margin="0,0,0,15" Grid.Row="4" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Name="txtObservacao" TabIndex="8" Foreground="Black" FontWeight="Normal" MaxLength="12000" Text="{Binding Path=Evolucao,UpdateSourceTrigger=PropertyChanged}" EditValueChanged="txtObservacao_EditValueChanged" />
+        </GroupBox>
+        <Label  Grid.Row="2" Content="Máximo de 12000 caracteres" FontSize="10" Foreground="#FFE2650E" Height="28" HorizontalAlignment="Left" Margin="12,136,0,0" Name="label1" VerticalAlignment="Top" Grid.RowSpan="2" />
+
+        <core:HMVButton Grid.Row="3" Click="btnFechar_Click" HorizontalAlignment="Right" Margin="0,0,10,0" Name="btnFechar" Style="{StaticResource styleBtnFechar}" TabIndex="3" VerticalAlignment="Center"/>
+        <core:HMVButton Grid.Row="3" Click="btnFechar_Click"  HorizontalAlignment="Right" Margin="0,0,84,0" Name="btnSalvar" Style="{StaticResource styleBtnSave}" TabIndex="2" VerticalAlignment="Center" Command="{Binding Path=SaveRegistrosDeEvolucaoCommand}" IsEnabled="{Binding ElementName=txtObservacao, Path=Text, Converter={StaticResource StringLengthToBoolConverter}}" />
+    </Grid>
+</core:WindowBase>

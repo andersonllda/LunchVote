@@ -1,0 +1,44 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.Receituario.winCadReceituario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+             xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"                    
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"   
+             xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"   
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             mc:Ignorable="d" Icon="{StaticResource imgHMVIcon}" Title="Receituário" 
+             WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" Height="444" Width="788">
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image Name="imgNormal" Height="64" Width="64" VerticalAlignment="Top"  HorizontalAlignment="Left" Source="{StaticResource imgReceituarioNormal64}"></Image>
+        <Image Name="imgEspecial" Visibility="Hidden" Height="64" Width="64" VerticalAlignment="Top"  HorizontalAlignment="Left" Source="{StaticResource imgReceituarioEspecial64}"></Image>
+        <TextBlock Grid.Row="0" Name="lblTitulo" FontFamily="Arial Black" FontSize="30" Style="{StaticResource styleTextBlockTitulo}" Text="Receituário Normal"></TextBlock>
+
+        <lc:LayoutControl Grid.Row="1" Orientation="Vertical"  StretchContentVertically="True"  Style="{StaticResource styleLayoutControl}" ScrollBars="None" Padding="3">
+            <lc:LayoutControl.Resources>
+                <Style TargetType="{x:Type lc:GroupBox}" BasedOn="{StaticResource styleGroupBoxSilver}"/>
+            </lc:LayoutControl.Resources>
+            <lc:LayoutGroup View="GroupBox">
+                <dxe:TextEdit Text="{Binding Path=ReceituarioNovo.Descricao, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleTextEditMultiLine}" MinHeight="40" MaxLength="12000"/>
+            </lc:LayoutGroup>
+        </lc:LayoutControl>
+
+        <core:HMVButton Grid.Row="2" Style="{StaticResource styleBtnDescricaoCirurgica}" ButtonText="Medicamentos Pós-Alta" Margin="6,0,0,6" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="160" Command="{Binding Commands.CommandAbrirEx}"/>
+        <core:HMVButton Grid.Row="2" Style="{StaticResource styleBtnDicionario}" Margin="170,0,0,6" VerticalAlignment="Bottom" HorizontalAlignment="Left" ButtonText="Receituário Padrão" Width="140" Name="btnReceituarioPadrao" Click="btnReceituarioPadrao_Click"/>
+
+        <core:HMVButton Grid.Row="2"  Style="{StaticResource styleBtnImprimir}" Margin="0,0,86,6" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="HMVButton_Click" IsEnabled="{Binding ElementName=btnSalvar, Path=IsEnabled}" />
+        <core:HMVButton Grid.Row="2" Name="btnSair" Style="{StaticResource styleBtnFechar}" Command="{Binding Commands.CommandFechar}" Margin="0,0,11,6" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+        <core:HMVButton Grid.Row="2" Name="btnSalvar" Style="{StaticResource styleBtnSave}" Command="{Binding Commands.CommandSalvar}" Margin="0,0,179,6" VerticalAlignment="Bottom" Width="75" HorizontalAlignment="Right" />
+    </Grid>
+</core:WindowBase>
+
