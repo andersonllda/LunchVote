@@ -1,0 +1,5 @@
+A:\Desenv\HMV\Build\Debug\HMV.Core.IoC.dll
+A:\Desenv\HMV\Build\Debug\HMV.Core.IoC.pdb
+A:\Desenv\HMV\HMV.Core\dev\AA.1.4\HMV.Core.IoC\obj\Debug\HMV.Core.IoC.csprojResolveAssemblyReference.cache
+A:\Desenv\HMV\HMV.Core\dev\AA.1.4\HMV.Core.IoC\obj\Debug\HMV.Core.IoC.dll
+A:\Desenv\HMV\HMV.Core\dev\AA.1.4\HMV.Core.IoC\obj\Debug\HMV.Core.IoC.pdb
