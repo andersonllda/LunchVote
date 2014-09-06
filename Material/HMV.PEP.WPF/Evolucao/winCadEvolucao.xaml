@@ -1,0 +1,53 @@
+﻿<core:WindowBase xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"  x:Class="HMV.PEP.WPF.Evolucao.winCadEvolucao"            
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+             xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"                    
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"   
+             xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"   
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+                 xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             mc:Ignorable="d" Icon="{StaticResource imgHMVIcon}" Title="Evolução" 
+             WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Height="444" Width="664"
+             FocusManager.FocusedElement="{Binding ElementName=richEdit}" Closing="WindowBase_Closing" Loaded="WindowBase_Loaded">
+
+    <core:WindowBase.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <dxre:PlainTextToContentConverter x:Key="PlainTextToContentConverter" />      
+    </core:WindowBase.Resources>
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image Height="64" Width="64" Margin="0,6,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" Source="{StaticResource imgRegEVolucao64}"></Image>
+        <TextBlock Grid.Row="0" Name="lblTitulo" FontFamily="Arial Black" FontSize="30" Style="{StaticResource styleTextBlockTitulo}" Text="Evolução"></TextBlock>
+
+        <lc:LayoutControl Grid.Row="1" Orientation="Vertical"  StretchContentVertically="True"  Style="{StaticResource styleLayoutControl}" ScrollBars="None" Padding="3">
+            <lc:LayoutControl.Resources>
+                <Style TargetType="{x:Type lc:GroupBox}" BasedOn="{StaticResource styleGroupBoxSilver}"/>
+            </lc:LayoutControl.Resources>
+            <lc:LayoutGroup View="GroupBox">
+                <dxre:RichEditControl x:Name="richEdit" VerticalAlignment="Stretch" ActiveViewType="Simple" Loaded="richEdit_Loaded" PopupMenuShowing="richEdit_PopupMenuShowing" 
+                                      TextChanged="richEdit_TextChanged" TabIndex="0" HorizontalScrollBarVisibility="Hidden" Unit="Centimeter" IsTabStop="True" FontSize="11"/>  
+                <!--Content="{Binding Path=Evolucao.Evolucao, Converter={StaticResource PlainTextToContentConverter}, Mode=TwoWay}"EditValueChanged="TextEdit_EditValueChanged"-->                                     
+               <dxe:TextEdit Name="txtEvolucao" VerticalAlignment="Stretch" Style="{StaticResource styleTextEditMultiLine}" 
+                              Text="{Binding Path=Evolucao.Evolucao, UpdateSourceTrigger=PropertyChanged}" 
+                              MaxLength="12000" />
+            </lc:LayoutGroup>
+        </lc:LayoutControl>
+        <core:HMVButton Grid.Row="2" Name="btnEvolucaoPadrao" ButtonText="Evolução Padrão" Style="{StaticResource styleBtnPesquisa}" Click="btnEvolucaoPadrao_Click" Margin="0,0,168,7"  
+                        VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="115" Visibility="{Binding MostraEvolucaoPadrao, Converter={StaticResource BoolToVisibilityConverter}}"/>
+        <core:HMVButton Grid.Row="2" Name="btnSair" Style="{StaticResource styleBtnFechar}" Command="{Binding Commands.CommandFechar}" Margin="0,0,11,6" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="70" />
+        <core:HMVButton Grid.Row="2" Name="btnSalvar" Style="{StaticResource styleBtnSave}" Command="{Binding Commands.CommandSalvar}" Margin="0,0,89,7" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" />
+        <Label Grid.Row="2" Content="Máximo de 12000 caracteres" FontSize="10" Foreground="#FFE2650E" HorizontalAlignment="Left" Margin="2,0,0,10" x:Name="lbQtdCaracter" VerticalAlignment="Bottom" />
+    </Grid>
+</core:WindowBase>
+

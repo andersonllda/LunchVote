@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bfc4c7ba-533e-48ca-8256-392583a7f99f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://hoh2803:8166/PassagemPlantaoEmergencia.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PassagemPlantaoEmergencia.xsd" MetadataType="Schema" ID="965bc334-cdc6-4693-8782-6ab7ac3dab16" SourceId="1" SourceUrl="http://hoh2803:8166/PassagemPlantaoEmergencia.svc?xsd=xsd0" />
+    <MetadataFile FileName="PassagemPlantaoEmergencia.disco" MetadataType="Disco" ID="00d62b56-7e01-4a40-8246-95c9b0b9db62" SourceId="1" SourceUrl="http://hoh2803:8166/PassagemPlantaoEmergencia.svc?disco" />
+    <MetadataFile FileName="PassagemPlantaoEmergencia1.xsd" MetadataType="Schema" ID="4acb4737-9397-4c2a-8cc7-45d6ec676028" SourceId="1" SourceUrl="http://hoh2803:8166/PassagemPlantaoEmergencia.svc?xsd=xsd1" />
+    <MetadataFile FileName="PassagemPlantaoEmergencia.wsdl" MetadataType="Wsdl" ID="3635190d-b50b-4bcc-be8b-3c69214c9d75" SourceId="1" SourceUrl="http://hoh2803:8166/PassagemPlantaoEmergencia.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

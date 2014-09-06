@@ -1,0 +1,105 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.Windows.winVisualizaListaProblema"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"        
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                                
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"                        
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+        xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"                   
+        Title="Visualizar Lista de Problemas" ResizeMode="CanMinimize" Height="385" Width="683"
+        Icon="{StaticResource imgHMVIcon}"        
+        WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" WindowState="Normal">
+
+
+    <Window.Resources>
+        <Style x:Key="RowStyle" TargetType="{x:Type ContentControl}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=DataContext.Status}" Value="Excluído">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="#FF8D1E17"/>
+                </DataTrigger>
+                <Trigger Property="dxg:DataViewBase.IsFocusedRow" Value="true">
+                    <Setter Property="Background" Value="{StaticResource GradientSelectedRow}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>            
+        </Style>
+    </Window.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Name="txtSelecione" Text="Visualizar Lista de Problemas:" Style="{StaticResource styleTextBlockSite}"/>
+        <RadioButton Name="rbTodos" Content="Todos" HorizontalAlignment="Left" Margin="183,0,0,0" VerticalAlignment="Center" Style="{StaticResource styleRadioWhite}" Width="53" Checked="Filtro_Checked" IsChecked="True"/>
+        <RadioButton Grid.Row="0" Name="rbAtivos" Content="Ativos" HorizontalAlignment="Left" Margin="242,0,0,0" VerticalAlignment="Center" Style="{StaticResource styleRadioWhite}" Width="49" Checked="Filtro_Checked" />
+        <RadioButton Name="rbInativos" Content="Inativos" HorizontalAlignment="Left" Margin="297,0,0,0" VerticalAlignment="Center" Style="{StaticResource styleRadioWhite}" Width="61" Checked="Filtro_Checked"/>
+
+        <!--<teste:UserControl1 Grid.Row="1"></teste:UserControl1>-->
+
+        <dxg:GridControl Grid.Row="1" x:Name="gdListaProblemas" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                         ItemsSource="{Binding Path=ProblemasPaciente}" Loaded="gdListaProblemas_Loaded" AutoPopulateColumns="False" IsEnabled="{Binding Source={StaticResource odpSettings}, Path=IsCorpoClinico, Mode=OneWay}">
+            <dxg:GridControl.View>
+                <dxg:TableView Name="viewListaProblemas"
+                            ShowGroupPanel="False" 
+                            NavigationStyle="Cell" BestFitArea="All"
+                            ShowFilterPanelMode="Never"
+                            AllowEditing="False"
+                            RowStyle="{StaticResource RowStyle}"
+                            ShowAutoFilterRow="False" AllowDrop="False" Style="{StaticResource styleTableView}" AutoWidth="True" />
+            </dxg:GridControl.View>
+
+            <dxg:GridControl.Columns>
+                <!--<dxg:GridColumn Name="IdCid" FieldName="CID.Id"        Header="CID" Width="40" FixedWidth="True" Visible="False" />
+                <dxg:GridColumn Name="CID" Header="Problema[CID]" FixedWidth="True" Width="200">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat=" {0} - ({1})">
+                                        <Binding Path="Data.CID.Descricao"></Binding>
+                                        <Binding Path="Data.CID.Id"></Binding>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>-->
+                <dxg:GridColumn Name="IdCid" FieldName="CID.Id" Header="CID" Width="60" FixedWidth="True" Visible="True" VisibleIndex="0" SortOrder="Descending" SortMode="Value" SortIndex="0"/>
+                <dxg:GridColumn Name="CID" Header="Problema" Width="200" FieldName="DescricaoCIDEventoRelevante">
+                </dxg:GridColumn>
+                <dxg:GridColumn Name="Descricao" FieldName="Descricao" Header="Complemento" FixedWidth="True" Width="160" >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:MemoEditSettings IsTextEditable="False" PopupFooterButtons="Close" PopupWidth="250" MemoTextWrapping="Wrap" ShowIcon="False" TextWrapping="WrapWithOverflow" MemoVerticalScrollBarVisibility="Auto"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Name="DataInicio" FieldName="DataInicio" Header="Data Início" SortOrder="Descending" SortMode="Value" SortIndex="1" Width="45"/>
+                <dxg:GridColumn Name="DataFim" FieldName="DataFim" Header="Resolução" />
+                <dxg:GridColumn Name="Status" FieldName="Status" Header="Status" />
+                <dxg:GridColumn Name="Profissional" FieldName="NomeUsuario" Header="Profissional" />
+                <dxg:GridColumn Name="Comentario" FieldName="Comentario" Header="Comentários" AllowEditing="True" Width="35" >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:MemoEditSettings IsTextEditable="False" PopupFooterButtons="Close" PopupWidth="250" MemoTextWrapping="Wrap" TextWrapping="WrapWithOverflow" MemoVerticalScrollBarVisibility="Auto">
+                            <dxe:MemoEditSettings.PopupContentTemplate>
+                                <ControlTemplate TargetType="ContentControl">
+                                    <Grid Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoBackgroundStyle}}">
+                                        <dxe:TextEdit x:Name="PART_PopupContent" Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoStyle}}" IsReadOnly="True"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </dxe:MemoEditSettings.PopupContentTemplate>
+                        </dxe:MemoEditSettings>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+        <Grid Grid.Row="3" Name="grdMenu">
+            <core:HMVButton Name="btnFechar" Style="{ StaticResource styleBtnFechar}" HorizontalAlignment="Right" Margin="0,0,11,0" VerticalAlignment="Center" Click="btnFechar_Click"  IsEnabled="{Binding Source={StaticResource odpSettings}, Path=IsCorpoClinico, Mode=OneWay}"/>            
+        </Grid>
+    </Grid>
+</core:WindowBase>

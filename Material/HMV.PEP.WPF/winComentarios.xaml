@@ -1,0 +1,39 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.winComentarios"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"        
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"  
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             Title="Comentários" Height="438" Width="676"
+             WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow"
+             FocusManager.FocusedElement="{Binding ElementName=txtDescricao}">
+
+    <Window.Resources>
+        <conv:StringLengthToBoolConverter x:Key="StringLengthToBoolConverter"/>
+    </Window.Resources>
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="2" Header="Comentários inseridos anteriormente" Foreground="White" HorizontalAlignment="Stretch" Margin="5,5,5,5" Name="groupBox2" VerticalAlignment="Stretch">
+            <dxe:TextEdit Grid.Row="2" IsReadOnly="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Visible" Name="txtComentario" SelectAllOnGotFocus="False" MaxLength="4000" EditValueChanged="txtComentario_EditValueChanged" TextWrapping="Wrap" Foreground="Black" />
+        </GroupBox>
+        <TextBlock Grid.Row="0" Style="{StaticResource styleTextBlockTitulo}" Text="{Binding Path=NomeTela}" Height="20" Margin="0,0,0,0" HorizontalAlignment="Center"></TextBlock>
+        <core:HMVButton Grid.Row="4" Name="btnSalvar" Style="{StaticResource styleBtnSave}" HorizontalAlignment="Right" Margin="0,0,11,0" VerticalAlignment="Center" Click="btnSalvar_Click"/>
+        <GroupBox Grid.Row="1" Header="Incluir Novo Comentário" Foreground="White" HorizontalAlignment="Stretch" Margin="5,5,5,5" Name="groupBox1" VerticalAlignment="Stretch">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <dxe:TextEdit VerticalContentAlignment="Top" VerticalScrollBarVisibility="Visible" Name="txtDescricao" SelectAllOnGotFocus="False" Margin="8,8,8,8" TextWrapping="Wrap" Foreground="Black" MaxLength="2000" EditValueChanged="txtDescricao_EditValueChanged"/>
+                <core:HMVButton Name="btnIncluir" Grid.Row="1" Style="{ StaticResource styleBtnIncluir}" HorizontalAlignment="Right" Margin="0,0,8,0" VerticalAlignment="Center" Click="btnIncluir_Click" IsEnabled="{Binding ElementName=txtDescricao, Path=Text, Converter={StaticResource StringLengthToBoolConverter}}"/>
+                <Label Grid.Row="1" Content="Máximo de 2000 caracteres" FontSize="10" Foreground="#FFE2650E" HorizontalAlignment="Left" Margin="10,-10,0,0" Name="label1" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</core:WindowBase>

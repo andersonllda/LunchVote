@@ -1,0 +1,35 @@
+﻿<core:WindowBase xmlns:uc="clr-namespace:HMV.PEP.WPF.UserControls.MotivoInternacaoPin2"  
+        x:Class="HMV.PEP.WPF.Windows.MotivoInternacaoPin2.winCadMotivoInternacaoPin2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+        xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"  
+        ResizeMode="NoResize"
+        Title="...:: UTI - Pediátrica ::..." Icon="{StaticResource imgHMVIcon}"
+        WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Height="670" Width="700">
+
+    <core:WindowBase.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </core:WindowBase.Resources>
+    <lc:LayoutControl Orientation="Vertical" StretchContentVertically="True" Padding="0" Style="{StaticResource styleLayoutControl}">
+
+        <lc:LayoutGroup Name="groupContainer" Orientation="Vertical" View="Tabs" Padding="-10">
+            <lc:LayoutItem lc:LayoutControl.TabHeader="Motivo de Internação" >
+                <uc:ucCadMotivoInternacao Height="550" DataContext="{Binding Path=vmMotivoDeInternacao}"/>
+            </lc:LayoutItem>
+
+            <lc:LayoutItem  lc:LayoutControl.TabHeader="PIM 2" Padding="0" Visibility="{Binding Path=IsVisiblePim2, Converter={StaticResource ResourceKey=BoolToVisibilityConverter},Mode=OneTime}" >
+                <uc:ucCadPin DataContext="{Binding Path=vmPin2}"/>              
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup VerticalAlignment="Bottom" Margin="0,0,0,10">
+            <core:HMVButton Name="btnSalvar" Style="{StaticResource styleBtnSave}"  HorizontalAlignment="Right" Command="{Binding SavePIN2Command}" Click="btnSalvar_Click"/>
+            <core:HMVButton Name="btnFechar" Style="{StaticResource styleBtnFechar}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2"  Click="btnFechar_Click"/>
+            <!--<HMV:HMVButton Name="btnAjuda"  Style="{StaticResource styleBtnAjuda}"  HorizontalAlignment="Left"  Content="" Height="30" VerticalAlignment="Top" Width="35" ButtonText="" Click="btnAjuda_Click"/>-->
+        </lc:LayoutGroup>
+    </lc:LayoutControl>
+</core:WindowBase>

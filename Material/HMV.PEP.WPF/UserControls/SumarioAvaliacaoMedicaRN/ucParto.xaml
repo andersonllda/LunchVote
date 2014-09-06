@@ -1,0 +1,138 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoMedicaRN.ucParto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"              
+             d:DesignHeight="500" d:DesignWidth="800">
+    <core:UserControlBase.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+    </core:UserControlBase.Resources>
+    <lc:LayoutGroup Orientation="Vertical" Padding="0">
+        <lc:LayoutGroup Header="Tipo de Parto" View="GroupBox" Orientation="Vertical" Padding="-8" VerticalAlignment="Top">
+            <lc:LayoutGroup >
+                <lc:LayoutGroup>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Vaginal" IsChecked="{Binding Path=Vaginal}"></dxe:CheckEdit>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Cesariana Eletiva" IsChecked="{Binding Path=CesarianaEletiva}"></dxe:CheckEdit>
+                    </lc:LayoutItem>
+
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Cesariana Urgência" IsChecked="{Binding Path=CesarianaUrgencia}" Name="chkCU"></dxe:CheckEdit>
+                    </lc:LayoutItem>
+
+                    <lc:LayoutItem Label="Motivo:">
+                        <dxe:TextEdit Text="{Binding Path=SumarioAvaliacaoMedicaRN.MotivoCesarianaUrgencia, UpdateSourceTrigger=PropertyChanged}"  MaxHeight="512"/><!--IsEnabled="{Binding ElementName=chkCU, Path=IsChecked}"-->
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>               
+                <lc:LayoutGroup HorizontalAlignment="Right">
+                    <dxe:CheckEdit Content="Fórcipe" IsChecked="{Binding Path=SumarioAvaliacaoMedicaRN.IsForcipe, Converter={StaticResource SimNaoToBoolConverter}}"></dxe:CheckEdit>
+                </lc:LayoutGroup>
+            </lc:LayoutGroup>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup View="GroupBox" Padding="-8" >
+            <lc:LayoutItem Label="Situação fetal não tranquilizadora:" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Não" IsChecked="{Binding Path=SituacaoFetalNao}"></dxe:CheckEdit>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Sim" IsChecked="{Binding Path=SituacaoFetalSim}" Name="chkSF"></dxe:CheckEdit>
+            </lc:LayoutItem>
+            <lc:LayoutItem>
+                <dxe:TextEdit Text="{Binding Path=SumarioAvaliacaoMedicaRN.SituacaoFetalNaoTraquilizadoraObservacao, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=chkSF, Path=IsChecked}" MaxLength="512"></dxe:TextEdit>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Padding="-8" View="GroupBox" HorizontalAlignment="Left">
+            <lc:LayoutItem HorizontalAlignment="Left" Label="Membranas Amnióticas:" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Íntegras" IsChecked="{Binding Path=MembranasIntegras}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Rotas" IsChecked="{Binding Path=MembranasRotas}" Name="chkRotas"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" Label="Data:">
+                <dxe:DateEdit  Width="100" Mask="dd/MM/yyyy" EditValue="{Binding Path=DiaMembrana, ValidatesOnDataErrors=True}" Name="dtMembrana" IsEnabled="{Binding ElementName=chkRotas, Path=IsChecked}" PreviewLostKeyboardFocus="Mem_PreviewLostKeyboardFocus"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" Label="Hora:">
+                <dxe:TextEdit  Width="60" MaskUseAsDisplayFormat="True" Mask="HH:mm" MaskType="DateTime" IsEnabled="{Binding ElementName=chkRotas, Path=IsChecked}" 
+                               EditValue="{Binding Path=HoraMembrana, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Padding="-8" View="GroupBox">
+            <lc:LayoutItem HorizontalAlignment="Left" Label="Líquido Amniótico:" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Claro" IsChecked="{Binding Path=LAClaro}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Tinto de mecônio" IsChecked="{Binding Path=LATintoMeconio}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Mecônio espesso" IsChecked="{Binding Path=LAMeconioEspesso}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Outros" IsChecked="{Binding Path=LAOutros}" Name="chkLAO"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem>
+                <dxe:TextEdit Text="{Binding Path=SumarioAvaliacaoMedicaRN.LiquidoAmnioticoObservacao, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=chkLAO, Path=IsChecked}" MaxLength="512"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Padding="-8" View="GroupBox">
+            <lc:LayoutItem HorizontalAlignment="Left" Label="Apresentação:" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Cefálica" IsChecked="{Binding Path=ACefalica}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Pélvica" IsChecked="{Binding Path=APelvica}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Outros" IsChecked="{Binding Path=AOutros}" Name="chkAO"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem>
+                <dxe:TextEdit Text="{Binding Path=SumarioAvaliacaoMedicaRN.ApresentacaoObservacao, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=chkAO, Path=IsChecked}" MaxLength="512"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Padding="-8" View="GroupBox">
+            <lc:LayoutItem HorizontalAlignment="Left" Label="Circular cordão:" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Não" IsChecked="{Binding Path=CordaoNao}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Sim" IsChecked="{Binding Path=CordaoSim}" Name="chkCordaoSim"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem>
+                <dxe:TextEdit Text="{Binding Path=SumarioAvaliacaoMedicaRN.CordaoObservacao, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=chkCordaoSim, Path=IsChecked}" MaxLength="512"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup Padding="-8" View="GroupBox" Header="Tipo de Anestesia">
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Nenhuma" IsChecked="{Binding Path=TANenhuma}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Raqui" IsChecked="{Binding Path=TARaqui}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Paracervical" IsChecked="{Binding Path=TAParacervical}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Pudendos" IsChecked="{Binding Path=TAPudendos}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Peridural" IsChecked="{Binding Path=TAPeridural}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Infiltrativa" IsChecked="{Binding Path=TAInfiltrativa}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Sedativa" IsChecked="{Binding Path=TASedativa}"/>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <dxe:CheckEdit Content="Geral" IsChecked="{Binding Path=TAGeral}"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup View="GroupBox" Padding="-8" Header="Observações">
+            <dxe:TextEdit Style="{StaticResource styleTextEditMultiLine}" Text="{Binding Path=SumarioAvaliacaoMedicaRN.PartoObservacao, UpdateSourceTrigger=PropertyChanged}" MaxLength="512"/>
+        </lc:LayoutGroup>
+    </lc:LayoutGroup>
+</core:UserControlBase>

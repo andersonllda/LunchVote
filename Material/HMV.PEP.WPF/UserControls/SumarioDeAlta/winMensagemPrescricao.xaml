@@ -1,0 +1,39 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.winMensagemPrescricao"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"  
+        Title="..:: ATENÇÃO ::.." Width="441" Height="162" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border Margin="0,0,0,0">
+            <Grid x:Name="panel">
+                <Border x:Name="shadow" CornerRadius="8" Margin="3,3,0,0" Background="Black" Opacity="0.15" />
+                <Border Name="border1" Background="Gray" CornerRadius="7" Margin="0,0,3,3">
+                    <Border Name="border2" CornerRadius="6">
+                        <Grid Name="grid1" Style="{StaticResource styleGridSite}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="473*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="58"></RowDefinition>                                
+                                <RowDefinition Height="*"></RowDefinition>                                
+                            </Grid.RowDefinitions>
+                            <Image Grid.Column="0" Height="30" Width="30" Source="{StaticResource imgAlertCaution}" />
+                            <TextBlock Grid.Column="1" Style="{StaticResource styleTextBlockTitulo}" Margin="16,4,16,38">
+                               <Run>Confirmar Sumário de Alta</Run>
+                            </TextBlock>
+                            <TextBlock Grid.Column="1" Name="MensagemHMV" Style="{StaticResource styleTextBlockPacientePEP}" Height="34" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Left" Margin="3,24,10,0" Width="357">
+                                <Run>Para Finalizar o Sumário de Alta será necessário prescrever a Alta Médica do Paciente!</Run>
+                                <LineBreak></LineBreak>                                
+                            </TextBlock>
+                            <core:HMVButton Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="0,18,10,8"  Name="btnFechar" Style="{StaticResource styleBtnFechar}" Click="btnFechar_Click"/>
+                            <core:HMVButton HorizontalAlignment="Right" Margin="0,18,314,8" Name="btnPrescricao" Style="{StaticResource styleBtnPrescricao}" Grid.Row="1" Click="btnEntrarProntuario_Click" Grid.ColumnSpan="2" />
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</core:WindowBase>
+

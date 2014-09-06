@@ -1,0 +1,58 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.winMensagemSumarioNaoIniciado"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"  
+        Title="..:: ATENÇÃO ::.." Height="228" Width="641" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border Margin="0,0,0,0">
+            <Grid x:Name="panel">
+                <Border x:Name="shadow" CornerRadius="8" Margin="3,3,0,0" Background="Black" Opacity="0.15" />
+                <Border Name="border1" Background="Gray" CornerRadius="7" Margin="0,0,3,3">
+                    <Border Name="border2" CornerRadius="6">
+                        <Grid Name="grid1" Style="{StaticResource styleGridSite}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="473*" />
+                            </Grid.ColumnDefinitions>                           
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="58"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="40"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Column="0" Height="30" Width="30" Source="{StaticResource imgAlertCaution}" />
+                            <TextBlock Grid.Column="1" Style="{StaticResource styleTextBlockTitulo}" Margin="16,4,16,38">
+                               <Run>Sumário de Avaliação Médica (eletrônico) deve estar preenchido e impresso.</Run>
+                            </TextBlock>
+                            <TextBlock Grid.Column="1" Name="MensagemHMV" Style="{StaticResource styleTextBlockPacientePEP}" Height="34" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Left" Margin="3,24,12,0" Width="528">
+                                <Run>Este documento deve ser preenchido em até 24 horas após a internação do paciente.</Run>
+                                <LineBreak></LineBreak>
+                                <Run>Em caso de procedimento cirúrgico, deve ser preenchido antes do início do mesmo.</Run>
+                            </TextBlock>
+                            <dxl:LayoutGroup Visibility="Collapsed" Grid.Column ="1" Grid.Row="1" Name="grpMensagem" Header="Em caso de situação de emergência o acesso a prescrição está liberado para o médico plantonista:" View="GroupBox" Orientation="Vertical" Height="64" Margin="10,0,10,0" IsLocked="False">
+                                    <dxl:LayoutGroup.GroupBoxStyle>
+                                        <Style TargetType="dxl:GroupBox">
+                                            <Setter Property="TitleBackground" Value="{DynamicResource GradientSite}"/>
+                                            <Setter Property="Background" Value="{DynamicResource Gradient}"/>
+                                        </Style>
+                                    </dxl:LayoutGroup.GroupBoxStyle>
+                                    <dxl:LayoutItem Label="Confirma Situação de Emergência para este Paciente:">
+                                    <Grid Width="180" Margin="0,-5,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <core:HMVButton Grid.Column="0" Margin="5,0,0,0" Name="btnSim" Style="{StaticResource styleBtnSim}" Click="btnPrescricao_Click" />
+                                        <core:HMVButton Grid.Column="1" Margin="5,0,0,0" Name="btnNao" Style="{StaticResource styleBtnNao}" Click="btnSumario_Click" />
+                                    </Grid>
+                                </dxl:LayoutItem>
+                            </dxl:LayoutGroup>
+                            <core:HMVButton Grid.Column="1" Grid.Row="2" Margin="0,0,0,0" HorizontalAlignment="Left" Name="btnSumario" Style="{StaticResource styleBtnSumarioDeAvaliacaoMedica}" Click="btnSumario_Click"  />
+                            <core:HMVButton Grid.Column="1" Grid.Row="2" Margin="200,0,0,0" HorizontalAlignment="Left" Name="btnPrescricao" Style="{StaticResource styleBtnPrescricao}" Click="btnPrescricao_Click" />
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</core:WindowBase>

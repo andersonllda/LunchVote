@@ -1,0 +1,166 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoM.ucHistoriaPerinatal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"   
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             mc:Ignorable="d" Loaded="UserControl_Loaded" d:DesignHeight="339" d:DesignWidth="763">
+
+    <UserControl.Resources>
+
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:SimNaoToOppositeBoolConverter x:Key="SimNaoToOppositeBoolConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+    </UserControl.Resources>
+    
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="300*"></RowDefinition>
+            <RowDefinition Height="200*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <!--<TextBlock Style="{StaticResource styleTextBlockSite}" Margin="5,5" Text="As informações estão disponíveis?" VerticalAlignment="Center"/>-->
+            <!--<RadioButton Content="Sim" FontWeight="Bold" Foreground="White" TabIndex="0" Margin="5" Name="optSimInfoDisponivel" HorizontalAlignment="Left" IsChecked="{Binding Path=InfoDisponivel, Converter={StaticResource SimNaoToBoolConverter}}"         VerticalAlignment="Center" Checked="Refresh_Checked" Visibility="Hidden" />
+                <RadioButton Content="Não" FontWeight="Bold" Foreground="White" TabIndex="1" Margin="5" Name="optNaoInfoDisponivel" HorizontalAlignment="Left" IsChecked="{Binding Path=InfoDisponivel, Converter={StaticResource SimNaoToOppositeBoolConverter}}" VerticalAlignment="Center" Checked="Refresh_Checked" Visibility="Hidden" />-->
+
+            <CheckBox Name="chkInfoDisponivel" Content="&lt;&lt; Informações não disponíveis &gt;&gt;" Margin="10,6" Foreground="White" FontWeight="Bold" FlowDirection="LeftToRight" IsChecked="{Binding Path=InfoDisponivel, Converter={StaticResource SimNaoToBoolConverter}}" />
+            
+        </StackPanel>
+
+        <Grid Grid.Row="1" IsEnabled="{Binding ElementName=chkInfoDisponivel, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="310"></ColumnDefinition>
+                
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <GroupBox Header="Gestação" Name="groupBox1" FontWeight="Bold" Margin="5,0"> 
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150*"></RowDefinition>
+                            <RowDefinition Height="18"></RowDefinition>
+                            <RowDefinition Height="55"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"></ColumnDefinition>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0" Margin="5,0,5,0" Content="Normal" Foreground="Black" Name="cheNormal"  
+                                     FontWeight="Bold" FontSize="11" TabIndex="1" VerticalAlignment="Top" 
+                                     IsChecked="{Binding Path=GestacaoNormal, Converter={StaticResource SimNaoToBoolConverter}}" Checked="cheNormal_Checked"/>
+
+                        <GroupBox Grid.Row="2" Margin="4,0,6,4" Header="Idade Gestacional" FontWeight="Bold" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Grid>
+                                <!--<Grid.RowDefinitions>
+                                    <RowDefinition Height="21"/>
+                                    <RowDefinition Height="21"/>
+                                </Grid.RowDefinitions>-->
+
+                                <CheckBox Margin="6,5,191,6" Content="A termo" Foreground="Black" Name="cheAtermo" FontWeight="Bold" FontSize="11" TabIndex="2" IsChecked="{Binding Path=IdadeGestacionalTermo, Converter={StaticResource SimNaoToBoolConverter}}" Checked="cheAtermo_Checked" />
+
+                                <TextBlock Style="{StaticResource styleTextBlockSite}" Foreground="Black" Text="Prematuridade:" Margin="76,6,0,5" HorizontalAlignment="Left" Width="85" />
+                                
+                                <dxe:TextEdit Background="White" TabIndex="3" 
+                                              Foreground="Black" FontWeight="Normal" Margin="161,2,0,0" 
+                                              HorizontalAlignment="Left" Width="53" Name="txtSemanas" MaxLength="2" Height="19" 
+                                              VerticalAlignment="Top" 
+                                              MaskType="Numeric" 
+                                              Mask="##" 
+                                              MaskUseAsDisplayFormat="True" 
+                                              EditValue="{Binding Path=PrematuridadeSemanas,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                              IsEnabled="{Binding ElementName=cheAtermo, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}"/>
+                                
+                                <TextBlock Foreground="Black" Style="{StaticResource styleTextBlockSite}" Text="semanas" Height="12" VerticalAlignment="Top" Margin="215,6,0,0" HorizontalAlignment="Left" Width="51" />
+                            </Grid>
+                        </GroupBox>
+
+                        <TextBlock Foreground="Black" Grid.Row="0" Margin="6,20,4,0" Style="{StaticResource styleTextBlockSite}" Text="Intercorrência:" Grid.ColumnSpan="2" Height="11" VerticalAlignment="Top" />
+                        <dxe:TextEdit Grid.Row="0" Grid.ColumnSpan="2" Name="txtIdadeGestacionalIntercorrencia" FontWeight="Normal" Foreground="Black" TabIndex="4" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" MaxLength="80" Margin="5,20,5,1" AcceptsReturn="True" Text="{Binding Path=GestacaoIntercorrencia,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" EditValueChanged="txtIdadeGestacionalIntercorrencia_EditValueChanged" />
+                        <Label Content="Máximo de 80 caracteres" FontSize="10" Foreground="#FFE2650E" Height="21" Margin="5,0,5,6" Name="label1" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" />
+                    </Grid>
+                </GroupBox>
+            </Grid>
+            
+            <Grid Grid.Column="1">
+                <GroupBox Header="Intercorrências Perinatais" FontWeight="Bold" Margin="5,0" > <!--IsEnabled="{Binding ElementName=optSimInfoDisponivel, Path=IsChecked}">-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <RadioButton Content="Sim" FontSize="11" FontWeight="Bold"  Margin="5,6,0,4" Foreground="Black" TabIndex="14" Name="optSimIntercorrencia" HorizontalAlignment="Left" Width="38" IsChecked="{Binding Path=IntercorrenciaPerinatal, Converter={StaticResource SimNaoToBoolConverter}}" IsThreeState="True" Checked="Refresh_Checked"/>
+                        <RadioButton Content="Não" FontSize="11" FontWeight="Bold" Foreground="Black" Margin="50,6,0,4" TabIndex="15" Name="optNaoIntercorrencia" HorizontalAlignment="Left" Width="44" IsChecked="{Binding Path=IntercorrenciaPerinatal, Converter={StaticResource SimNaoToOppositeBoolConverter}}" Checked="Refresh_Checked"/>
+                        <dxe:TextEdit Grid.Row="1" Name="txtIntercorrencia" FontWeight="Normal" Foreground="Black" TabIndex="16" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" MaxLength="80" Margin="5,5,5,20" AcceptsReturn="True" Text="{Binding Path=Intercorrencia,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" IsEnabled="{Binding ElementName=optSimIntercorrencia, Path=IsChecked}" EditValueChanged="txtIntercorrencia_EditValueChanged" />
+                        <Label Grid.Row="1" Content="Máximo de 80 caracteres" FontSize="10" Foreground="#FFE2650E" Height="22" Name="label3" Width="123" Margin="6,0,0,1" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2" IsEnabled="{Binding ElementName=chkInfoDisponivel, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="310"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="58"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource styleTextBlockSite}" Text="Peso de Nascimento:" Foreground="Black" Margin="5,10,180,25"/>
+                <!--<dxe:TextEdit Name="txtPeso" TabIndex="9" MaxLength="4" Margin="119,4,108,25" Text="{Binding Path=Peso, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Mask="([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])" MaskType="RegEx">-->
+
+                <dxe:TextEdit Name="txtPeso" TabIndex="9" MaxLength="4" Margin="119,4,107,25" Text="{Binding Path=Peso, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Mask="([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])" MaskType="RegEx" ValidateOnEnterKeyPressed="False" ValidateOnTextInput="False">
+
+                </dxe:TextEdit>
+
+
+                <TextBlock Style="{StaticResource styleTextBlockSite}" Text="g" Margin="210,10,0,25" Foreground="Black" Height="16" HorizontalAlignment="Left" Width="12" />
+                <TextBlock Style="{StaticResource styleTextBlockSite}" Text="Comprimento:" Foreground="Black" Margin="6,33,214,4" />
+                <dxe:TextEdit Name="txtComprimento" TabIndex="10" MaxLength="4" Margin="119,27,107,3" Text="{Binding Path=Comprimento, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Mask="([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])" MaskType="RegEx"/>
+                <TextBlock Style="{StaticResource styleTextBlockSite}" Foreground="Black" Text="cm" Margin="210,33,0,4" HorizontalAlignment="Left" Width="21" />
+                
+                <GroupBox FontWeight="Bold" Header="Aleitamento Materno" Grid.Row="1" VerticalAlignment="Center" Margin="5,5" >
+                    <Grid>
+                        <RadioButton Name="optSimAleitamento" Content="Sim" FontSize="11" FontWeight="Bold" TabIndex="11" Margin="6,6,240,0" Height="17" VerticalAlignment="Top" IsChecked="{Binding Path=AleitamentoMaterno, Converter={StaticResource SimNaoToBoolConverter}}" Checked="Refresh_Checked"/>
+                        <RadioButton Content="Não" FontWeight="Bold"  FontSize="11" TabIndex="12" Margin="54,6,191,0" Height="19" VerticalAlignment="Top" IsChecked="{Binding Path=AleitamentoMaterno, Converter={StaticResource SimNaoToOppositeBoolConverter}}" Checked="RadioButton_Checked"/>
+                        <dxe:TextEdit Background="White" TabIndex="13" Foreground="Black" FontWeight="Normal" Name="txtMeses" Margin="112,3,101,0" Height="20" VerticalAlignment="Top" Text="{Binding Path=AleitamentoMaternoMeses, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=optSimAleitamento, Path=IsChecked}" MaxLength="2"/>
+                        <TextBlock Style="{StaticResource styleTextBlockSite}" Foreground="Black" Text="meses" Margin="210,6,0,0" Height="17" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" />
+                    </Grid>
+                </GroupBox>
+            </Grid>
+            
+            <Grid Grid.Column="1">
+                <GroupBox FontWeight="Bold" Header="Parto" HorizontalAlignment="Stretch" Name="groupBox2" Margin="5,1" > <!--IsEnabled="{Binding ElementName=optSimInfoDisponivel, Path=IsChecked}">-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="17" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <RadioButton Name="cheVaginal" Content="Vaginal" FontSize="11" FontWeight="Bold" Foreground="Black" TabIndex="5" VerticalAlignment="Center" Margin="5,5,0,5" HorizontalAlignment="Left" Width="59" IsChecked="{Binding Path=PartoVaginal, Converter={StaticResource SimNaoToBoolConverter}}" Checked="cheCesarianaEletiva_Checked"  GroupName="Parto"/>
+                        <RadioButton Name="cheCesarianaEletiva" Content="Cesariana Eletiva" FontSize="11" FontWeight="Bold" Foreground="Black" TabIndex="6" VerticalAlignment="Center" Margin="70,5,0,5" HorizontalAlignment="Left" Width="116" IsChecked="{Binding Path=CesarianaEletiva,Converter={StaticResource SimNaoToBoolConverter}}" Checked="cheCesarianaEletiva_Checked"  GroupName="Parto"/>
+                        <RadioButton Name="cheCesarianaUrgencia" Content="Cesariana Urgência" FontSize="11" FontWeight="Bold" Foreground="Black" TabIndex="7" VerticalAlignment="Center" Margin="192,5,0,5" HorizontalAlignment="Left" Width="126" IsChecked="{Binding Path=CesarianaUrgencia, Converter={StaticResource SimNaoToBoolConverter}}"  GroupName="Parto"/>
+
+                        <TextBlock Margin="5,0,0,0" Style="{StaticResource styleTextBlockSite}" Foreground="Black" Text="Motivo Cesariana de Urgência:" Grid.Row="1" HorizontalAlignment="Left" Width="163" />
+                        <dxe:TextEdit Name="txtMotivoCesariana" FontWeight="Normal" Foreground="Black" Grid.Row="2" TabIndex="8" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" MaxLength="80" Margin="5,5,5,16" AcceptsReturn="True" Text="{Binding Path=CesarianaUrgenciaMotivo}" VerticalContentAlignment="Top" IsEnabled="{Binding ElementName=cheCesarianaUrgencia, Path=IsChecked}" EditValueChanged="txtMotivoCesariana_EditValueChanged" />
+
+                        <Label Content="Máximo de 80 caracteres" FontSize="10" Foreground="#FFE2650E" Height="21" HorizontalAlignment="Left" Margin="6,0,0,0" Name="label2" VerticalAlignment="Bottom" Width="128" Grid.Row="2" />
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</core:UserControlBase>

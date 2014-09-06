@@ -1,0 +1,49 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoM.ucResumoAvaliacaoMedica"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"                
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"                                          
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"                                                   
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF" 
+             mc:Ignorable="d" d:DesignHeight="320" d:DesignWidth="400" 
+             xmlns:my="clr-namespace:HMV.PEP.WPF.Report.SumarioAvaliacaoM">
+    
+    <!--<UserControl.Resources>
+        <DataTemplate x:Key="BarraCustomizada">
+            <dxb:BarManagerActionContainer>
+
+                <dxb:RemoveBarItemAndLinkAction ItemName="exportToWindow" />
+
+                <dxb:RemoveBarItemAndLinkAction ItemName="printDirect"/>
+
+                <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.Target="DocumentPreviewToolBar" />
+
+                <dxb:BarButtonItem Name="createButton" 
+                                   Content="Imprimir Documento" 
+                                   Command="{Binding Path=CreateCommand}"
+                                   Glyph="{StaticResource imgPrintReport}"                                   
+                                   ItemClick="createButton_ItemClick" />
+
+                <dxb:BarButtonItemLink BarItemName="createButton" dxb:BarItemLinkActionBase.ItemLinkIndex="8" dxb:BarItemLinkActionBase.Target="DocumentPreviewToolBar" />
+
+            </dxb:BarManagerActionContainer>
+        </DataTemplate>
+    </UserControl.Resources>-->
+
+    <Grid>
+        <!--<dxb:BarManager Name = "barManager" ToolbarGlyphSize ="Small" UseLayoutRounding="False" VerticalAlignment="Stretch" Margin="0,0,107,0">
+            <dxb:BarManager.Controllers x:Uid="teste">
+                <dxp:DocumentPreviewBarManagerController DocumentPreviewControl="{Binding ElementName=rSumarioAvaliacaoMedica}"/>
+
+                <dxb:TemplatedBarManagerController Name="temManagerControl" Template="{StaticResource BarraCustomizada}"/>
+
+            </dxb:BarManager.Controllers>
+            <dxp:DocumentPreviewControl Name = "rSumarioAvaliacaoMedica"/>
+        </dxb:BarManager>
+        <RichTextBox Name="relRTF" IsReadOnly="True" Margin="0,26,0,0" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="293" />-->
+        
+        <my:ucRelSumarioAvaliacaoMedica x:Name="ucRelSumarioAvaliacaoMedica1" />
+    </Grid>
+
+</core:UserControlBase>

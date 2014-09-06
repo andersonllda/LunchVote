@@ -1,0 +1,247 @@
+﻿<core:UserControlBase 
+    xmlns:my="clr-namespace:HMV.PEP.WPF.Report.SumarioDeAvaliacaoPreAnestesica"   
+    x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoPreAnestesica.ucSumarioAvaliacaoPreAnestesicaItens"
+    xmlns:pep="clr-namespace:HMV.PEP.WPF.UserControls.SumarioAvaliacaoPreAnestesica"   
+    xmlns:uc="clr-namespace:HMV.PEP.WPF.UserControls"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"    
+    xmlns:ucbase="clr-namespace:HMV.Core.Framework.DevExpress.v12._1.Componentes;assembly=HMV.Core.Framework.DevExpress.v12.1"
+    xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+    xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+    xmlns:proc="clr-namespace:HMV.ProcessosEnfermagem.WPF;assembly=HMV.ProcessosEnfermagem.WPF"
+    mc:Ignorable="d" d:DesignHeight="1716" d:DesignWidth="1247">
+
+    <core:UserControlBase.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:SimNaoToVisibilityConverter x:Key="SimNaoToVisibilityConverter"/>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+        <Style TargetType="{x:Type lc:GroupBox}" BasedOn="{StaticResource styleGroupBoxSilver}"/>
+        <DataTemplate x:Key="CheckCell">
+            <CheckBox IsChecked="{Binding Path=Data.Selecionado}" Style="{DynamicResource styleCheckBoxImage}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ComboCell">
+            <dxe:ComboBoxEdit ShouldUpdateTwoWayBindedPropertiesOnSynchronization="False" 
+                              ItemsSource="{Binding Path=Data.Valores}" EditValue="{Binding Path=Data.Valor, Mode=TwoWay}" IsTextEditable="False" ShowBorder="False"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="barCustomizationTemplate">
+            <dxb:BarManagerActionContainer>
+                <dxb:RemoveBarItemAndLinkAction ItemName="exportToWindow"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="email"/>
+                <dxb:RemoveBarItemAndLinkAction ItemIndex="1"/>
+                <dxb:RemoveBarItemAndLinkAction ItemIndex="5"/>
+                <dxb:RemoveBarItemAndLinkAction ItemIndex="6"/>
+                <dxb:RemoveBarItemAndLinkAction ItemIndex="7"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="open"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="save"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="search"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="export"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="pageSetup"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="zoomIn"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="zoomOut"/>
+                <dxb:RemoveBarItemAndLinkAction ItemName="documentMap"/>
+            </dxb:BarManagerActionContainer>
+        </DataTemplate>
+    </core:UserControlBase.Resources>
+
+    <lc:LayoutControl Orientation="Vertical" StretchContentVertically="True" Padding="0">
+
+        <lc:LayoutItem HorizontalAlignment="Left" Padding="8" Visibility="{Binding Path=AnestesiaGrupo.MostraNPO, Converter={StaticResource SimNaoToVisibilityConverter}}">
+            <lc:LayoutGroup>
+                <TextBlock Text="NPO: A partir das" VerticalAlignment="Center"/>
+                <dxe:TextEdit  Width="80" MaskUseAsDisplayFormat="True" Mask="HH:mm" MaskType="DateTime" EditValue="{Binding NPOHora, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="horas do dia" VerticalAlignment="Center"/>
+                <dxe:DateEdit  Width="150" Mask="dd/MM/yyyy" EditValue="{Binding NPOData, ValidatesOnDataErrors=True}"/>
+            </lc:LayoutGroup>
+        </lc:LayoutItem>
+
+        <lc:LayoutGroup Visibility="{Binding Path=AnestesiaGrupo.MostraMedicamentos, Converter={StaticResource SimNaoToVisibilityConverter}}">
+            <pep:ucPreMedicacao MaxHeight="5000" x:Name="PreMedicacao"/>
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Orientation="Vertical" Visibility="{Binding Path=AnestesiaGrupo.MostraGrid,Converter={StaticResource SimNaoToVisibilityConverter}}" Height="{Binding Path=TamanhoGrid}">
+            <lc:LayoutItem Visibility="{Binding Path=AnestesiaGrupo.MostraExameFisico, Converter={StaticResource SimNaoToVisibilityConverter}}" Padding="0,-2,0,-6">
+                <pep:ucExamesFisicoEvento MaxHeight="5000" x:Name="ExameFisico"/>
+            </lc:LayoutItem>
+            <dxg:GridControl MinHeight="100" Name="grdAnestesiaGrupo" Padding="5" ItemsSource="{Binding Path=ItensCollection,UpdateSourceTrigger=PropertyChanged}" Height="{Binding Path=TamanhoGrid}">
+                <dxg:GridControl.Resources>
+                    <DataTemplate x:Key="checkBoxSemParticularidade">
+                        <CheckBox Content="Sem Particularidades" ToolTip="Sem Particularidades" 
+                                  IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type core:UserControlBase}}, Path=DataContext.MarcaDesmarcaTodosSemParticularidade, UpdateSourceTrigger=PropertyChanged}"
+                                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="checkBoxNaoAvaliado">
+                        <CheckBox ToolTip="Não Avaliado" Content="Não Avaliado" 
+                                  IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type core:UserControlBase}}, Path=DataContext.MarcaDesmarcaTodosNaoAvaliado, UpdateSourceTrigger=PropertyChanged}"
+                                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="checkBoxNaoSeAplica">
+                        <CheckBox Content="Não Se Aplica"  
+                                  IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type core:UserControlBase}}, Path=DataContext.MarcaDesmarcaTodosNaoSeAplica, UpdateSourceTrigger=PropertyChanged}"
+                                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="checkBoxNega">
+                        <CheckBox Content="Nega"  
+                                  IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type core:UserControlBase}}, Path=DataContext.MarcaDesmarcaTodosNega, UpdateSourceTrigger=PropertyChanged}"
+                                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="checkBoxNaoRealizado">
+                        <CheckBox Content="Não Realizado"  
+                                  IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type core:UserControlBase}}, Path=DataContext.MarcaDesmarcaTodosNaoRealizado, UpdateSourceTrigger=PropertyChanged}"
+                                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="checkBoxResultadoIndisponivel">
+                        <CheckBox Content="Resultado Indisponível"  
+                                  IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type core:UserControlBase}}, Path=DataContext.MarcaDesmarcaTodosResultadoIndisponivel, UpdateSourceTrigger=PropertyChanged}"
+                                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                    </DataTemplate>
+                </dxg:GridControl.Resources>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="" Width="38" FixedWidth="True" CellTemplate="{StaticResource CheckCell}" 
+                                    Visible="{Binding Path=MostraCheck, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <dxg:GridColumn FieldName="Descricao" Header="Item" Width="150" FixedWidth="True" AllowEditing="False" AllowAutoFilter="False"/>
+
+                    <dxg:GridColumn Header="Valor" Width="100" FixedWidth="True" CellTemplate="{StaticResource ComboCell}"
+                                    Visible="{Binding Path=MostraCombo, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <dxg:GridColumn ToolTip="Sem Particularidades" Width="128" FixedWidth="True" HeaderTemplate="{StaticResource ResourceKey=checkBoxSemParticularidade}"
+                                    Visible="{Binding Path=AnestesiaGrupo.SemParticularidade, Converter={StaticResource SimNaoToBoolConverter}}" >
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Data.SemParticularidade, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn Header="Não Avaliado" Width="100" FixedWidth="True" HeaderTemplate="{StaticResource ResourceKey=checkBoxNaoAvaliado}"
+                                Visible="{Binding Path=AnestesiaGrupo.NaoAvaliado, Converter={StaticResource SimNaoToBoolConverter}}">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Data.NaoAvaliado, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn Width="80" FixedWidth="True"  HeaderTemplate="{StaticResource ResourceKey=checkBoxNega}" 
+                                Visible="{Binding Path=AnestesiaGrupo.Nega, Converter={StaticResource SimNaoToBoolConverter}}">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Data.Nega, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn Width="100" FixedWidth="True"  HeaderTemplate="{StaticResource ResourceKey=checkBoxNaoSeAplica}" 
+                                Visible="{Binding Path=NaoSeAplica, Converter={StaticResource SimNaoToBoolConverter}}">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Data.NaoSeAplica, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="Resultado" Header="Resultado" FixedWidth="True" Width="100" Visible="{Binding Path=AnestesiaGrupo.ResultadoIndisponivel, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:MemoEditSettings PopupWidth="250" MemoTextWrapping="Wrap" ShowIcon="False" PopupFooterButtons="Close"
+                                                  TextWrapping="WrapWithOverflow" MemoVerticalScrollBarVisibility="Auto" MaxLength="1024" IsTextEditable="True" >
+                                <dxe:MemoEditSettings.PopupContentTemplate>
+                                    <ControlTemplate TargetType="ContentControl">
+                                        <Grid Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoBackgroundStyle}}">
+                                            <dxe:TextEdit x:Name="PART_PopupContent" Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoStyle}}" MaxLength="1024" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </dxe:MemoEditSettings.PopupContentTemplate>
+                            </dxe:MemoEditSettings>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn Header="Não Realizado" Width="120" FixedWidth="True"  HeaderTemplate="{StaticResource ResourceKey=checkBoxNaoRealizado}"
+                                Visible="{Binding Path=AnestesiaGrupo.NaoRealizado, Converter={StaticResource SimNaoToBoolConverter}}">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Data.NaoRealizado, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn Width="160" FixedWidth="True"  HeaderTemplate="{StaticResource ResourceKey=checkBoxResultadoIndisponivel}" 
+                                    Visible="{Binding Path=AnestesiaGrupo.ResultadoIndisponivel, Converter={StaticResource SimNaoToBoolConverter}}">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Data.ResultadoIndisponivel, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="Observacoes" Header="Observações">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:MemoEditSettings PopupWidth="250" MemoTextWrapping="Wrap" ShowIcon="False" TextWrapping="WrapWithOverflow" 
+                                                  MemoVerticalScrollBarVisibility="Auto" MaxLength="1024" IsTextEditable="True" PopupFooterButtons="Close">
+                                <dxe:MemoEditSettings.PopupContentTemplate>
+                                    <ControlTemplate TargetType="ContentControl">
+                                        <Grid Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoBackgroundStyle}}">
+                                            <dxe:TextEdit x:Name="PART_PopupContent" Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoStyle}}" MaxLength="1024"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </dxe:MemoEditSettings.PopupContentTemplate>
+                            </dxe:MemoEditSettings>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="View"                 
+                    NavigationStyle="Cell"
+                    AllowSorting="False" AutoWidth="True"
+                    Style="{StaticResource styleTableView}"                   
+                    ShowFocusedRectangle="False"
+                    CellValueChanging="View_CellValueChanging"
+                    FocusedRow="{Binding Path=ItemD,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
+                    AllowFilterEditor="False"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+<!--Loaded="TableView_Loaded"-->            
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Visibility="{Binding Path=AnestesiaGrupo.MostraMedicamentosEmUso, Converter={StaticResource SimNaoToVisibilityConverter}}">
+            <proc:ucMedicamentosEmUsoEvento MaxHeight="5000" x:Name="MedicamentosEmUso"/>
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Visibility="{Binding Path=AnestesiaGrupo.MostraAlergias, Converter={StaticResource SimNaoToVisibilityConverter}}">
+            <proc:ucAlergiasEvento MaxHeight="5000" x:Name="Alergias"/>
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Visibility="{Binding Path=AnestesiaGrupo.MostraProcedimentosRealizados, Converter={StaticResource SimNaoToVisibilityConverter}}" Padding="4">
+            <uc:ucProcedimentosRealizados MaxHeight="5000" x:Name="ProcedimentosRealizados" DataContext="{Binding Path=vmProcedimentosRealizados}"/>
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Orientation="Horizontal" View="Group" Visibility="{Binding Path=AnestesiaGrupo.MostraOutros, Converter={StaticResource SimNaoToVisibilityConverter}}">
+            <Label HorizontalAlignment="Left" VerticalAlignment="Top">Outros:</Label>
+            <dxe:TextEdit Text="{Binding Path=SumarioAvaliacaoPreAnestesica.Outros}" Style="{StaticResource styleTextEditMultiLine}" Height="20" MinHeight="20" MaxLength="4000"/>
+        </lc:LayoutGroup>
+
+        <lc:LayoutGroup Orientation="Horizontal" View="Group" Visibility="{Binding Path=AnestesiaGrupo.MostraOutrosExames, Converter={StaticResource SimNaoToVisibilityConverter}}">
+            <Label HorizontalAlignment="Left" VerticalAlignment="Top">Outros Exames:</Label>
+            <dxe:TextEdit Text="{Binding Path=SumarioAvaliacaoPreAnestesica.OutrosExames}" Style="{StaticResource styleTextEditMultiLine}" Height="20" MinHeight="20" MaxLength="4000"/>
+        </lc:LayoutGroup>
+
+        <my:ucSumarioDeAvaliacaoPreAnestesica x:Name="ucRelatorio" Visibility="{Binding Path=MostraRelatorio, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--<dxb:BarManager Name = "barManager"  ToolbarGlyphSize ="Small"  UseLayoutRounding="False" 
+                        Visibility="{Binding Path=MostraRelatorio, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
+            <dxb:BarManager.Controllers>
+                <dxp:DocumentPreviewBarManagerController DocumentPreviewControl = "{Binding ElementName=rReport}"/>
+            </dxb:BarManager.Controllers >
+            <dxp:DocumentPreviewControl Name = "rReport"/>
+        </dxb:BarManager>-->
+    </lc:LayoutControl>
+</core:UserControlBase >

@@ -1,0 +1,178 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoM.ucExameFisico"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"   
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:enum="clr-namespace:HMV.Core.Domain.Enum;assembly=HMV.Core.Domain"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:helper="clr-namespace:HMV.Core.Framework.WPF.Helpers;assembly=HMV.Core.Framework.WPF"
+             xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+             xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" 
+             mc:Ignorable="d" d:DesignHeight="361" d:DesignWidth="782">
+
+    <UserControl.Resources>
+        <conv:EnumToDescriptionsConverter x:Key="EnumToDescriptionsConverter"/>
+        <conv:DoubleToNullConverter x:Key="DoubleToNullConverter"/>
+        <helper:EnumValuesExtension x:Key="EnumMucosasEstado" EnumType="enum:MucosasEstado"/>
+        <helper:EnumValuesExtension x:Key="EnumMucosasSituacao" EnumType="enum:MucosasSituacao"/>
+        <helper:EnumValuesExtension x:Key="EnumEG" EnumType="enum:EG"/>
+    </UserControl.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+    
+        <Grid Margin="4,0,-4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190"></ColumnDefinition>
+                <ColumnDefinition Width="109"></ColumnDefinition>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="138"></ColumnDefinition>
+                <ColumnDefinition Width="216"></ColumnDefinition>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="59*" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*"></RowDefinition>
+                <RowDefinition Height="41*"></RowDefinition>
+                <RowDefinition Height="26*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            
+            <TextBlock Style="{StaticResource styleTextBlockPacientePEP}" Text="PA*:" Margin="6,12,156,5" VerticalAlignment="Center" />
+            <dxe:TextEdit Margin="32,7,100,6" Name="txtPAUm" VerticalAlignment="Center" TabIndex="0" MaxLength="3" Text="{Binding Path=PressaoArterial.Alta}" Validate="txtPAUm_Validate" MaskType="RegEx" MaskShowPlaceHolders="False" Mask="\d+" />
+            <TextBlock Style="{StaticResource styleTextBlockSite}" Text="/" Margin="93,14,87,6" VerticalAlignment="Center" />
+            <dxe:TextEdit HorizontalAlignment="Left" Margin="99,7,0,6" Name="txtPADois" VerticalAlignment="Center" Width="54" TabIndex="1" MaxLength="3" Text="{Binding Path=PressaoArterial.Baixa}" Validate="txtPADois_Validate" MaskType="RegEx" MaskShowPlaceHolders="False" Mask="\d+"  />
+            <TextBlock Grid.ColumnSpan="2" Margin="154,14,107,7" Style="{StaticResource styleTextBlockSite}" Text="mmHg" VerticalAlignment="Center" />
+
+            <TextBlock Grid.Row="1" Grid.RowSpan="2" Name="label1" Height="17" HorizontalAlignment="Left" Margin="30,24,0,0" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="546" Text="{Binding Path=Error}" Foreground="Gold" Background="{x:Null}"></TextBlock>
+
+            <TextBlock Grid.Row="1" Margin="7,12,0,14" Style="{StaticResource styleTextBlockPacientePEP}" Text="FC*:" HorizontalAlignment="Left" Width="26" VerticalAlignment="Center" />
+            <dxe:TextEdit Grid.Row="1" HorizontalAlignment="Left" Margin="33,2,0,10" Name="txtFC" VerticalAlignment="Center" Width="46" TabIndex="6" Text="{Binding Path=FrequenciaCardiaca, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validate="txtFC_Validate" MaskType="RegEx" MaskShowPlaceHolders="False" Mask="\d+" />
+            <TextBlock Grid.Row="1" Margin="81,14,80,14" Style="{StaticResource styleTextBlockSite}" Text="bpm" VerticalAlignment="Center" />
+            
+            <TextBlock Grid.Column="1" Margin="4,12,67,5" Style="{StaticResource styleTextBlockPacientePEP}" Text="FR*:" VerticalAlignment="Center" />
+            <dxe:TextEdit Grid.Column="1" HorizontalAlignment="Left" Margin="30,7,0,6" Name="txtFR" VerticalAlignment="Center" Width="48" TabIndex="2" Text="{Binding Path=FrequenciaRespiratoria, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validate="txtFR_Validate" MaskType="RegEx" MaskShowPlaceHolders="False" Mask="\d+" />
+            <TextBlock Grid.ColumnSpan="2" Grid.Column="1" Margin="79,14,62,7" Style="{StaticResource styleTextBlockSite}" Text=" mpm" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="75,15,0,6" Style="{StaticResource styleTextBlockSite}" Text="Tax:" Width="26" VerticalAlignment="Center" />
+            
+            <!--<dxe:TextEdit Grid.Column="4" Margin="98,6,57,5" Name="txtTAX" VerticalAlignment="Center" TabIndex="5" Text="{Binding Path=TemperaturaAxila, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validate="txtTAX_Validate" MaskUseAsDisplayFormat="True" MaskType="Numeric" Mask="n" />-->
+            <dxe:TextEdit Grid.Column="4" Margin="98,6,57,5" Name="txtTAX" VerticalAlignment="Center" TabIndex="5" Text="{Binding Path=TemperaturaAxila, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validate="txtTAX_Validate" MaskUseAsDisplayFormat="True" MaskType="RegEx" Mask = "\d+{0,3}(\R.\d{0,3})"/>
+            
+            <TextBlock Grid.Column="4" Margin="161,14,37,6" Style="{StaticResource styleTextBlockSite}" Text="ºC" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="2" Margin="7,14,41,7" Style="{StaticResource styleTextBlockSite}" Text="SAT:" VerticalAlignment="Center" />
+            <dxe:TextEdit Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="31,7,0,6" Name="txtSAT" VerticalAlignment="Center" Width="42" TabIndex="3" Text="{Binding Path=Saturacao, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validate="txtSAT_Validate" MaskType="RegEx" MaskShowPlaceHolders="False" Mask="\d+" />
+            <TextBlock Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" Margin="3,15,0,14" Style="{StaticResource styleTextBlockSite}" Text="Peso:" Width="33" VerticalAlignment="Center" />
+
+            <dxe:TextEdit Grid.Row="1" Grid.Column="4" Margin="34,5,0,14" Name="txtPeso" VerticalAlignment="Center" TabIndex="10" 
+                          Text="{Binding Path=Peso,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource DoubleToNullConverter}}"  
+                          EditValueChanged="txtPeso_EditValueChanged" 
+                          Validate="txtPeso_Validate" 
+                          AllowNullInput="True"
+                          HorizontalAlignment="Left" 
+                          Width="68" 
+                          MaskType="RegEx"
+                          Mask = "\d+{0,3}(\R.\d{0,3})"
+            />
+
+            <TextBlock Grid.Row="1" Grid.Column="4" Margin="104,15,91,14" Style="{StaticResource styleTextBlockSite}" Text="kg" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="1" Grid.Column="3" Margin="17,15,78,14" Style="{StaticResource styleTextBlockSite}" Text="Altura:" VerticalAlignment="Center" />
+
+            <dxe:TextEdit Grid.Row="1" Grid.Column="3" Margin="53,3,0,11" Name="txtAltura" VerticalAlignment="Center" TabIndex="9" Text="{Binding Path=Altura, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" EditValueChanged="txtAltura_EditValueChanged" Validate="txtAltura_Validate" HorizontalAlignment="Left" Width="64" MaskType="RegEx" MaskUseAsDisplayFormat="True" Mask="\d+"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="3" Margin="118,14,0,14" Style="{StaticResource styleTextBlockSite}" Text="cm" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="3" Style="{StaticResource styleTextBlockPacientePEP}" Text="Estado Geral*:" Margin="9,12,43,6" VerticalAlignment="Center" />
+            <dxe:ComboBoxEdit Grid.Column="3" Grid.ColumnSpan="2" Margin="91,5,147,6" TabIndex="4" AutoComplete="True" Name="cboEstadoGeral" VerticalAlignment="Center" SelectedItem="{Binding Path=EstadoGeral, Converter={StaticResource EnumToDescriptionsConverter}}"  ItemsSource="{Binding Source={StaticResource EnumEG}, Converter={StaticResource EnumToDescriptionsConverter}}" AllowDrop="True" />
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource styleTextBlockSite}" Text="Mucosas:" Margin="115,15,23,13"/>
+            <dxe:ComboBoxEdit Grid.Row="1" Grid.ColumnSpan="2" TabIndex="7" AutoComplete="True" Name="cboMucosaEstado" VerticalAlignment="Center" SelectedItem="{Binding Path=MucosaEstado, Converter={StaticResource EnumToDescriptionsConverter}}" Margin="168,3,24,9" ItemsSource="{Binding Source={StaticResource EnumMucosasEstado}, Converter={StaticResource EnumToDescriptionsConverter}}" />
+            <dxe:ComboBoxEdit Grid.Row="1" Grid.Column="1" TabIndex="8" AutoComplete="True" Name="cboMucosaSituacao" VerticalAlignment="Center" SelectedItem="{Binding Path=MucosaSituacao, Converter={StaticResource EnumToDescriptionsConverter}}" Margin="91,7,126,12" ItemsSource="{Binding Source={StaticResource EnumMucosasSituacao}, Converter={StaticResource EnumToDescriptionsConverter}}" Grid.ColumnSpan="3" />
+            <TextBlock Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Style="{StaticResource styleTextBlockSite}" Text="IMC:" Margin="122,0,61,20" />
+            <TextBlock Grid.Row="1" Grid.Column="4" Name="lblIMC" VerticalAlignment="Center" Style="{StaticResource styleTextBlockSite}" Text="{Binding Path=IMC, UpdateSourceTrigger=PropertyChanged}" Margin="154,0,6,20" />
+            <TextBlock Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom" Style="{StaticResource styleTextBlockSite}" Text="SC:" Margin="122,0,68,0" />
+            <TextBlock Grid.Row="1" Grid.Column="4" Name="lblSC" VerticalAlignment="Center" Style="{StaticResource styleTextBlockSite}" Text="{Binding Path=SC, UpdateSourceTrigger=PropertyChanged}" Margin="154,28,6,1" />            
+        </Grid>
+        
+        <TextBlock Name="lbErros" Text="erros" Margin="10,70,0,0" Foreground="Orange"/>
+        <dxg:GridControl x:Name="gdExameFisico"  ItemsSource="{Binding Path=ItensExameFisico,UpdateSourceTrigger=PropertyChanged}" Loaded="gdExameFisico_Loaded" TabIndex="11" Margin="0,90,0,0" Grid.RowSpan="2" MouseLeave="gdExameFisico_MouseLeave">
+            <dxg:GridControl.Resources>
+                <DataTemplate x:Key="checkBoxColumnTemplate">
+                    <dxe:CheckEdit Content="Sem Particularidades" Name="ckbSelectAll" Checked="ckbSelectAll_Checked" Unchecked="ckbSelectAll_Checked"/>
+                </DataTemplate>
+                <DataTemplate x:Key="checkBoxColumnTemplateN">
+                    <dxe:CheckEdit Content="Não Avaliado" Name="ckbSelectAllN" Checked="ckbSelectAll_Checked" Unchecked="ckbSelectAll_Checked"/>
+                </DataTemplate>
+            </dxg:GridControl.Resources>
+            <dxg:GridControl.View>
+                <dxg:TableView Name="viewExameFisico" 
+                                   ShowGroupPanel="False" 
+                                   NavigationStyle="Cell"                                 
+                                   AutoWidth="True" BestFitArea="All"                                                                               
+                                   CellValueChanging="viewExameFisico_CellValueChanging"
+                                   CellValueChanged="viewExameFisico_CellValueChanged"
+                                   AllowColumnFiltering="False"
+                                   AllowSorting="False"
+                               >
+                    <dxg:TableView.CellStyle>
+                        <Style BasedOn="{StaticResource {dxgt:GridRowThemeKey ResourceKey=CellStyle}}" TargetType="{x:Type dxg:CellContentPresenter}">
+                            <Setter Property="MaxHeight" Value="20"/>
+                            <Setter Property="MinHeight" Value="20"/>
+                        </Style>
+                    </dxg:TableView.CellStyle>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Name="Descricao"  FieldName="Descricao" Header="Descrição do Item" MinWidth="170" AllowEditing="False"/>
+                <dxg:GridColumn Name="SemParticularidades" FieldName="SemParticularidades" AllowSorting="False" Header="Sem Particularidades" HeaderTemplate="{StaticResource ResourceKey=checkBoxColumnTemplate}" UnboundType="Boolean" FixedWidth="True" Width="160">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings Name="chkSemParticularidadesSelectAll"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Name="NaoAvaliado" FieldName="NaoAvaliado" AllowSorting="False" Header="Nao Avaliado" HeaderTemplate="{StaticResource ResourceKey=checkBoxColumnTemplateN}" UnboundType="Boolean" FixedWidth="True" Width="160">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings Name="chkNaoAvaliadoSelectAll" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Name="Observacoes" FieldName="Observacoes" Header="Observação">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:ButtonEditSettings MaxLength="3000" ValidateOnTextInput="False" 
+                                                HorizontalContentAlignment="Left" AllowDefaultButton="False">
+                            <dxe:ButtonEditSettings.Buttons>
+                                <dxe:ButtonInfo GlyphKind="Edit" Click="ButtonInfo_Click" />
+                            </dxe:ButtonEditSettings.Buttons>
+                        </dxe:ButtonEditSettings>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <!--<dxg:GridColumn Name="Observacao" FieldName="Observacoes" Header="Observação" MinWidth="170">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:MemoEditSettings PopupWidth="250" PopupFooterButtons="Close" MemoTextWrapping="Wrap" ShowIcon="False" TextWrapping="WrapWithOverflow" MemoVerticalScrollBarVisibility="Auto" IsTextEditable="True" MaxLength="4000">
+                            <dxe:MemoEditSettings.PopupContentTemplate>
+                                <ControlTemplate TargetType="ContentControl">
+                                    <Grid Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoBackgroundStyle}}">
+                                        <dxe:TextEdit x:Name="PART_PopupContent" Style="{DynamicResource {dxet:MemoEditThemeKey ResourceKey=MemoStyle}}" MaxLength="3000" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </dxe:MemoEditSettings.PopupContentTemplate>
+                        </dxe:MemoEditSettings>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>-->                
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+
+        <GroupBox Grid.Row="2" Header="Outros" Name="groupBox" FontWeight="Bold">
+            <dxe:TextEdit Grid.Row="0" AcceptsReturn="True"  Margin="2,2,2,16" TextWrapping="Wrap" MaxLength="2000" Name="txtObs" Text="{Binding Path=Outros,UpdateSourceTrigger=PropertyChanged}" TabIndex="12" FontWeight="Normal" VerticalContentAlignment="Top" EditValueChanged="txtObs_EditValueChanged"></dxe:TextEdit>
+        </GroupBox>
+        <Label Grid.Row="2" Content="Máximo de 2000 caracteres" FontSize="10" Foreground="#FFE2650E" HorizontalAlignment="Left" Margin="2,2,2,2" Name="lbQtdCaracter" VerticalAlignment="Bottom" />
+    </Grid>
+</core:UserControlBase>

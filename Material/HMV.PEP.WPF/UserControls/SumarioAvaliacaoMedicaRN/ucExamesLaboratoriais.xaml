@@ -1,0 +1,59 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoMedicaRN.ucExamesLaboratoriais"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             d:DesignHeight="400" d:DesignWidth="700">
+    
+    <lc:LayoutGroup View="GroupBox" Orientation="Vertical" Padding="-8">
+        <dxg:GridControl  ItemsSource="{Binding Path=CollectionResultados, Mode=OneWay}" MaxHeight="1000">
+            <dxg:GridControl.Resources>
+                <DataTemplate x:Key="checkBoxColumnTemplate">
+                    <CheckBox Content="Marcar Todos"/>
+                </DataTemplate>
+            </dxg:GridControl.Resources>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="ItemCO.Descricao" Header="Sorologia/Exames" />
+                <dxg:GridColumn AllowSorting="False" Header="Negativo/Não reagente" AllowEditing="True">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.ResultadoNegativo, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn AllowSorting="False" Header="Positivo/Reagente" AllowEditing="True">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.ResultadoPositivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Style="{DynamicResource styleCheckBoxImage}"/>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn AllowSorting="False" Header="Não disponível" AllowEditing="True">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.ResultadoIndisponivel, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>                
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView Name="tbvCheckList" 
+                                       ShowGroupPanel="False"                                        
+                                       AutoWidth="True" 
+                                       NavigationStyle="Row"
+                                       Style="{StaticResource styleTableView}"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <lc:LayoutGroup Header="Outros/Observações:" View="GroupBox" Padding="-8">
+            <lc:LayoutItem>
+                <dxe:TextEdit MaxLength="4000"  Style="{StaticResource styleTextEditMultiLine}" Text="{Binding Path=SumarioAvaliacaoMedicaRN.SorologiaObservacao, UpdateSourceTrigger=PropertyChanged}"/>
+            </lc:LayoutItem>
+        </lc:LayoutGroup>
+    </lc:LayoutGroup>
+</core:UserControlBase>

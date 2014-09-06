@@ -1,0 +1,50 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.MotivoInternacaoPin2.ucCadMotivoInternacao"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"                          
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF" 
+             mc:Ignorable="d" d:DesignHeight="321" d:DesignWidth="552">
+
+    <lc:LayoutControl Orientation="Vertical" StretchContentVertically="True" Padding="0" MaxHeight="1000" Style="{StaticResource styleLayoutControl}">
+
+        <dxg:GridControl ItemsSource="{Binding Path=MotivosSubItensCollecions}" AutoExpandAllGroups="True" Name="gcClassificacao" Cursor="Hand">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="Classificação" FieldName="MotivoItem.Descricao" MinWidth="100" GroupIndex="0"/>
+                <dxg:GridColumn AllowEditing="False" Header="" HorizontalHeaderContentAlignment="Center" MinWidth="500" >                    
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  MouseUp="TextBlock_MouseUp"
+                                Text="{Binding Path=Data.Descricao}" 
+                                Background="{Binding Path=Data.CorBack}" 
+                                Foreground="{Binding Path=Data.CorTexto}"                                                                                                                    
+                                TextWrapping="WrapWithOverflow" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView
+                    ShowColumnHeaders="False"
+                    AllowEditing="False" 
+                    AutoWidth="True"
+                    BestFitArea="All"
+                    NavigationStyle="Row"
+                    ShowGroupPanel="False"
+                    
+                    Style="{StaticResource styleTableView}">
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        
+        <lc:LayoutItem Label="Quantidade total selecionada:" Margin="2" Name="liLabel">
+            <TextBlock Text="{Binding Path=QtdTotalSelecionada, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseUp="TextBlock_MouseUp"></TextBlock>
+        </lc:LayoutItem>
+        
+    </lc:LayoutControl>
+</core:UserControlBase>
+

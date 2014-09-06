@@ -1,0 +1,57 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioDeAlta.ucProcedimentos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"             
+             mc:Ignorable="d" d:DesignHeight="213" d:DesignWidth="619">
+
+    <UserControl.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <CheckBox Grid.Row="1" Margin="10,2,0,10" Name="cheNaoForamRealizadoProcedimento" VerticalContentAlignment="Top"  Content="Não foram realizados procedimentos invasivos durante a internação" Style="{StaticResource styleCheckAtivo}" IsChecked="{Binding Path=NaoSeAplica, Converter={StaticResource SimNaoToBoolConverter}, UpdateSourceTrigger=PropertyChanged}" Width="393" />
+
+        <Grid Grid.Row="2" IsEnabled="{Binding ElementName=cheNaoForamRealizadoProcedimento, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}">
+            <dxg:GridControl Grid.Row="0" Margin="10,0,10,0" x:Name="gdProcedimentos" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoPopulateColumns="False" DataSource="{Binding Path=ProcedimentosAlta, UpdateSourceTrigger=PropertyChanged}" MouseDown="gdProcedimentos_MouseDown">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Name="clData" FieldName="Data" SortOrder="Ascending" Header="Data" FixedWidth="True" Width="100"/>
+                    <dxg:GridColumn Name="CirurgiaProcedimento" FieldName="Cirurgia.ds_cirurgia" SortOrder="Ascending" Header="Cirurgia/Procedimento" Width="500" />
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView Name="viewListaProcedimentos" 
+                                   ShowGroupPanel="False"                                    
+                                   NavigationStyle="Row"             
+                                   AutoWidth="True"
+                                   BestFitArea="All"
+                                   AllowEditing="False"
+                                   FocusedRow="{Binding Path=procedimentoAltaSelecionado, Mode=OneWayToSource}"
+                                   Style="{StaticResource styleTableView}"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </Grid>
+
+        <TextBlock Grid.Row="3" Margin="10,2,0,0" Text="Paciente apresentou infecção da ferida operatória?" Foreground="Black" FontWeight="Bold" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="290" Visibility="{Binding Path=TemProcedimento, Converter={StaticResource BoolToVisibilityConverter}}"/>
+        <CheckBox Grid.Row="3" Margin="10,19,0,6" VerticalContentAlignment="Top" Name="chkSim" Foreground="Black" Content="Sim" Style="{StaticResource styleCheckAtivo}" IsChecked="{Binding Path=FOSim, UpdateSourceTrigger=PropertyChanged}" Width="45"  Visibility="{Binding Path=TemProcedimento, Converter={StaticResource BoolToVisibilityConverter}}"/>
+        <CheckBox Grid.Row="3" Margin="100,19,0,6" VerticalContentAlignment="Top" Name="chkNao" Foreground="Black" Content="Não" Style="{StaticResource styleCheckAtivo}" IsChecked="{Binding Path=FONao, UpdateSourceTrigger=PropertyChanged}" Width="45" Visibility="{Binding Path=TemProcedimento,  Converter={StaticResource BoolToVisibilityConverter}}"/>
+        <CheckBox Grid.Row="3" Margin="200,19,0,6" VerticalContentAlignment="Top" Name="chkNaoSeAplica" Foreground="Black" Content="Não se Aplica" Style="{StaticResource styleCheckAtivo}" IsChecked="{Binding Path=FONaoSeAplica, UpdateSourceTrigger=PropertyChanged}" Width="100" Visibility="{Binding Path=TemProcedimento,  Converter={StaticResource BoolToVisibilityConverter}}"/>
+                
+        <core:HMVButton Grid.Row="4" Margin="0,4,85,0" Name="btnEditar" Style="{StaticResource styleBtnAlterar}" VerticalAlignment="Center" HorizontalAlignment="Right"   Click="btnEditar_Click"  IsEnabled="{Binding Path=isPodeEditar, Mode=OneWay}"/>
+        <core:HMVButton Grid.Row="4" Margin="0,4,160,0" Name="btnIncluir" Style="{StaticResource styleBtnIncluir}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnIncluir_Click" IsEnabled="{Binding ElementName=cheNaoForamRealizadoProcedimento, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}"/>
+        <core:HMVButton Grid.Row="4" Margin="0,4,10,0" Name="btnExcluir" Style="{StaticResource styleBtnExcluir}" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding RemoveProcedimentoAltaCommand}" IsEnabled="{Binding ElementName=cheNaoForamRealizadoProcedimento, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}"/>
+
+    </Grid>
+</core:UserControlBase>

@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="HMV.PEP.WPF.InicioPEP.ucTaxaOcupacao"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"   
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="200">
+
+    <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToOppositeVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <lc:LayoutControl  Orientation="Vertical" ScrollBars="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <lc:LayoutControl.Resources>
+            <Style TargetType="{x:Type lc:GroupBox}" BasedOn="{StaticResource styleGroupBoxSilver}"/>
+        </lc:LayoutControl.Resources>
+        <lc:LayoutControl.Style>
+            <StaticResource ResourceKey="styleLayoutControl"/>
+        </lc:LayoutControl.Style>       
+        <lc:LayoutGroup>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=Setor}" FontWeight="Bold" Margin="0,0,10,0"  VerticalAlignment="Center"></TextBlock>
+            </lc:LayoutItem>
+            <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Percentual}" Margin="0,0,0,0"   HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+            </lc:LayoutItem>
+            <lc:LayoutItem VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <Grid>
+                    <ProgressBar HorizontalAlignment="Stretch"  Margin="0,0,5,0" Height="20" Grid.Column="3" Maximum="100" Minimum="0" Value="{Binding Valor}">
+                        <ProgressBar.Style>
+                            <Style TargetType="{x:Type ProgressBar}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Cor}" Value="1">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Cor}" Value="2">
+                                        <Setter Property="Foreground" Value="Yellow"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Cor}" Value="3">
+                                        <Setter Property="Foreground" Value="Green"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ProgressBar.Style>
+                    </ProgressBar>
+                   
+                </Grid>
+            </lc:LayoutItem>
+           
+        </lc:LayoutGroup>
+
+    </lc:LayoutControl>
+
+
+ 
+</UserControl>

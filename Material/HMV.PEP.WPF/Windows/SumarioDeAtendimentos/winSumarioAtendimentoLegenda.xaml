@@ -1,0 +1,39 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.winSumarioAtendimentoLegenda"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"  
+        xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+        Title="..:: ATENÇÃO ::.." MaxHeight="171" MaxWidth="248" WindowStyle="None" WindowStartupLocation="CenterScreen" 
+        mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="300" Width="300">
+    <Grid Style="{StaticResource styleGridSite}">
+
+        <lc:LayoutGroup Orientation="Vertical">
+            <lc:LayoutItem>
+                <lc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Center">
+                    <lc:LayoutItem Height="30" Width="30">
+                        <Image  Source="{StaticResource imgAlertCaution}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem>
+                        <TextBlock Grid.Column="1" Style="{StaticResource styleTextBlockTitulo}" Margin="0,10">
+                               <Run>Legenda</Run>
+                        </TextBlock>
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+            <lc:LayoutGroup Margin="15,0,0,0">
+                <StackPanel Background="Black" Height="15" Width="15" />
+                <TextBlock Text="Sem prontuário ambulatorial" />
+            </lc:LayoutGroup>
+            <lc:LayoutGroup Margin="15,0,0,0">
+                <StackPanel Background="Maroon" Height="15" Width="15" />
+                <TextBlock Text="Prontuário ambulatorial iniciado" />
+            </lc:LayoutGroup>
+            <lc:LayoutGroup Margin="15,0,0,0">
+                <StackPanel Background="Blue" Height="15" Width="15" />
+                <TextBlock Text="Prontuário ambulatorial encerrado" />
+            </lc:LayoutGroup>
+            <core:HMVButton HorizontalAlignment="Right" Name="btnFechar" Style="{StaticResource styleBtnFechar}" Click="btnFechar_Click"/>
+        </lc:LayoutGroup>
+    </Grid>
+</core:WindowBase>

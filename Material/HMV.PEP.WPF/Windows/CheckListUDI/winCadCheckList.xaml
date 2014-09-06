@@ -1,0 +1,97 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.Windows.CheckListUDI.winCadCheckList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+             xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"                    
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             mc:Ignorable="d" Icon="{StaticResource imgHMVIcon}" ResizeMode="NoResize"
+             WindowStartupLocation="CenterScreen" Width="Auto" Height="Auto" SizeToContent="WidthAndHeight">
+    <core:WindowBase.Resources>
+        <ControlTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=TabContainerTemplate}" TargetType="ve:DocumentTabContainer">
+            <ve:DockingSplitLayoutPanel Width="Auto" Height="Auto" SnapsToDevicePixels="True" Background="{x:Null}" ve:DockPane.HitTestType="Bounds" Margin="1">
+                <ve:DockingSplitLayoutPanel.Content1Location>
+                    <Binding Path="CaptionLocation">
+                        <Binding.Converter>
+                            <ve:GroupCaptionLocationToDockConverter />
+                        </Binding.Converter>
+                    </Binding>
+                </ve:DockingSplitLayoutPanel.Content1Location>
+                <ve:DockingSplitLayoutPanel.Content1>
+                    <ve:DockingSplitLayoutPanel HorizontalAlignment="Stretch" Canvas.ZIndex="1" Background="Transparent" LeftContent1Margin="8,0,8,0" RightContent1Margin="8,0,8,0" TopContent1Margin="0,8,0,8" BottomContent1Margin="0,8,0,8" MaximizeContent1="True">
+                        <ve:DockingSplitLayoutPanel.Content1Location>
+                            <Binding Path="CaptionLocation">
+                                <Binding.Converter>
+                                    <ve:TabHeaderCaptionLocationToDockConverter />
+                                </Binding.Converter>
+                            </Binding>
+                        </ve:DockingSplitLayoutPanel.Content1Location>
+                        <ve:DockingSplitLayoutPanel.Content1>
+                            <ItemsPresenter x:Name="PART_HeadersPanelPresenter"  Width="Auto" />
+                        </ve:DockingSplitLayoutPanel.Content1>
+                        <ve:DockingSplitLayoutPanel.Content2>
+                            <ve:TabHeaderControlBoxControl x:Name="PART_ControlBox"                                                                                                                                                                                    
+                        LayoutItem="{Binding}"                                                                                                                                                                                                                 
+                                            ve:DockPane.HitTestType="ControlBox"                                                                                                                                                                               
+                                            ButtonHeight="18"                                                                                                                                                                                                  
+                                            ButtonWidth="18"                                                                                                                                                                                                   
+                                            ScrollPrevButtonTemplate="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=ScrollPrevButton}}"                                                                                                       
+                                            ScrollNextButtonTemplate="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=ScrollNextButton}}"                                                                                                       
+                                            DropDownButtonTemplate="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=DropDownButton}}"                                                                                                           
+                                            CloseButtonTemplate="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=CloseButton}}"                                                                                                                 
+                                            ve:TabHeaderControlBoxControl.Location="{Binding CaptionLocation}"/>
+                        </ve:DockingSplitLayoutPanel.Content2>
+                    </ve:DockingSplitLayoutPanel>
+                </ve:DockingSplitLayoutPanel.Content1>
+                <ve:DockingSplitLayoutPanel.Content2>
+                    <Border x:Name="PART_SelectedPage" ve:DockPane.HitTestType="Content" CornerRadius="5" Padding="1" Width="Auto" Height="Auto" Background="Transparent" >
+                        <Grid>
+                            <Border Width="Auto" Height="Auto" Background="Transparent" CornerRadius="4" Padding="3">
+                                <ContentPresenter Width="Auto" Height="Auto" Content="{TemplateBinding SelectedContent}"                                                                                                                                               
+                            ContentTemplate="{TemplateBinding SelectedContentTemplate}"                                                                                                                                                                        
+                                            ve:DockPane.HitTestType="Content"/>
+                            </Border>
+                            <Border x:Name="NoItemsBorder" Visibility="Collapsed" Background="Red">
+                                <TextBlock x:Name="NoItems" Text="someText" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ve:DockingSplitLayoutPanel.Content2>
+            </ve:DockingSplitLayoutPanel>
+            <ControlTemplate.Triggers>
+                <Trigger Property="SelectedContent" Value="{x:Null}">
+                    <Setter TargetName="NoItemsBorder" Property="Visibility" Value="Visible">
+                    </Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </core:WindowBase.Resources>
+
+    <Grid Style="{StaticResource styleGridSite}">
+        <dxd:DockLayoutManager x:Name="dockLayoutManagerN1" Margin="0,0,0,40" Background="Transparent">
+            <dxd:DockLayoutManager.Resources>
+                <ControlTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=Template}" TargetType="ve:Document">
+                    <Border x:Name="border" ve:DockPane.HitTestType="Bounds" Background="{Binding Background}">
+                        <ve:DocumentContentPresenter x:Name="PART_ContentPresenter" 
+                                         Content="{TemplateBinding Content}" 
+                                         Margin="{Binding LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                </ControlTemplate>
+            </dxd:DockLayoutManager.Resources>
+            <dxd:LayoutGroup>
+                <dxd:DocumentGroup x:Name="documentGroupN1" MDIStyle="Tabbed"
+                            ShowCaptionImage="True" FloatOnDoubleClick="False" AllowDock="False" AllowDrag="False" AllowHide="False" AllowMove="False" 
+                            AllowRename="False" ShowControlBox="False" ShowDropDownButton="False" ShowRestoreButton="False" AllowContextMenu ="False"
+                            ClosePageButtonShowMode="NoWhere" AllowRestore="False" ShowCloseButton="False" AllowClose="False" >
+
+                </dxd:DocumentGroup>
+            </dxd:LayoutGroup>
+
+        </dxd:DockLayoutManager>
+        <core:HMVButton Name="btnSair" ButtonText="Salvar e Fechar" Style="{StaticResource styleBtnFechar}" Click="btnSair_Click" Height="30" VerticalAlignment="Bottom" Margin="6" HorizontalAlignment="Left" Width="120" />
+        <core:HMVButton Name="btnProximo" ButtonText="Salvar e Avançar" HorizontalContentAlignment="Center" Style="{StaticResource styleBtnForward}" Click="Proximo_Click" Margin="6" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="120"/>
+
+    </Grid>
+</core:WindowBase>

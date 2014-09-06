@@ -1,0 +1,180 @@
+﻿<core:UserControlBase  x:Class="HMV.PEP.WPF.UserControls.SumarioDeAlta.ucDadosNascimento"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" d:DesignHeight="270" d:DesignWidth="806">
+    <core:UserControlBase.Resources>
+        <conv:SimNaoToBoolConverter x:Key="SimNaoToBoolConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+        <conv:DoubleToNullConverter x:Key="DoubleToNullConverter"/>        
+    </core:UserControlBase.Resources>
+    <Grid Style="{StaticResource styleGridSite}">
+        <lc:LayoutGroup Orientation="Vertical" VerticalAlignment="Stretch">
+            <lc:LayoutGroup>
+                <lc:LayoutGroup View="GroupBox" Padding="-8">
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Data do Nascimento:">
+                        <dxe:DateEdit  Width="100" Mask="dd/MM/yyyy" EditValue="{Binding Path=DiaNascimento, ValidatesOnDataErrors=True}" Name="dtNascimento" PreviewLostKeyboardFocus="dtNascimento_PreviewLostKeyboardFocus"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Hora:">
+                        <dxe:TextEdit  Width="60" MaskUseAsDisplayFormat="True" Mask="HH:mm" MaskType="DateTime" EditValue="{Binding Path=HoraNascimento, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+                <lc:LayoutGroup View="GroupBox" Padding="-8">
+                    <lc:LayoutItem Label="Tipagem Sanguínea Materna:" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit Width="50"
+                                  ItemsSource="{Binding Path=CarregaTipagem,Mode=OneTime}"
+                                  EditValue="{Binding Path=DadosNascimento.TipagemPaciente,UpdateSourceTrigger=PropertyChanged}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem Label="Rh" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit Width="80"
+                                  ItemsSource="{Binding Path=CarregaPositivo,Mode=OneTime}"
+                                  EditValue="{Binding Path=DadosNascimento.RHPaciente,UpdateSourceTrigger=PropertyChanged}"/>
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup Orientation="Horizontal" Padding="-8" VerticalAlignment="Top" View="GroupBox">
+                <Label HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0">Tipo de Parto:</Label>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Vaginal" IsChecked="{Binding Path=Vaginal}" />
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Cesariana Eletiva" IsChecked="{Binding Path=CesarianaEletiva}" />
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Cesariana Urgência" IsChecked="{Binding Path=CesarianaUrgencia}" Name="chkCU" />
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="Motivo:">
+                    <dxe:TextEdit MaxHeight="512" Text="{Binding Path=DadosNascimento.MotivoCesarianaUrgencia, UpdateSourceTrigger=PropertyChanged}" />
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup Padding="-8" View="GroupBox" HorizontalAlignment="Left">
+                <lc:LayoutItem HorizontalAlignment="Left" Label="Membranas Amnióticas:" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Íntegras" IsChecked="{Binding Path=MembranasIntegras}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Rotas" IsChecked="{Binding Path=MembranasRotas}" Name="chkRotas"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" Label="Data:">
+                    <dxe:DateEdit  Width="100" Mask="dd/MM/yyyy" EditValue="{Binding Path=DiaMembrana, ValidatesOnDataErrors=True}" Name="dtMembrana" IsEnabled="{Binding ElementName=chkRotas, Path=IsChecked}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" Label="Hora:">
+                    <dxe:TextEdit  Width="60" MaskUseAsDisplayFormat="True" Mask="HH:mm" MaskType="DateTime" IsEnabled="{Binding ElementName=chkRotas, Path=IsChecked}" 
+                               EditValue="{Binding Path=HoraMembrana, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup Padding="-8" View="GroupBox">
+                <lc:LayoutItem HorizontalAlignment="Left" Label="Líquido Amniótico:" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Claro" IsChecked="{Binding Path=LAClaro}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Tinto de mecônio" IsChecked="{Binding Path=LATintoMeconio}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Mecônio espesso" IsChecked="{Binding Path=LAMeconioEspesso}"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <dxe:CheckEdit Content="Outros" IsChecked="{Binding Path=LAOutros}" Name="chkLAO"/>
+                </lc:LayoutItem>
+                <lc:LayoutItem>
+                    <dxe:TextEdit Text="{Binding Path=DadosNascimento.LiquidoAmnioticoObservacao, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=chkLAO, Path=IsChecked}" MaxLength="512"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutGroup Padding="-8" View="GroupBox" Name="lgIG">
+                    <lc:LayoutGroup>
+                        <lc:LayoutItem Label="Idade Gestacional:" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        </lc:LayoutItem>
+                        <lc:LayoutItem Label="semanas" HorizontalAlignment="Left" FlowDirection="RightToLeft">
+                            <dxe:TextEdit  Width="50" IsEnabled="{Binding ElementName=chkDesconhecido, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}" 
+                                   FlowDirection="LeftToRight" EditValue="{Binding Path=DadosNascimento.IdadeSemanas, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Mask="([0-9]{1,3})" MaskType="RegEx"></dxe:TextEdit>
+                        </lc:LayoutItem>
+                        <lc:LayoutItem Label="dias" FlowDirection="RightToLeft" HorizontalAlignment="Left">
+                            <dxe:TextEdit Width="50" IsEnabled="{Binding ElementName=chkDesconhecido, Path=IsChecked, Converter={StaticResource BoolToOppositeBoolConverter}}"
+                                  FlowDirection="LeftToRight" EditValue="{Binding Path=DadosNascimento.IdadeDias, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Mask="([0-9]{1,3})" MaskType="RegEx" ></dxe:TextEdit>
+                        </lc:LayoutItem>
+                        <lc:LayoutItem VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <dxe:CheckEdit Name="chkDesconhecido" VerticalAlignment="Center" 
+                                   Content="Desconhecido" IsChecked="{Binding Path=DadosNascimento.IsIdadeDesconhecido, Converter={StaticResource SimNaoToBoolConverter}}"/>
+                        </lc:LayoutItem>
+                    </lc:LayoutGroup>
+                </lc:LayoutGroup>
+                <lc:LayoutGroup Padding="-8" View="GroupBox"  MinHeight="35">
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Classificação: " VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="AIG" IsChecked="{Binding Path=ClassificacaoAIG}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="GIG" IsChecked="{Binding Path=ClassificacaoGIG}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="PIG" IsChecked="{Binding Path=ClassificacaoPIG}"/>
+                    </lc:LayoutItem>
+
+                </lc:LayoutGroup>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup>
+                <lc:LayoutGroup View="GroupBox" Padding="-8">
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Peso de Nascimento:">
+                        <dxe:TextEdit Width="50" Text="{Binding Path=DadosNascimento.Peso
+                        , UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                  MaskType="RegEx"
+                                  Mask = "\d{0,4}?"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="g">
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+                <lc:LayoutGroup View="GroupBox" Padding="-8">
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Comprimento:">
+                        <dxe:TextEdit Width="50" Text="{Binding Path=DadosNascimento.Comprimento, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Mask="\d+{0,3}(\R.\d{0,1})" MaskType="RegEx"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center" Label="cm">
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+                <lc:LayoutGroup View="GroupBox" Padding="-8">
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Perímetro Cefálico:">
+                        <dxe:TextEdit Width="50" Text="{Binding Path=DadosNascimento.PerimentroCefalico, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Mask="\d+{0,3}(\R.\d{0,1})" MaskType="RegEx"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center" Label="cm">
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+                <lc:LayoutGroup View="GroupBox" Padding="-8">
+                    <lc:LayoutItem HorizontalAlignment="Left" Label="Perímetro Torácico:">
+                        <dxe:TextEdit Width="50" Text="{Binding Path=DadosNascimento.PerimetroToracico, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Mask="\d+{0,3}(\R.\d{0,1})" MaskType="RegEx"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center" Label="cm">
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+
+            </lc:LayoutGroup>
+            <lc:LayoutGroup Orientation="Horizontal">
+                <lc:LayoutGroup View="GroupBox" Padding="-8">
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0">APGAR:</Label>
+                    <lc:LayoutGroup Orientation="Horizontal">
+                        <lc:LayoutItem Label="1°" HorizontalAlignment="Left">
+                            <dxe:TextEdit Width="50" EditValue="{Binding Path=DadosNascimento.ApgarPrimeiro, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Mask="([0-9]{1,2})" MaskType="RegEx"/>
+                        </lc:LayoutItem>
+                        <lc:LayoutItem Label="5°" HorizontalAlignment="Left">
+                            <dxe:TextEdit Width="50" EditValue="{Binding Path=DadosNascimento.ApgarQuinto, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Mask="([0-9]{1,2})" MaskType="RegEx"/>
+                        </lc:LayoutItem>
+                        <lc:LayoutItem Label="10°" HorizontalAlignment="Left">
+                            <dxe:TextEdit Width="50" EditValue="{Binding Path=DadosNascimento.ApgarDessimo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Mask="([0-9]{1,2})" MaskType="RegEx"/>
+                        </lc:LayoutItem>
+                    </lc:LayoutGroup>
+                </lc:LayoutGroup>
+                <lc:LayoutGroup Orientation="Horizontal" Padding="-8" VerticalAlignment="Top" View="GroupBox">
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0">Teste do Olhinho:</Label>
+                    <lc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <dxe:CheckEdit Content="Normal" IsChecked="{Binding Path=DadosNascimento.TesteOlhinho, Converter={StaticResource SimNaoToBoolConverter}}" />
+                    </lc:LayoutItem>
+                    <lc:LayoutItem Label="Observação:">
+                        <dxe:TextEdit MaxHeight="512" Text="{Binding Path=DadosNascimento.TesteOlhinhoObservacao, UpdateSourceTrigger=PropertyChanged}" />
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+            </lc:LayoutGroup>
+        </lc:LayoutGroup>
+    </Grid>
+</core:UserControlBase>

@@ -1,0 +1,29 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoMedicaRN.ucExameFisico"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="800"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+             xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+             xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements">
+
+    <lc:LayoutGroup Orientation="Vertical">        
+        <dxd:DockLayoutManager x:Name="dockLayoutManagerN1" Margin="0,0,0,0" Background="Transparent">
+            <dxd:DockLayoutManager.Resources>
+                <ControlTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=Template}" TargetType="ve:Document">
+                    <Border x:Name="border" ve:DockPane.HitTestType="Bounds" Background="{Binding Background}">
+                        <ve:DocumentContentPresenter x:Name="PART_ContentPresenter" 
+                                         Content="{TemplateBinding Content}" 
+                                         Margin="{Binding LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                </ControlTemplate>
+            </dxd:DockLayoutManager.Resources>
+        </dxd:DockLayoutManager>
+    </lc:LayoutGroup>
+    </core:UserControlBase>

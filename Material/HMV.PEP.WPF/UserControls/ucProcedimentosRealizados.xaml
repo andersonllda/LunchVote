@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="HMV.PEP.WPF.UserControls.ucProcedimentosRealizados"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Name="uc"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             d:DesignHeight="137" d:DesignWidth="511">
+    <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <conv:BoolToOppositeBoolConverter x:Key="BoolToOppositeBoolConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="492*"/>
+            <ColumnDefinition Width="19*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <!--Visibility="{Binding Path=MostraTitulo, Converter={StaticResource BoolToVisibilityConverter}}"-->
+        <Image Source="{StaticResource imgExames}" Width="20" HorizontalAlignment="Left" Margin="5,0,0,0"></Image>
+        <TextBlock Grid.Row="0" Name="lblTitulo"   Height="20" Text="Procedimentos Invasivos realizados no HMV" HorizontalAlignment="Left" Foreground="Navy" FontSize="15" FontWeight="Medium" Margin="30,0,0,0"/>
+        <dxg:GridControl Grid.Row="1" AutoPopulateColumns="False" DataSource="{Binding Path=ProcedimentosRealizados}" Name="gdProcedimentosRealizados" Grid.ColumnSpan="2">
+            <dxg:GridControl.Columns>                
+                <dxg:GridColumn Name="admissaoproc"     FieldName="IdAtendimento"   Header="Atendimento" FixedWidth="True" Width="100" VisibleIndex="0"/>
+                <dxg:GridColumn Name="dataadmissaoproc" FieldName="DataAtendimento" Header="Data Atendimento" VisibleIndex="1" Width="120" FixedWidth="True" Visible="{Binding Path=MostraDataProcedimento, Converter={StaticResource BoolToOppositeBoolConverter}}"/>
+                <dxg:GridColumn Name="procedimento"     FieldName="Procedimento"    Header="Procedimento" VisibleIndex="2"/>
+                <dxg:GridColumn Name="dataprocrealizado" FieldName="DataProcedimentoRealizado" Header="Data Procedimento" VisibleIndex="3" Width="120" FixedWidth="True" Visible="{Binding Path=MostraDataProcedimento}"/>
+                <dxg:GridColumn Name="profissionalproc" FieldName="NomePrestador"   Header="Profissional" VisibleIndex="4" Visible="{Binding Path=MostraCirurgiao, Converter={StaticResource BoolToOppositeBoolConverter}}"/>
+                <dxg:GridColumn Name="prcirurgiaoproc" FieldName="NomeCirurgiao"   Header="Profissional" VisibleIndex="5" Visible="{Binding Path=MostraCirurgiao}"/>
+                <dxg:GridColumn Header="Desc. Cirúrgicas" >
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>           
+                                <Hyperlink Click="Hyperlink_Click" Tag="{Binding Data.IdAvisoCirurgia}">
+                                    Descrições Cirúrgicas
+                                </Hyperlink>
+                            </TextBlock>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView
+                    Name="viewProcedimentosRealizados"
+                    AutoWidth="True"
+                    AllowEditing="False"                     
+                    NavigationStyle="Row" 
+                    ShowGroupPanel="False"
+                    BestFitArea="All"
+                    AllowBestFit="True"
+                    FocusedRow="{Binding Path=ProcedimentosRealizadoSelecionado, Mode=TwoWay}"
+                    Style="{StaticResource styleTableView}"
+                    />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</UserControl>

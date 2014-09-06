@@ -1,0 +1,138 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.CentroObstetrico.SumarioDeAvaliacaoMedicaCO.ucExamesRealizados"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:conv="clr-namespace:HMV.Core.Framework.WPF.Converters;assembly=HMV.Core.Framework.WPF"
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"                               
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <lc:LayoutGroup Orientation="Vertical">
+        <lc:LayoutGroup>
+            <lc:LayoutGroup View="GroupBox" Header="Tipagem Sanguínea" HorizontalAlignment="Left">
+                <lc:LayoutItem Label="Paciente:">
+                    <dxe:ComboBoxEdit Width="50"
+                                  ItemsSource="{Binding Path=CarregaTipagem,Mode=OneTime}"
+                                  EditValue="{Binding Path=SumarioAvaliacaoMedicaCO.TipagemPaciente,UpdateSourceTrigger=PropertyChanged}"  
+                                  />
+                </lc:LayoutItem>
+                <lc:LayoutItem Label="Rh">
+                    <dxe:ComboBoxEdit Width="80"
+                                  ItemsSource="{Binding Path=CarregaPositivo,Mode=OneTime}"
+                                  EditValue="{Binding Path=RHFator,UpdateSourceTrigger=PropertyChanged}"  
+                                  />
+                </lc:LayoutItem>
+                <lc:LayoutGroup VerticalAlignment="Center" IsEnabled="{Binding Path=HabilitaCoombs, UpdateSourceTrigger=PropertyChanged}">
+                    <lc:LayoutItem Label="Coombs:"> 
+                        <CheckBox Content="Positivo" FlowDirection="RightToLeft"
+                          IsChecked="{Binding Path=CoPositivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                          Style="{StaticResource styleCheckBoxImage}" 
+                          />
+                    </lc:LayoutItem>
+                    <lc:LayoutItem >
+                        <CheckBox Content="Negativo" 
+                          IsChecked="{Binding Path=CoNegativo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                          Style="{StaticResource styleCheckBoxImage}" FlowDirection="RightToLeft" />
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+            </lc:LayoutGroup>
+            <lc:LayoutGroup View="GroupBox" Header="Teste rápido HIV" HorizontalAlignment="Left" Height="67">
+                <lc:LayoutItem>
+                    <CheckBox Content="Não realizado" 
+                          IsChecked="{Binding Path=HivNaoRealizado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                          Style="{StaticResource styleCheckBoxImage}" FlowDirection="RightToLeft" />
+                </lc:LayoutItem>
+                <lc:LayoutItem>
+                    <CheckBox Content="Positivo" 
+                          IsChecked="{Binding Path=HivPositivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                          Style="{StaticResource styleCheckBoxImage}" FlowDirection="RightToLeft" />
+                </lc:LayoutItem>
+                <lc:LayoutItem>
+                    <CheckBox Content="Negativo" 
+                          IsChecked="{Binding Path=HivNegativo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                          Style="{StaticResource styleCheckBoxImage}" FlowDirection="RightToLeft" />
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+        </lc:LayoutGroup>
+        <lc:LayoutGroup View="GroupBox" Header="Exames Laboratoriais" Orientation="Vertical" Padding="-8">
+            <dxg:GridControl  ItemsSource="{Binding Path=CollectionResultados, Mode=OneWay}" MaxHeight="1000" >
+                
+                <dxg:GridControl.Resources>
+                    <DataTemplate x:Key="checkBoxColumnTemplate">
+                        <CheckBox Content="Marcar Todos"/>
+                    </DataTemplate>
+                </dxg:GridControl.Resources>
+                
+                <dxg:GridControl.Columns>
+
+                    <dxg:GridColumn FieldName="ItemCO.Descricao" Header="Sorologia/Exames" />
+                    <dxg:GridColumn AllowSorting="False" Header="Negativo/Não reagente" AllowEditing="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.ResultadoNegativo, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn AllowSorting="False" Header="Positivo/Reagente" AllowEditing="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.ResultadoPositivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn AllowSorting="False" Header="Não disponível" AllowEditing="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.ResultadoIndisponivel, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn AllowSorting="False" Header="Primeiro Trimestre" AllowEditing="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.IsTriPrimeiro, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn AllowSorting="False" Header=" Segundo Trimestre" AllowEditing="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.IsTriSegundo, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn AllowSorting="False" Header="Terceiro Trimestre" AllowEditing="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Data.IsTriTerceiro, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource styleCheckBoxImage}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView Name="tbvCheckList" 
+                                       ShowGroupPanel="False"                                   
+                                       AutoWidth="True" 
+                                       NavigationStyle="Row"
+                                       Style="{StaticResource styleTableView}"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <lc:LayoutGroup Header="Outros/Observações:" View="GroupBox" Padding="-8">
+                <lc:LayoutItem>
+                    <dxe:TextEdit Style="{StaticResource styleTextEditMultiLine}"
+                                  Text="{Binding Path=ExamesRealizadosObservacao, UpdateSourceTrigger=PropertyChanged}"/>
+                </lc:LayoutItem>
+            </lc:LayoutGroup>
+        </lc:LayoutGroup>
+    </lc:LayoutGroup>
+</core:UserControlBase>

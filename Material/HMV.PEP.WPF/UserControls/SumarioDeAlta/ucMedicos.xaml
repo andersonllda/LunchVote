@@ -1,0 +1,37 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioDeAlta.ucMedicos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"   
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"                                         
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             mc:Ignorable="d" d:DesignWidth="551">
+
+    <Grid Style="{StaticResource styleGridSite}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <dxg:GridControl AutoPopulateColumns="False" DataSource="{Binding Path=Prestadores}" Margin="5" Name="gcMedico">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Name="registro" FieldName="Registro" SortOrder="Ascending" Header="Registro" Width="100" FixedWidth="True"/>
+                <dxg:GridColumn Name="nome" FieldName="Nome" SortOrder="Ascending" MinWidth="200" Header="Nome do Prestador"/>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView x:Name="ViewMedicos" 
+                               ShowGroupPanel="False" 
+                               NavigationStyle="Row" 
+                               AllowEditing="False" 
+                               AutoWidth="True"
+                               AllowBestFit="True"
+                               BestFitArea="All"
+                               FocusedRow="{Binding Path=PrestadorSelecionado, Mode=OneWayToSource}"
+                               Style="{StaticResource styleTableView}"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <core:HMVButton Grid.Row="1" Height="26" Margin="0,2,80,2" Name="btnIncluir" Style="{StaticResource styleBtnIncluir}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="75" Click="btnIncluir_Click" />
+        <core:HMVButton Grid.Row="1" Height="26" HorizontalAlignment="Right" Margin="0,2,5,2" Name="btnExcluir" Style="{StaticResource styleBtnExcluir}" VerticalAlignment="Center" Command="{Binding RemovePrestadorCommand}"/>
+    </Grid>
+</core:UserControlBase>

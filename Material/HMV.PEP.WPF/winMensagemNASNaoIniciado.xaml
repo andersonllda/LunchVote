@@ -1,0 +1,65 @@
+﻿<core:WindowBase x:Class="HMV.PEP.WPF.winMensagemNASNaoIniciado"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"  
+        xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        Title="..:: ATENÇÃO ::.." Height="150" Width="641" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid Style="{StaticResource styleGridSite}">
+
+        <lc:LayoutGroup Orientation="Vertical">
+            <lc:LayoutItem>
+                <lc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Center">
+                    <lc:LayoutItem Height="30" Width="30">
+                        <Image  Source="{StaticResource imgAlertCaution}"/>
+                    </lc:LayoutItem>
+                    <lc:LayoutItem>
+                        <TextBlock Grid.Column="1" Style="{StaticResource styleTextBlockTitulo}" Margin="0,10">
+                               <Run>NAS deve estar preenchido.</Run>
+                        </TextBlock>
+                    </lc:LayoutItem>
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+
+
+            <lc:LayoutItem>
+                <lc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Grid.Column="1" Visibility="Visible" Name="Mensagem24" Style="{StaticResource styleTextBlockPacientePEP}" Height="30" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" TextAlignment="Left" Width="528">
+                                <Run>Este documento deve ser preenchido em até 24 horas após a internação do paciente em CTI.</Run>
+                    </TextBlock>
+                    <!--<TextBlock Grid.Column="1" Visibility="Collapsed" Name="Mensagem48" Style="{StaticResource styleTextBlockPacientePEP}"  Height="30" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" TextAlignment="Left" Width="528" Grid.RowSpan="2">
+                                <Run>Este documento deve ser finalizado em até 48 horas após a internação do paciente.</Run>
+                    </TextBlock>-->
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+
+            <lc:LayoutItem VerticalAlignment="Bottom" Margin="15">
+                <lc:LayoutGroup>
+                    <core:HMVButton HorizontalAlignment="Left" ToolTip="Click aqui para abrir a Avaliação de Risco" Height="30" Width="70" ButtonText="NAS" Style="{StaticResource styleBtnFechar}" ButtonImage="{StaticResource imgAANAS}"  Click="btnAvalRisco_Click"/>
+                    <core:HMVButton HorizontalAlignment="Right" Name="btnPrescricao" Style="{StaticResource styleBtnPrescricao}" Click="btnPrescricao_Click" />
+                </lc:LayoutGroup>
+            </lc:LayoutItem>
+
+        </lc:LayoutGroup>
+        <!--<Border Margin="0,0,0,0">
+            <Grid x:Name="panel">
+                <Border x:Name="shadow" CornerRadius="8" Margin="3,3,0,0" Background="Black" Opacity="0.15" />
+                <Border Name="border1" Background="Gray" CornerRadius="7" Margin="0,0,3,3">
+                    <Border Name="border2" CornerRadius="6">
+                        <Grid Name="grid1" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="473*" />
+                            </Grid.ColumnDefinitions>                           
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="58"></RowDefinition>
+                                <RowDefinition Height="40"></RowDefinition>
+                            </Grid.RowDefinitions>
+                         
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>-->
+    </Grid>
+</core:WindowBase>

@@ -1,0 +1,23 @@
+﻿<core:UserControlBase x:Class="HMV.PEP.WPF.UserControls.SumarioAvaliacaoM.ucHistoriaDoencaAtual"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:core="clr-namespace:HMV.Core.Framework.WPF;assembly=HMV.Core.Framework.WPF"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             FocusManager.FocusedElement="{Binding ElementName=txtDescricao}"
+             mc:Ignorable="d" d:DesignHeight="406" d:DesignWidth="538">
+    
+    <Grid Style="{StaticResource styleGridSite}" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <dxe:TextEdit Grid.Row="0" SelectAllOnGotFocus="False" Margin="0,0,0,20" AcceptsReturn="True" Background="White" Foreground="Black" Name="txtDescricao" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" FontWeight="Light" Text="{Binding Path=HistoriaDoencaAtual, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Top" MaxLength="3000" EditValueChanged="txtDescricao_EditValueChanged" />
+        <Label Content="XXXXXXXXXXXXXX Máximo de 3000 caracteres" FontSize="10" Foreground="#FFE2650E" HorizontalAlignment="Left" Margin="0,0,0,0" Name="label1" VerticalAlignment="Bottom" />
+    </Grid>
+</core:UserControlBase>
