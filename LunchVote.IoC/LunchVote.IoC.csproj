@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Build\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,6 +49,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LunchVote.Core\LunchVote.Core.csproj">
+      <Project>{759c423b-a8ec-443e-a954-c857bac75f46}</Project>
+      <Name>LunchVote.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LunchVote.Domain\LunchVote.Domain.csproj">
       <Project>{e79bed83-d174-46a5-a038-7a8bb25d6ab7}</Project>
       <Name>LunchVote.Domain</Name>

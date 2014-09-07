@@ -1,0 +1,5 @@
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.IoC\obj\Debug\LunchVote.IoC.csprojResolveAssemblyReference.cache
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.IoC.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.IoC.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.IoC\obj\Debug\LunchVote.IoC.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.IoC\obj\Debug\LunchVote.IoC.pdb

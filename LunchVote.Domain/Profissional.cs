@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace LunchVote.Domain
 {
-    public class Profissional
+    public class Profissional : DomainBase
     {
-
+        public Profissional() { }
+        public int Id { get; set; }
+        public string Descricao { get; set; }
+        public bool IsFacilitador { get; set; }
     }
 }

@@ -1,0 +1,5 @@
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.Domain.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.Domain.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Domain\obj\Debug\LunchVote.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Domain\obj\Debug\LunchVote.Domain.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Domain\obj\Debug\LunchVote.Domain.pdb

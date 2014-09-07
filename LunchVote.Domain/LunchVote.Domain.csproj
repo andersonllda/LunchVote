@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Build\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,7 +50,7 @@
     <Compile Include="Restaurante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Votacao.cs" />
-    <Compile Include="Votos.cs" />
+    <Compile Include="Voto.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LunchVote.Core\LunchVote.Core.csproj">

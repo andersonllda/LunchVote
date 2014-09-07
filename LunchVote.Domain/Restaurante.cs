@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace LunchVote.Domain
 {
-    public class Restaurante
+    public class Restaurante : DomainBase
     {
+        public Restaurante() { }
+
+        public int Id { get; set; }
+        public string Descricao { get; set; }
     }
 }

@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap">
+      <HintPath>..\References\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,8 +53,26 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="BaseTestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LunchVote.Core\LunchVote.Core.csproj">
+      <Project>{759c423b-a8ec-443e-a954-c857bac75f46}</Project>
+      <Name>LunchVote.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchVote.Domain\LunchVote.Domain.csproj">
+      <Project>{e79bed83-d174-46a5-a038-7a8bb25d6ab7}</Project>
+      <Name>LunchVote.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchVote.IoC\LunchVote.IoC.csproj">
+      <Project>{3a1f6b3d-8c35-482b-a59e-47a87d2a6ff2}</Project>
+      <Name>LunchVote.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchVote.Repository.Fake\LunchVote.Repository.Fake.csproj">
+      <Project>{dc10418c-bcd5-4e4f-b3a3-cddecdfe0884}</Project>
+      <Name>LunchVote.Repository.Fake</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
