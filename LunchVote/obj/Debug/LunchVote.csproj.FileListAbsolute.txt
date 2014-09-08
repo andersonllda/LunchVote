@@ -4,8 +4,6 @@ C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.exe.config
 C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.exe
 C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.pdb
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LunchVote.csprojResolveAssemblyReference.cache
-C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\MainWindow.baml
-C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\MainWindow.g.cs
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\App.g.cs
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LunchVote_MarkupCompile.cache
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LunchVote.g.resources
@@ -13,3 +11,6 @@ C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LunchVote.Propert
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LunchVote.csproj.GenerateResource.Cache
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LunchVote.exe
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LunchVote.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LaunchVoteView.baml
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\LaunchVoteView.g.cs
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Debug\App.baml

@@ -1,4 +1,6 @@
 ﻿using LunchVote.Domain.Repository;
+using LunchVote.Repository.Fake;
+using StructureMap.Attributes;
 using StructureMap.Configuration.DSL;
 
 namespace LunchVote.IoC
@@ -12,10 +14,23 @@ namespace LunchVote.IoC
                 assemblyScanner.TheCallingAssembly();
                 assemblyScanner.AddAllTypesOf(typeof(IRepositoryFilter<>));
                 assemblyScanner.AssemblyContainingType(typeof(IRepositoryFilter<>));
-            });                    
-            //ForRequestedType<IRepositorioDeVeiculo>()
-            //   .CacheBy(InstanceScope.PerRequest)
-            //   .TheDefaultIsConcreteType<RepositorioDeVeiculo>();            
+            });
+
+            ForRequestedType<IRepositoryProfissional>()
+               .CacheBy(InstanceScope.PerRequest)
+               .TheDefaultIsConcreteType<RepositoryProfissional>();
+
+            ForRequestedType<IRepositoryRestaurante>()
+               .CacheBy(InstanceScope.PerRequest)
+               .TheDefaultIsConcreteType<RepositoryRestaurante>();
+
+            ForRequestedType<IRepositoryVotacao>()
+               .CacheBy(InstanceScope.PerRequest)
+               .TheDefaultIsConcreteType<RepositoryVotacao>();
+
+            ForRequestedType<IRepositoryVoto>()
+               .CacheBy(InstanceScope.PerRequest)
+               .TheDefaultIsConcreteType<RepositoryVoto>();  
         }    
     }
 }

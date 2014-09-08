@@ -1,0 +1,15 @@
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\bin\Release\LunchVote.exe.config
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Release\LunchVote.exe.config
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Release\LunchVote.exe
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Release\LunchVote.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LunchVote.csprojResolveAssemblyReference.cache
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LaunchVoteView.baml
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\App.baml
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LaunchVoteView.g.cs
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\App.g.cs
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LunchVote_MarkupCompile.cache
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LunchVote.g.resources
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LunchVote.Properties.Resources.resources
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LunchVote.csproj.GenerateResource.Cache
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LunchVote.exe
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote\obj\Release\LunchVote.pdb

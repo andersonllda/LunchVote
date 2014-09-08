@@ -3,3 +3,13 @@ C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.Te
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\obj\Debug\LunchVote.Test.csprojResolveAssemblyReference.cache
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\obj\Debug\LunchVote.Test.dll
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\obj\Debug\LunchVote.Test.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.Core.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.Domain.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.IoC.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.Repository.Fake.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\StructureMap.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\FizzWare.NBuilder.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.Core.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.Domain.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.IoC.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Test\bin\Debug\LunchVote.Repository.Fake.pdb

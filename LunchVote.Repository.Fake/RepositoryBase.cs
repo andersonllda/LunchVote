@@ -15,7 +15,7 @@ namespace LunchVote.Repository.Fake
         public Repository(bool carregarLista = true)
         {
             if (carregarLista)
-                _list = Builder<TEntidade>.CreateListOfSize(10).Build();
+                _list = Builder<TEntidade>.CreateListOfSize(100).Build();
         }
     }
 
@@ -27,6 +27,7 @@ namespace LunchVote.Repository.Fake
         }
         public virtual TEntidade Save(TEntidade entidade)
         {
+            _list.Add(entidade);
             return entidade;
         }    
         public void Delete(TEntidade entidade)
@@ -49,11 +50,7 @@ namespace LunchVote.Repository.Fake
         public virtual TEntidade Single()
         {
             return _list.FirstOrDefault();
-        }
-        public virtual TEntidade FindBy(object id)
-        {
-            throw new NotImplementedException();
-        }
+        }     
         public IRepositoryFilter<TEntidade> Skip(int count)
         {
             _list.Skip(count);

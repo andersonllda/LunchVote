@@ -24,23 +24,45 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Build\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="StructureMap, Version=2.5.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="VMVotacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LunchVote.Core\LunchVote.Core.csproj">
+      <Project>{759c423b-a8ec-443e-a954-c857bac75f46}</Project>
+      <Name>LunchVote.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchVote.Domain\LunchVote.Domain.csproj">
+      <Project>{e79bed83-d174-46a5-a038-7a8bb25d6ab7}</Project>
+      <Name>LunchVote.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchVote.Repository.Fake\LunchVote.Repository.Fake.csproj">
+      <Project>{dc10418c-bcd5-4e4f-b3a3-cddecdfe0884}</Project>
+      <Name>LunchVote.Repository.Fake</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -28,10 +28,14 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Build\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,7 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="LaunchVoteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -61,8 +65,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="LaunchVoteView.xaml.cs">
+      <DependentUpon>LaunchVoteView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -92,6 +96,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LunchVote.Core\LunchVote.Core.csproj">
+      <Project>{759c423b-a8ec-443e-a954-c857bac75f46}</Project>
+      <Name>LunchVote.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchVote.IoC\LunchVote.IoC.csproj">
+      <Project>{3a1f6b3d-8c35-482b-a59e-47a87d2a6ff2}</Project>
+      <Name>LunchVote.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchVote.VM\LunchVote.VM.csproj">
+      <Project>{534f6dcf-2e69-4510-ab90-8e7839b5e73e}</Project>
+      <Name>LunchVote.VM</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

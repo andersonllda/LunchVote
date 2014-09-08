@@ -9,7 +9,10 @@ namespace LunchVote.Domain
 {
     public class Voto : DomainBase, IAggregateRoot
     {
-        public Voto() { }
+        public Voto() 
+        { 
+            
+        }
         
         public int Id { get; set; }
         public Votacao Votacao { get; set; }

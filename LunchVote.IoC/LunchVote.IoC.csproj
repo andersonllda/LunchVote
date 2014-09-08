@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Build\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -56,6 +56,10 @@
     <ProjectReference Include="..\LunchVote.Domain\LunchVote.Domain.csproj">
       <Project>{e79bed83-d174-46a5-a038-7a8bb25d6ab7}</Project>
       <Name>LunchVote.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LunchVote.Repository.Fake\LunchVote.Repository.Fake.csproj">
+      <Project>{dc10418c-bcd5-4e4f-b3a3-cddecdfe0884}</Project>
+      <Name>LunchVote.Repository.Fake</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

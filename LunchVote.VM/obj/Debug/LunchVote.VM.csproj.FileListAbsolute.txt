@@ -2,3 +2,4 @@ C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.VM.dll
 C:\Users\Robson\Documents\GitHub\LunchVote\Build\Debug\LunchVote.VM.pdb
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.VM\obj\Debug\LunchVote.VM.dll
 C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.VM\obj\Debug\LunchVote.VM.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.VM\obj\Debug\LunchVote.VM.csprojResolveAssemblyReference.cache

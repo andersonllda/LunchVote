@@ -3,31 +3,34 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LunchVote.IoC;
 using StructureMap;
 using LunchVote.Domain;
+using LunchVote.Domain.Repository;
+using System.Linq;
 
 namespace LunchVote.Test
 {
     [TestClass]
     public abstract class BaseTestClass
     {
-        public static Profissional Profissional;
+        public static Profissional ProfissionalFaminto;
+        public static Profissional ProfissionalFacilitador;
 
         protected static void BaseTestInitialize(TestContext testContext)
         {           
             IoCWorker.ConfigureFake();
-            Profissional = ObjectFactory.GetInstance<IUsuariosService>().FiltraPorID("H2555HO");
+            ProfissionalFaminto = ObjectFactory.GetInstance<IRepositoryProfissional>().OndeIdIgual(new Random().Next(10)).Single();
+            ProfissionalFacilitador = ObjectFactory.GetInstance<IRepositoryProfissional>().OndeIsFacilitador().List().FirstOrDefault();
         }      
 
         [TestInitialize]
         public void InitializeTest()
         {
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>();
+         //
         }
 
         [TestCleanup]
         public void FinalizeTest()
         {
-            _unitOfWork.Dispose();
-            //_unitOfWork = null;
+         //
         }
     }
 }

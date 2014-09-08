@@ -1,0 +1,35 @@
+﻿<Window x:Class="LunchVote.LaunchVoteView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LunchVote" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Content="LunchVote" FontSize="14" FontWeight="ExtraBold" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Top"/>
+            <Label Content="{Binding VotacaodoDia, Mode=OneWay}" HorizontalAlignment="Right" />
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <RadioButton Content="{Binding RestauranteOpcao1.Descricao, Mode=OneWay}" IsChecked="{Binding RestauranteOpcao1Value, Mode=TwoWay}" Grid.Row="0" HorizontalAlignment="Center" Height="30" GroupName="voto"/>
+            <RadioButton Content="{Binding RestauranteOpcao2.Descricao, Mode=OneWay}" IsChecked="{Binding RestauranteOpcao2Value, Mode=TwoWay}" Grid.Row="1" HorizontalAlignment="Center" Height="30" GroupName="voto"/>
+            <RadioButton Content="{Binding RestauranteOpcao3.Descricao, Mode=OneWay}" IsChecked="{Binding RestauranteOpcao3Value, Mode=TwoWay}" Grid.Row="2" HorizontalAlignment="Center" Height="30" GroupName="voto"/>
+        </Grid>
+        <Grid Grid.Row="1" Visibility="{Binding IsResultadoVisivel, Mode=OneWay}">
+            <StackPanel Background="Wheat">
+                <Label Content="Resultado da Votação" HorizontalAlignment="Center" FontSize="15"/>
+                <Label Content="{Binding Resultado, Mode=OneWay}"></Label>
+            </StackPanel>
+        </Grid>
+        <Button Content="Fechar" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Click="Button_Click"/>
+        <Button Content="{Binding ResultadoBotaoTexto}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsBotaoResultadoVisivel}" Command="{Binding Commands.CommandVisualizar}"/>
+        <Button Content="Votar" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Visibility="{Binding IsBotaoVotarVisivel}" Command="{Binding Commands.CommandVotar}"/>
+    </Grid>
+</Window>

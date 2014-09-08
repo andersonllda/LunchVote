@@ -1,0 +1,5 @@
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Release\LunchVote.Repository.Fake.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\Build\Release\LunchVote.Repository.Fake.pdb
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Repository.Fake\obj\Release\LunchVote.Repository.Fake.csprojResolveAssemblyReference.cache
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Repository.Fake\obj\Release\LunchVote.Repository.Fake.dll
+C:\Users\Robson\Documents\GitHub\LunchVote\LunchVote.Repository.Fake\obj\Release\LunchVote.Repository.Fake.pdb

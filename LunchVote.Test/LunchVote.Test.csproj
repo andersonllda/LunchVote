@@ -54,7 +54,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTestClass.cs" />
+    <Compile Include="Estoria3Test.cs" />
+    <Compile Include="Estoria1Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Estoria2Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LunchVote.Core\LunchVote.Core.csproj">
